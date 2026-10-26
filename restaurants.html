@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Featured Restaurants — STACKLY Culinary Directory & Table Booking</title>
+  <meta name="description" content="Explore handpicked fine dining rooms, chef counters, artisanal trattorias, and rooftop lounges across Chennai, Bengaluru, Coimbatore, and South India.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/restaurants.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+      <div class="preloader-spin"></div>
+    </div>
+  </div>
+
+  <!-- 1. COMMON NAVBAR -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Left: Logo -->
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+
+      <!-- Center: Navigation Links (Restaurants in the middle after About) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="restaurants.html" class="nav-link active">Restaurants</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Right: Search & Login -->
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants" title="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <!-- Hamburger for Mobile -->
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link active">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- 1. HERO DIRECTORY SECTION -->
+    <section class="resto-hero">
+      <div class="container">
+        <div class="resto-hero-content">
+          <div class="resto-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>STACKLY CURATED DIRECTORY</span>
+          </div>
+          <h1 class="resto-hero-title">
+            Handpicked Tables, <span>Exceptional Evenings.</span>
+          </h1>
+          <p class="resto-hero-subtitle">
+            Explore South India's premier culinary destinations. From secluded heritage courtyards and contemporary omakase counters to sea-breeze terraces and Michelin-caliber dining rooms.
+          </p>
+
+          <!-- Interactive Search & Filter Bar -->
+          <div class="resto-search-box">
+            <div class="resto-search-input-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="restoSearchInput" class="resto-search-input" placeholder="Search by restaurant name, dish, or neighborhood...">
+            </div>
+            <div class="resto-search-select-wrap">
+              <select id="restoCitySelect" class="resto-search-select">
+                <option value="all">All Cities</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Hyderabad">Hyderabad</option>
+              </select>
+            </div>
+            <div class="resto-search-select-wrap">
+              <select id="restoCuisineSelect" class="resto-search-select">
+                <option value="all">All Cuisines</option>
+                <option value="European">European</option>
+                <option value="Japanese">Japanese</option>
+                <option value="Italian">Italian</option>
+                <option value="Indian">Heritage Indian</option>
+                <option value="Seafood">Coastal & Seafood</option>
+                <option value="Rooftop">Rooftop Lounge</option>
+              </select>
+            </div>
+            <button type="button" id="restoSearchTrigger" class="resto-search-btn">
+              <span>Filter Tables</span>
+            </button>
+          </div>
+
+          <!-- Stats Ribbon -->
+          <div class="resto-stats-ribbon">
+            <div class="resto-stat-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <span>150+ Verified Dining Rooms</span>
+            </div>
+            <div class="resto-stat-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Demonstration Real-Time Slots</span>
+            </div>
+            <div class="resto-stat-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>4.9/5 Average Critic Rating</span>
+            </div>
+            <div class="resto-stat-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>Zero Reservation Surcharges</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CUISINE & MOOD FILTER STRIP -->
+    <section class="resto-filter-section">
+      <div class="container">
+        <div class="resto-filter-scroll" id="restoCategoryStrip">
+          <button type="button" class="resto-filter-btn active" data-filter="all">
+            <span>All Dining Destinations</span>
+            <span class="resto-filter-count">12</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Fine Dining">
+            <span>Fine Dining & Chef Counters</span>
+            <span class="resto-filter-count">3</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Italian">
+            <span>Artisanal Italian & Trattorias</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Japanese">
+            <span>Edomae Omakase & Robata</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Indian">
+            <span>Royal Heritage Indian</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Seafood">
+            <span>Coastal Seafood & Raw Bars</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Rooftop">
+            <span>Skyline Rooftops & Terraces</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+          <button type="button" class="resto-filter-btn" data-filter="Brunch">
+            <span>Artisanal Brunch & Bistros</span>
+            <span class="resto-filter-count">2</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CRITICS' CHOICE SECTION -->
+    <section class="critics-choice-section">
+      <div class="container">
+        <div class="section-header text-center" style="margin-bottom: 50px;">
+          <span class="section-eyebrow">HEADLINING DESTINATIONS</span>
+          <h2 class="section-title">Critics' Choice for October 2026</h2>
+          <p class="section-subtitle">Three culinary institutions celebrated for uncompromising provenance, master craftsmanship, and sensory hospitality.</p>
+        </div>
+
+        <!-- Critics Showcase 1 -->
+        <article class="critics-card">
+          <div class="critics-card-media">
+            <img src="assets/images/featured-olive-table.webp" alt="The Olive Table contemporary dining interior">
+            <div class="critics-badge-floating">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>4.9 / 5.0 • CRITICS' CROWN</span>
+            </div>
+          </div>
+          <div class="critics-card-info">
+            <div>
+              <span class="critics-card-eyebrow">CONTEMPORARY EUROPEAN • POES GARDEN, CHENNAI</span>
+              <h3 class="critics-card-title">The Olive Table</h3>
+              <div class="critics-meta-row">
+                <span>Chef Marc Laurent (Paris)</span>
+                <span>•</span>
+                <span>400-Label Wine Cellar</span>
+                <span>•</span>
+                <span>Smart Elegant</span>
+              </div>
+              <blockquote class="critics-chef-quote">
+                “Every plate reflects the balance between French classical precision and organic Nilgiris produce, served under a glass atrium canopy.”
+              </blockquote>
+              <div class="critics-highlights-list">
+                <span class="critics-pill">Black Truffle Risotto</span>
+                <span class="critics-pill">Smoked Duck Breast</span>
+                <span class="critics-pill">Valrhona Soufflé</span>
+                <span class="critics-pill">Sommelier Pairing</span>
+              </div>
+            </div>
+            <div class="critics-card-footer">
+              <div>
+                <span class="critics-price-tag">₹3,200</span>
+                <span class="critics-price-sub"> / avg. two guests</span>
+              </div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reserve Featured Table →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Critics Showcase 2 -->
+        <article class="critics-card">
+          <div class="critics-card-media">
+            <img src="assets/images/japanese-restaurant.webp" alt="Sakura House Counter minimalist Japanese wooden counter">
+            <div class="critics-badge-floating">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>4.95 / 5.0 • 12-SEAT OMAKASE</span>
+            </div>
+          </div>
+          <div class="critics-card-info">
+            <div>
+              <span class="critics-card-eyebrow">EDOMAE OMAKASE • INDIRANAGAR, BENGALURU</span>
+              <h3 class="critics-card-title">Sakura House Counter</h3>
+              <div class="critics-meta-row">
+                <span>Master Kenji Takahashi</span>
+                <span>•</span>
+                <span>Direct Toyosu Market Sourcing</span>
+                <span>•</span>
+                <span>Intimate Hinoki Counter</span>
+              </div>
+              <blockquote class="critics-chef-quote">
+                “A transcendent 16-course omakase journey carved from 300-year-old Japanese cypress, celebrating aged bluefin and binchotan grilling.”
+              </blockquote>
+              <div class="critics-highlights-list">
+                <span class="critics-pill">Otoro Nigiri</span>
+                <span class="critics-pill">A5 Miyazaki Wagyu</span>
+                <span class="critics-pill">Hokkaido Uni</span>
+                <span class="critics-pill">Junmai Daiginjo Sake</span>
+              </div>
+            </div>
+            <div class="critics-card-footer">
+              <div>
+                <span class="critics-price-tag">₹4,500</span>
+                <span class="critics-price-sub"> / avg. two guests</span>
+              </div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reserve Counter Seat →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Critics Showcase 3 -->
+        <article class="critics-card">
+          <div class="critics-card-media">
+            <img src="assets/images/coastal-seafood.webp" alt="Malabar Spice Pavilion waterfront coastal seafood table">
+            <div class="critics-badge-floating">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>4.85 / 5.0 • COASTAL HERITAGE</span>
+            </div>
+          </div>
+          <div class="critics-card-info">
+            <div>
+              <span class="critics-card-eyebrow">COASTAL SOUTH INDIAN • FORT KOCHI & ECR COAST</span>
+              <h3 class="critics-card-title">Malabar Spice Pavilion</h3>
+              <div class="critics-meta-row">
+                <span>Chef Leela Menon</span>
+                <span>•</span>
+                <span>Fresh Day-Boat Catch</span>
+                <span>•</span>
+                <span>Open Sea Breeze Veranda</span>
+              </div>
+              <blockquote class="critics-chef-quote">
+                “Celebrating generational coastal spice blenders and wood-smoked seafood in an atmospheric restored Dutch heritage warehouse.”
+              </blockquote>
+              <div class="critics-highlights-list">
+                <span class="critics-pill">Karimeen Pollichathu</span>
+                <span class="critics-pill">Alleppey Prawn Curry</span>
+                <span class="critics-pill">Coconut Toddy Reductions</span>
+                <span class="critics-pill">Elaneer Soufflé</span>
+              </div>
+            </div>
+            <div class="critics-card-footer">
+              <div>
+                <span class="critics-price-tag">₹2,600</span>
+                <span class="critics-price-sub"> / avg. two guests</span>
+              </div>
+              <a href="404.html" class="btn btn-primary btn-sm">Reserve Seaside Table →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. MAIN RESTAURANT CATALOG GRID -->
+    <section class="resto-grid-section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+          <div>
+            <span class="section-eyebrow">EXPANDED CATALOG</span>
+            <h2 class="section-title">Explore Verified Venues</h2>
+            <p class="section-subtitle">Showing curated dining rooms matching your taste, ambiance, and location preferences.</p>
+          </div>
+          <span id="restoResultCount" style="font-size: 0.875rem; font-weight: 600; color: var(--color-green); background: var(--color-sage); padding: 6px 16px; border-radius: 9999px;">
+            Showing 9 Dining Destinations
+          </span>
+        </div>
+
+        <div class="resto-catalog-grid" id="restoCatalogGrid">
+
+          <!-- Card 1 -->
+          <article class="resto-card-item" data-cuisine="Italian" data-city="Bengaluru">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/italian-classics.webp" alt="Trattoria Bella Vista handmade pasta and wine">
+              <span class="resto-card-tag">Artisanal Italian</span>
+              <div class="resto-card-rating"><span>★</span> 4.8</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Italian • Lavelle Road, Bengaluru</span>
+                <h3 class="resto-card-name">Trattoria Bella Vista</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>Lavelle Road • Wood-Fired Oven</span>
+                </p>
+                <p class="resto-card-signature">Handcrafted tagliolini with shaved Parmigiano Reggiano and 72-hour fermented sourdough pizzas.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹2,400 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="resto-card-item" data-cuisine="Rooftop" data-city="Chennai">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/skyline-kitchen.webp" alt="Aura Sky Lounge city night view">
+              <span class="resto-card-tag">Skyline Terrace</span>
+              <div class="resto-card-rating"><span>★</span> 4.7</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Rooftop Lounge • Nungambakkam, Chennai</span>
+                <h3 class="resto-card-name">Aura Sky Lounge & Kitchen</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>14th Floor Skyline • Sundowner DJ</span>
+                </p>
+                <p class="resto-card-signature">Panoramic bay horizon, artisanal botanical cocktails, and charcoal-grilled Mediterranean skewers.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹2,800 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="resto-card-item" data-cuisine="Indian" data-city="Coimbatore">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/south-indian-cuisine.webp" alt="Royal Thanjavur Room heritage silver thali">
+              <span class="resto-card-tag">Heritage Indian</span>
+              <div class="resto-card-rating"><span>★</span> 4.9</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Royal Cuisine • Race Course, Coimbatore</span>
+                <h3 class="resto-card-name">The Royal Thanjavur Room</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>Race Course • Live Carnatic Strings</span>
+                </p>
+                <p class="resto-card-signature">Centuries-old royal Chola court recipes served in antique bronze service with organic single-estate spices.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹2,200 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="resto-card-item" data-cuisine="Seafood" data-city="Chennai">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/seaside-resto.webp" alt="Bayview Oyster & Grill seaside table">
+              <span class="resto-card-tag">Oyster & Grill</span>
+              <div class="resto-card-rating"><span>★</span> 4.8</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Coastal Grill • ECR Coast, Chennai</span>
+                <h3 class="resto-card-name">Bayview Oyster & Grill</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>ECR Coastal Deck • Surf Sounds</span>
+                </p>
+                <p class="resto-card-signature">Freshly shucked Tuticorin oysters, live lobster charcoal barbecue, and chilled dry white wines.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹3,400 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="resto-card-item" data-cuisine="Brunch" data-city="Hyderabad">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/cafes-desserts.webp" alt="Boulangerie Botanique French pastries">
+              <span class="resto-card-tag">French Patisserie</span>
+              <div class="resto-card-rating"><span>★</span> 4.75</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">French Bistro • Jubilee Hills, Hyderabad</span>
+                <h3 class="resto-card-name">Bistro Botanique</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>Glass Greenhouse • Garden Patio</span>
+                </p>
+                <p class="resto-card-signature">Laminated butter croissants, eggs Benedict with black truffle hollandaise, and specialty cold drips.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹1,600 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="resto-card-item" data-cuisine="Japanese" data-city="Bengaluru">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/asian-fusion.webp" alt="Dragon & Lotus Pan-Asian steamed dim sums">
+              <span class="resto-card-tag">Modern Pan-Asian</span>
+              <div class="resto-card-rating"><span>★</span> 4.85</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Pan-Asian • Koramangala, Bengaluru</span>
+                <h3 class="resto-card-name">Dragon & Lotus Society</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>Koramangala 4th Block • Red Lanterns</span>
+                </p>
+                <p class="resto-card-signature">Truffle edamame dumplings, crispy aromatic Peking duck rolls, and Japanese robata yakitori.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹2,900 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7 -->
+          <article class="resto-card-item" data-cuisine="Fine Dining" data-city="Chennai">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/terrace-thyme.webp" alt="Terrace & Thyme organic botanical dining room">
+              <span class="resto-card-tag">Farm-to-Table</span>
+              <div class="resto-card-rating"><span>★</span> 4.7</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Botanical Cuisine • Alwarpet, Chennai</span>
+                <h3 class="resto-card-name">Terrace & Thyme</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>Alwarpet • Rooftop Herb Greenhouse</span>
+                </p>
+                <p class="resto-card-signature">Zero-mile vegetables harvested daily from micro-gardens, cold-pressed reductions, and artisanal cheeses.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹2,100 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8 -->
+          <article class="resto-card-item" data-cuisine="Indian" data-city="Coimbatore">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/curry-house.webp" alt="The Brass Lantern slow-cooked dal bukhara">
+              <span class="resto-card-tag">Frontier Flavors</span>
+              <div class="resto-card-rating"><span>★</span> 4.8</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">North-West Frontier • RS Puram, Coimbatore</span>
+                <h3 class="resto-card-name">The Brass Lantern Society</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>RS Puram • Copper Ambient Lighting</span>
+                </p>
+                <p class="resto-card-signature">Slow-simmered 18-hour black lentils, clay-oven tandoori rack of lamb, and saffron rum-soaked breads.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹1,950 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 9 -->
+          <article class="resto-card-item" data-cuisine="Brunch" data-city="Bengaluru">
+            <div class="resto-card-img-wrap">
+              <img src="assets/images/sunday-brunch.webp" alt="L’Atelier Sunday Feast Room artisanal feast">
+              <span class="resto-card-tag">Sunday Degustation</span>
+              <div class="resto-card-rating"><span>★</span> 4.9</div>
+            </div>
+            <div class="resto-card-body">
+              <div>
+                <span class="resto-card-cuisine">Feast & Carvery • Indiranagar, Bengaluru</span>
+                <h3 class="resto-card-name">L’Atelier Sunday Feast Room</h3>
+                <p class="resto-card-loc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  <span>100 Feet Road • Sunlit Garden Courtyard</span>
+                </p>
+                <p class="resto-card-signature">Chilled seafood ice towers, live raclette cheese carving, and artisanal dessert cart trolley service.</p>
+              </div>
+              <div class="resto-card-footer">
+                <span class="resto-price-bracket">₹3,000 for two</span>
+                <a href="404.html" class="btn btn-secondary btn-sm">Book Table →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CULINARY HUBS & NEIGHBORHOODS -->
+    <section class="city-hubs-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">REGIONAL GASTRONOMY</span>
+          <h2 class="section-title">South India Culinary Capitals</h2>
+          <p class="section-subtitle">Immerse yourself in distinctive dining enclaves, from coastal seafood promenades to tree-lined high streets.</p>
+        </div>
+
+        <div class="city-hubs-grid">
+          <!-- Hub 1 -->
+          <div class="city-hub-card">
+            <img src="assets/images/seaside-resto.webp" alt="Chennai coastal dining scene">
+            <div class="city-hub-overlay">
+              <span class="city-hub-count">48 CURATED VENUES</span>
+              <h3 class="city-hub-name">Chennai</h3>
+              <p class="city-hub-areas">Poes Garden • Nungambakkam • Alwarpet • ECR Waterfront</p>
+            </div>
+          </div>
+
+          <!-- Hub 2 -->
+          <div class="city-hub-card">
+            <img src="assets/images/fine-dining-interior.webp" alt="Bengaluru cosmopolitan dining room">
+            <div class="city-hub-overlay">
+              <span class="city-hub-count">54 CURATED VENUES</span>
+              <h3 class="city-hub-name">Bengaluru</h3>
+              <p class="city-hub-areas">Indiranagar • Lavelle Road • Koramangala • Sadashivanagar</p>
+            </div>
+          </div>
+
+          <!-- Hub 3 -->
+          <div class="city-hub-card">
+            <img src="assets/images/south-indian-cuisine.webp" alt="Coimbatore plantation heritage dining">
+            <div class="city-hub-overlay">
+              <span class="city-hub-count">26 CURATED VENUES</span>
+              <h3 class="city-hub-name">Coimbatore</h3>
+              <p class="city-hub-areas">Race Course • RS Puram • Peelamedu Heritage Enclave</p>
+            </div>
+          </div>
+
+          <!-- Hub 4 -->
+          <div class="city-hub-card">
+            <img src="assets/images/skyline-kitchen.webp" alt="Kochi and Hyderabad heritage water views">
+            <div class="city-hub-overlay">
+              <span class="city-hub-count">22 CURATED VENUES</span>
+              <h3 class="city-hub-name">Kochi & Hyderabad</h3>
+              <p class="city-hub-areas">Fort Kochi Colonial Docks • Jubilee Hills • Banjara Hills</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRIVÉ PRIVATE DINING DARK SECTION -->
+    <section class="prive-section">
+      <div class="container">
+        <div style="max-width: 720px;">
+          <span class="section-eyebrow" style="color: var(--color-gold);">STACKLY PRIVÉ SALONS</span>
+          <h2 class="section-title" style="color: var(--color-white); font-size: clamp(2.2rem, 4vw, 3rem);">
+            Private Rooms Crafted for Landmark Occasions.
+          </h2>
+          <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.05rem; line-height: 1.7;">
+            When privacy, bespoke menus, and discreet service are paramount. Experience dedicated maître d' attention and custom sommelier cellar tours.
+          </p>
+        </div>
+
+        <div class="prive-grid">
+          <!-- Prive 1 -->
+          <div class="prive-card">
+            <div class="prive-card-top">
+              <span class="prive-capacity-badge">UP TO 12 SEATS</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M8 21h8m-4-17v17M4 7h16M7 4h10"/></svg>
+            </div>
+            <h3 class="prive-card-title">The Grand Wine Vault</h3>
+            <p class="prive-card-desc">Subterranean oak-lined cellar surrounded by over 1,200 temperature-controlled Grand Cru vintages with dedicated master sommelier service.</p>
+            <ul class="prive-perks-list">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Curated 6-Course Bespoke Wine Pairing Degustation</span>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Discreet Private Entry & Acoustic Isolation Chamber</span>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Personalized Calligraphy Tasting Menus for Each Guest</span>
+              </li>
+            </ul>
+            <a href="404.html" class="btn btn-outline-green" style="color: var(--color-white); border-color: rgba(255,255,255,0.3); width: 100%; text-align: center;">Inquire Privé Vault →</a>
+          </div>
+
+          <!-- Prive 2 -->
+          <div class="prive-card">
+            <div class="prive-card-top">
+              <span class="prive-capacity-badge">UP TO 20 SEATS</span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path></svg>
+            </div>
+            <h3 class="prive-card-title">The Glass Greenhouse Salon</h3>
+            <p class="prive-card-desc">Sunlit rooftop conservatory surrounded by rare orchids, living citrus trees, and candlelit chandeliers for milestone family celebrations.</p>
+            <ul class="prive-perks-list">
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Farm-to-Table Tasting Curated with the Head Horticulturist</span>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Private Cocktail Station with Custom Welcome Punches</span>
+              </li>
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Integrated High-Fidelity Acoustic Audio System</span>
+              </li>
+            </ul>
+            <a href="404.html" class="btn btn-outline-green" style="color: var(--color-white); border-color: rgba(255,255,255,0.3); width: 100%; text-align: center;">Inquire Greenhouse →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SEASONAL TASTING CALENDAR -->
+    <section class="tasting-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">LIMITED-RUN EXPERIENCES</span>
+          <h2 class="section-title">Seasonal Tasting Menus & Pop-Ups</h2>
+          <p class="section-subtitle">Exclusive culinary collaborations and seasonal produce showcases available for limited demonstration dates.</p>
+        </div>
+
+        <div class="tasting-grid">
+          <!-- Event 1 -->
+          <div class="tasting-card">
+            <div>
+              <span class="tasting-date-badge">OCT 28 – NOV 15</span>
+              <h3 class="tasting-card-title">Autumn White Truffle Degustation</h3>
+              <p class="tasting-card-meta">The Olive Table • Poes Garden, Chennai</p>
+              <div class="tasting-card-menu-highlights">
+                <strong>7 Courses:</strong> Fresh Piedmont White Truffles shaved tableside over hand-cut tajarin, wild morel foam, and aged Castelmagno cheese tart.
+              </div>
+            </div>
+            <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">View Tasting Schedule →</a>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="tasting-card">
+            <div>
+              <span class="tasting-date-badge">NOV 10 – NOV 30</span>
+              <h3 class="tasting-card-title">Oceanic Bay of Bengal Journey</h3>
+              <p class="tasting-card-meta">Bayview Oyster & Grill • ECR Coast</p>
+              <div class="tasting-card-menu-highlights">
+                <strong>6 Courses:</strong> Mangrove mud crab carpaccio, wood-fired silver pomfret in banana leaf ash, and sea buckthorn sorbet.
+              </div>
+            </div>
+            <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">View Tasting Schedule →</a>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="tasting-card">
+            <div>
+              <span class="tasting-date-badge">DEC 01 – DEC 20</span>
+              <h3 class="tasting-card-title">Nizam Royal Winter Banquet</h3>
+              <p class="tasting-card-meta">Royal Thanjavur & Deccan Guild • Bangalore</p>
+              <div class="tasting-card-menu-highlights">
+                <strong>8 Courses:</strong> 24-hour slow-dum venison biryani, saffron-infused silver leaf shahi tukda, and Kashmiri walnut parathas.
+              </div>
+            </div>
+            <a href="404.html" class="btn btn-secondary btn-sm" style="width: 100%; text-align: center;">View Tasting Schedule →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. DINER REVIEWS & CRITICS' ACCOLADES -->
+    <section class="resto-reviews-section">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">VERIFIED EXPERIENCES</span>
+          <h2 class="section-title">What Diners & Critics Say</h2>
+          <p class="section-subtitle">Real moments experienced by culinary travelers and food critics discovering tables through STACKLY.</p>
+        </div>
+
+        <div class="resto-reviews-grid">
+          <!-- Review 1 -->
+          <div class="review-card-item">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">“STACKLY made reserving a prime Saturday evening table at The Olive Table effortless. The sommelier already had our preferred vintage ready upon seating.”</p>
+            </div>
+            <div class="reviewer-profile">
+              <img src="assets/images/user-avatar-1.webp" alt="Anita Rajan portrait" class="reviewer-avatar">
+              <div>
+                <h4 class="reviewer-name">Anita Rajan</h4>
+                <p class="reviewer-meta">Food & Travel Columnist • Chennai</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="review-card-item">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">“The Sakura House omakase counter was booked out for months. With STACKLY priority discovery, we enjoyed the most sublime Edomae meal in Bengaluru.”</p>
+            </div>
+            <div class="reviewer-profile">
+              <img src="assets/images/user-avatar-2.webp" alt="Vikramaditya Rao portrait" class="reviewer-avatar">
+              <div>
+                <h4 class="reviewer-name">Vikramaditya Rao</h4>
+                <p class="reviewer-meta">Culinary Critic • Indiranagar</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="review-card-item">
+            <div>
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">“Our 10th anniversary at Bayview was pure magic. Corner seaside booth, quiet acoustic setting, and impeccable attention to detail from the staff.”</p>
+            </div>
+            <div class="reviewer-profile">
+              <img src="assets/images/user-avatar-3.webp" alt="Meera Swaminathan portrait" class="reviewer-avatar">
+              <div>
+                <h4 class="reviewer-name">Meera & Sanjay</h4>
+                <p class="reviewer-meta">Dine Club Members • ECR Coast</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. CONCIERGE BANNER -->
+        <div class="resto-concierge-banner">
+          <div class="concierge-banner-text">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-gold); letter-spacing: 0.08em; text-transform: uppercase;">BESPOKE CONCIERGE ASSISTANCE</span>
+            <h3>Looking for Hard-to-Find Tables or Custom Seating?</h3>
+            <p>Our dedicated hospitality concierges coordinate directly with restaurant general managers to curate unforgettable dining moments.</p>
+          </div>
+          <a href="404.html" class="btn btn-primary" style="background-color: var(--color-white); color: var(--color-green); white-space: nowrap;">
+            Connect with Concierge →
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Directory Script & GSAP Scroll Animations -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // 1. Interactive Real-Time Catalog Filtering
+      const searchInput = document.getElementById("restoSearchInput");
+      const citySelect = document.getElementById("restoCitySelect");
+      const cuisineSelect = document.getElementById("restoCuisineSelect");
+      const searchTrigger = document.getElementById("restoSearchTrigger");
+      const categoryBtns = document.querySelectorAll(".resto-filter-btn");
+      const cards = document.querySelectorAll(".resto-card-item");
+      const countDisplay = document.getElementById("restoResultCount");
+
+      let currentCategory = "all";
+
+      function filterCatalog() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+        const city = citySelect ? citySelect.value : "all";
+        const cuisine = cuisineSelect ? cuisineSelect.value : "all";
+
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const cardCuisine = card.dataset.cuisine || "";
+          const cardCity = card.dataset.city || "";
+          const cardText = card.textContent.toLowerCase();
+
+          const matchesCategory = (currentCategory === "all") || (cardCuisine.toLowerCase().includes(currentCategory.toLowerCase()));
+          const matchesCity = (city === "all") || (cardCity.toLowerCase() === city.toLowerCase());
+          const matchesCuisine = (cuisine === "all") || (cardCuisine.toLowerCase().includes(cuisine.toLowerCase()));
+          const matchesQuery = (!query) || (cardText.includes(query));
+
+          if (window.gsap) {
+            gsap.killTweensOf(card);
+          }
+
+          if (matchesCategory && matchesCity && matchesCuisine && matchesQuery) {
+            card.style.display = "flex";
+            visibleCount++;
+            if (window.gsap && !prefersReducedMotion) {
+              gsap.fromTo(card, 
+                { opacity: 0, y: 15 }, 
+                { 
+                  opacity: 1, 
+                  y: 0, 
+                  duration: 0.3, 
+                  ease: "power2.out",
+                  clearProps: "opacity,transform" 
+                }
+              );
+            } else {
+              card.style.opacity = "1";
+              card.style.transform = "none";
+            }
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        if (countDisplay) {
+          countDisplay.textContent = `Showing ${visibleCount} Dining Destination${visibleCount === 1 ? '' : 's'}`;
+        }
+
+        if (window.ScrollTrigger) {
+          ScrollTrigger.refresh();
+        }
+      }
+
+      // Category Pill Click
+      categoryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          categoryBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentCategory = btn.dataset.filter || "all";
+          filterCatalog();
+        });
+      });
+
+      // Search & Dropdown Events
+      if (searchTrigger) searchTrigger.addEventListener("click", filterCatalog);
+      if (searchInput) searchInput.addEventListener("input", filterCatalog);
+      if (citySelect) citySelect.addEventListener("change", filterCatalog);
+      if (cuisineSelect) cuisineSelect.addEventListener("change", filterCatalog);
+
+      // 2. GSAP ScrollTrigger Animations (Safe fromTo with once: true and clearProps)
+      if (window.gsap && !prefersReducedMotion) {
+        if (window.ScrollTrigger) {
+          gsap.registerPlugin(ScrollTrigger);
+        }
+
+        // Hero Entrance
+        gsap.fromTo(".resto-hero-content > *",
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: "opacity,transform"
+          }
+        );
+
+        if (window.ScrollTrigger) {
+          // Critics Cards Staggered Slide In
+          gsap.fromTo(".critics-card",
+            { y: 35, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".critics-choice-section",
+                start: "top 85%",
+                once: true
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // Main Catalog Stagger
+          gsap.fromTo(".resto-card-item",
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".resto-catalog-grid",
+                start: "top 85%",
+                once: true
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.5,
+              stagger: 0.06,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // City Hubs Cards
+          gsap.fromTo(".city-hub-card",
+            { scale: 0.95, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".city-hubs-grid",
+                start: "top 85%",
+                once: true
+              },
+              scale: 1,
+              opacity: 1,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // Prive Dark Section Cards
+          gsap.fromTo(".prive-card",
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".prive-grid",
+                start: "top 85%",
+                once: true
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // Tasting Cards
+          gsap.fromTo(".tasting-card",
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".tasting-grid",
+                start: "top 85%",
+                once: true
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // Reviews Stagger
+          gsap.fromTo(".review-card-item",
+            { y: 30, opacity: 0 },
+            {
+              scrollTrigger: {
+                trigger: ".resto-reviews-grid",
+                start: "top 85%",
+                once: true
+              },
+              y: 0,
+              opacity: 1,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: "power2.out",
+              clearProps: "opacity,transform"
+            }
+          );
+
+          // Refresh ScrollTrigger after window load and preloader fade
+          window.addEventListener("load", () => {
+            setTimeout(() => {
+              ScrollTrigger.refresh();
+            }, 300);
+          });
+        }
+      }
+
+      // 3. Safety Fallback: Ensure visible cards never remain in a partial opacity state
+      const guaranteeVisibility = () => {
+        document.querySelectorAll(".resto-card-item").forEach(card => {
+          if (card.style.display !== "none") {
+            const currentOpacity = parseFloat(window.getComputedStyle(card).opacity);
+            if (currentOpacity < 1 && (!window.gsap || !gsap.isTweening(card))) {
+              card.style.opacity = "1";
+              card.style.transform = "none";
+            }
+          }
+        });
+      };
+      setTimeout(guaranteeVisibility, 800);
+      setTimeout(guaranteeVisibility, 1600);
+    });
+  </script>
+
+</body>
+</html>

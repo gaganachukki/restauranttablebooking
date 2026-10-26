@@ -1,0 +1,351 @@
+/* ==========================================================================
+   STACKLY — RESTAURANT TABLE BOOKING PLATFORM
+   Responsive Stylesheet (css/responsive.css)
+   Breakpoints: 1920px, 1440px, 1280px, 1024px, 768px, 414px, 390px, 375px
+   ========================================================================== */
+
+/* Ultra Wide Displays (>= 1920px) */
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 1560px;
+  }
+  .hero-headline {
+    font-size: 4.5rem;
+  }
+}
+
+/* Large Desktop (<= 1440px) */
+@media (max-width: 1440px) {
+  .hero-content-wrapper {
+    gap: 32px;
+  }
+}
+
+/* Standard Desktop / Laptop (<= 1280px) */
+@media (max-width: 1280px) {
+  .nav-menu {
+    gap: 24px;
+  }
+
+  .hero-content-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .trust-items-grid {
+    gap: 16px;
+  }
+  
+  .restaurant-grid {
+    gap: 24px;
+  }
+  
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .process-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-top,
+  .footer-grid {
+    grid-template-columns: 1.4fr 0.85fr 0.95fr 1.2fr 1.3fr;
+    gap: 28px;
+  }
+}
+
+/* Tablet & iPad Landscape (<= 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --nav-height: 72px;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .hero-section {
+    padding: 40px 0 70px 0;
+    min-height: auto;
+  }
+
+  .hero-bg-overlay {
+    width: 100%;
+    opacity: 0.25;
+  }
+
+  .hero-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .hero-left {
+    max-width: 100%;
+  }
+
+  .hero-right {
+    justify-content: center;
+  }
+
+  .floating-restaurant-card {
+    max-width: 440px;
+    margin: 0 auto;
+    animation: none;
+  }
+
+  .trust-strip-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .trust-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 20px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-floating-card {
+    bottom: -16px;
+    left: 16px;
+  }
+
+  .restaurant-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .booking-container-box {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-visual-col {
+    height: 280px;
+  }
+
+  .cuisine-editorial-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 220px;
+  }
+
+  .cuisine-tile.span-7,
+  .cuisine-tile.span-5,
+  .cuisine-tile.span-4,
+  .cuisine-tile.span-6 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .why-grid,
+  .experience-grid,
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .location-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top,
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+}
+
+/* Tablet Portrait & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .hero-headline {
+    font-size: 2.35rem;
+  }
+
+  .hero-booking-bar {
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .booking-bar-item {
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+  }
+
+  .booking-bar-item::after {
+    display: none;
+  }
+
+  .booking-bar-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .occasions-grid,
+  .why-grid,
+  .experience-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cuisine-editorial-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+
+  .booking-form-col {
+    padding: 28px 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.col-span-2 {
+    grid-column: span 1;
+  }
+
+  .footer-top,
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .footer-brand-col {
+    grid-column: span 1;
+  }
+  .footer-scroll-top {
+    bottom: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .card-actions-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Standard Mobile Devices (<= 414px, 390px, 375px) */
+@media (max-width: 414px) {
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .hero-headline {
+    font-size: 2.1rem;
+    line-height: 1.15;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: 6px 14px;
+  }
+
+  .hero-description {
+    font-size: 0.9375rem;
+  }
+
+  .trust-items-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-restaurant-card {
+    padding: 14px;
+  }
+
+  .card-img-wrapper {
+    height: 160px;
+  }
+
+  .about-floating-card {
+    position: static;
+    margin-top: 16px;
+    max-width: 100%;
+  }
+
+  .stat-number {
+    font-size: 1.875rem;
+  }
+
+  .modal-window {
+    padding: 24px 18px;
+  }
+
+  .cta-banner-content h2 {
+    font-size: 1.875rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Narrow Screens (375px and below) */
+@media (max-width: 375px) {
+  .hero-headline {
+    font-size: 1.95rem;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

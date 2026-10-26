@@ -1,0 +1,163 @@
+/* ==========================================================================
+   STACKLY — RESTAURANT TABLE BOOKING PLATFORM
+   Admin Dashboard Stylesheet (css/admin-dashboard.css)
+   ========================================================================== */
+
+/* Toolbar */
+.dashboard-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.search-input-wrap {
+  position: relative;
+  max-width: 340px;
+  width: 100%;
+}
+
+.search-input-wrap svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-muted);
+}
+
+.search-input-wrap input {
+  width: 100%;
+  padding: 10px 14px 10px 42px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  color: var(--color-charcoal);
+}
+
+.search-input-wrap input:focus {
+  border-color: var(--color-green);
+  outline: none;
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.chart-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.chart-card-header h3 {
+  font-size: 1.0625rem;
+  font-family: var(--font-primary);
+  font-weight: 600;
+}
+
+.chart-svg-container {
+  width: 100%;
+  height: 240px;
+}
+
+.chart-svg-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Restaurant CRUD Modal */
+.crud-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 35, 31, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.crud-modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.crud-modal-window {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  max-width: 650px;
+  width: 100%;
+  padding: 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Status Select in Table */
+.table-status-select {
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
+/* Action Button Group */
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-action-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.table-action-icon-btn:hover {
+  background-color: var(--color-sage-light);
+  color: var(--color-green);
+  border-color: var(--color-green);
+}
+
+.table-action-icon-btn.delete:hover {
+  background-color: #FEE2E2;
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+@media (max-width: 1024px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}

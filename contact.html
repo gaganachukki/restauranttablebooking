@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Concierge — STACKLY Restaurant Table Booking</title>
+  <meta name="description" content="Reach the STACKLY Concierge Desk for table modifications, dietary coordination, corporate dining buyouts, and restaurant partnership onboarding.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+    </div>
+    <div class="preloader-text">STACKLY</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link active">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       SECTION 1: CONTACT HERO & RESPONSE COMMITMENT
+       ========================================================================== -->
+  <section class="section" style="padding-top: 76px; padding-bottom: 50px; background: linear-gradient(180deg, #FFFFFF 0%, var(--color-ivory) 100%);">
+    <div class="container" style="text-align: center; max-width: 860px;">
+      <span class="section-eyebrow">HOSPITALITY CONCIERGE & SUPPORT</span>
+      <h1 style="font-size: clamp(2.4rem, 4.5vw, 3.8rem); margin-bottom: 20px; line-height: 1.15;">
+        We're At Your Service. <br>
+        <span class="text-green" style="font-family: var(--font-display); font-style: italic;">Every Reservation, Every Table.</span>
+      </h1>
+      <p style="font-size: 1.125rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 32px;">
+        Whether you require immediate table rescheduling, dietary coordination with an executive chef, corporate private dining buyouts, or restaurant partner onboarding, our dedicated hospitality team responds swiftly.
+      </p>
+
+      <!-- SLA Guarantee Strip -->
+      <div class="contact-hero-strip">
+        <div class="contact-sla-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Average Response: Under 15 Mins</span>
+        </div>
+        <div class="contact-sla-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Live Concierge: 9 AM – 11 PM IST</span>
+        </div>
+        <div class="contact-sla-pill">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-green)" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>4 Regional Desks across South India</span>
+        </div>
+      </div>
+
+      <!-- Quick Section Jump Links -->
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px;">
+        <a href="404.html" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);">Submit Inquiry ↓</a>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);">Check Booking Status ↓</a>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full);">City Desks ↓</a>
+        <a href="404.html" class="btn btn-secondary btn-sm" style="border-radius: var(--radius-full); background: var(--color-sage);">Running Late? ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: DEDICATED DEPARTMENT DIRECTORY (4 CARDS)
+       ========================================================================== -->
+  <section class="section section-sage" style="padding-top: 60px; padding-bottom: 70px;">
+    <div class="container">
+      <div class="section-header text-center" style="margin-bottom: 44px;">
+        <span class="section-eyebrow">DEDICATED SERVICE DESKS</span>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.75rem); margin-bottom: 14px;">Direct Channels for Every Need</h2>
+        <p style="color: var(--color-muted); max-width: 640px; margin: 0 auto;">Connect straight to the relevant department to receive prompt, specialized hospitality assistance without call transfers.</p>
+      </div>
+
+      <div class="contact-channel-grid">
+        <!-- Channel 1: Patron Concierge -->
+        <div class="contact-channel-card">
+          <div class="channel-badge">
+            <span class="pulse-dot"></span>
+            <span>Live & Available</span>
+          </div>
+          <div class="channel-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Guest Concierge</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+            Reservation time adjustments, special dietary notes, romantic anniversary setups, and high-chair seating.
+          </p>
+          <div style="border-top: 1px solid var(--color-border); padding-top: 16px; font-size: 0.8125rem;">
+            <div style="font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px;">Direct Phone:</div>
+            <a href="404.html" style="color: var(--color-green); font-weight: 500;">+91 (044) 4800 1200</a>
+            <div style="margin-top: 8px; color: var(--color-muted);">concierge@stackly.com</div>
+          </div>
+        </div>
+
+        <!-- Channel 2: Restaurant Partner Relations -->
+        <div class="contact-channel-card">
+          <div class="channel-badge" style="background-color: #EBF3FF; color: #1E60B5;">
+            <span>Restaurateurs & B2B</span>
+          </div>
+          <div class="channel-icon-wrap" style="background-color: #EBF3FF; color: #1E60B5;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Partner Onboarding</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+            Venue listing applications, floor plan 3D mapping, host-stand tablet software, and POS sync integration.
+          </p>
+          <div style="border-top: 1px solid var(--color-border); padding-top: 16px; font-size: 0.8125rem;">
+            <div style="font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px;">B2B Desk:</div>
+            <a href="404.html" style="color: var(--color-green); font-weight: 500;">+91 (044) 4800 1210</a>
+            <div style="margin-top: 8px; color: var(--color-muted);">partners@stackly.com</div>
+          </div>
+        </div>
+
+        <!-- Channel 3: Corporate & Private Dining -->
+        <div class="contact-channel-card">
+          <div class="channel-badge" style="background-color: #FFF6E5; color: #B37400;">
+            <span>Private Rooms & Events</span>
+          </div>
+          <div class="channel-icon-wrap" style="background-color: #FFF6E5; color: #B37400;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Corporate & PDR</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+            Exclusive private dining room (PDR) buyouts, company galas, client entertainment, and group bookings of 10+.
+          </p>
+          <div style="border-top: 1px solid var(--color-border); padding-top: 16px; font-size: 0.8125rem;">
+            <div style="font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px;">Corporate Liaison:</div>
+            <a href="404.html" style="color: var(--color-green); font-weight: 500;">+91 (044) 4800 1220</a>
+            <div style="margin-top: 8px; color: var(--color-muted);">corporate@stackly.com</div>
+          </div>
+        </div>
+
+        <!-- Channel 4: Press & Media Relations -->
+        <div class="contact-channel-card">
+          <div class="channel-badge" style="background-color: #F5EBF7; color: #7B2889;">
+            <span>Editorial & Press</span>
+          </div>
+          <div class="channel-icon-wrap" style="background-color: #F5EBF7; color: #7B2889;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><path d="M18 14h-8"></path><path d="M15 18h-5"></path><path d="M10 6h8v4h-8V6Z"></path></svg>
+          </div>
+          <h3 style="font-size: 1.25rem; margin-bottom: 8px;">Press & Media</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px; flex-grow: 1;">
+            Culinary journalism, chef interviews, press kits, food festival collaborations, and high-res brand media assets.
+          </p>
+          <div style="border-top: 1px solid var(--color-border); padding-top: 16px; font-size: 0.8125rem;">
+            <div style="font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px;">Media Relations:</div>
+            <a href="404.html" style="color: var(--color-green); font-weight: 500;">+91 (044) 4800 1230</a>
+            <div style="margin-top: 8px; color: var(--color-muted);">press@stackly.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: INTERACTIVE MULTI-CATEGORY INQUIRY FORM & LIVE DESK STATUS
+       ========================================================================== -->
+  <section class="section" id="inquiryFormSection" style="padding-top: 70px; padding-bottom: 70px; background-color: var(--color-white);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start;">
+        
+        <!-- Left: Contact Form -->
+        <div style="background: var(--color-ivory); padding: 44px; border-radius: var(--radius-xl); border: 1px solid var(--color-border); box-shadow: var(--shadow-md);">
+          <div style="margin-bottom: 28px;">
+            <span class="section-eyebrow">DIRECT INQUIRY DISPATCH</span>
+            <h2 style="font-size: 1.875rem; margin-top: 4px; margin-bottom: 8px;">Send a Concierge Request</h2>
+            <p style="color: var(--color-muted); font-size: 0.9375rem;">Complete the form below. Requests are routed directly to shift leads for immediate triage.</p>
+          </div>
+
+          <form id="contactForm">
+            <div class="form-grid">
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="contactName" class="form-label">
+                  <span>Full Name <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="text" id="contactName" class="form-control" placeholder="e.g. Arun Kumar" required>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">
+                  <span>Email Address <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="e.g. arun@example.com" required>
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="contactPhone" class="form-label">
+                  <span>Phone Number <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="e.g. +91 98401 23456" required>
+              </div>
+
+              <!-- Inquiry Type -->
+              <div class="form-group">
+                <label for="contactInquiryType" class="form-label">
+                  <span>Inquiry Category <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <select id="contactInquiryType" class="form-control" required>
+                  <option value="">Select Category...</option>
+                  <option value="Reservation Assistance">Reservation Assistance & Modification</option>
+                  <option value="Restaurant Partnership">Restaurant Partnership & Listing</option>
+                  <option value="Corporate & Private Dining">Corporate & Private Dining (PDR)</option>
+                  <option value="Dietary & Special Arrangement">Dietary & Chef Arrangement</option>
+                  <option value="Technical Support">Technical & Account Support</option>
+                  <option value="General Inquiry">General Feedback</option>
+                </select>
+              </div>
+
+              <!-- Priority Level -->
+              <div class="form-group">
+                <label for="contactPriority" class="form-label">
+                  <span>Priority Level <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <select id="contactPriority" class="form-control">
+                  <option value="Standard" selected>Standard (Response within 2 hours)</option>
+                  <option value="Urgent">Urgent (Dining Tonight / within 24 hrs)</option>
+                  <option value="Planning">Advance Planning (Next week / month)</option>
+                </select>
+              </div>
+
+              <!-- Dining Date -->
+              <div class="form-group">
+                <label for="contactDiningDate" class="form-label">
+                  <span>Dining Date</span>
+                  <span class="optional-field-indicator">Optional</span>
+                </label>
+                <input type="date" id="contactDiningDate" class="form-control">
+              </div>
+
+              <!-- Restaurant Name -->
+              <div class="form-group">
+                <label for="contactRestaurant" class="form-label">
+                  <span>Target Restaurant</span>
+                  <span class="optional-field-indicator">Optional</span>
+                </label>
+                <input type="text" id="contactRestaurant" class="form-control" placeholder="e.g. The Olive Table">
+              </div>
+
+              <!-- Reservation ID -->
+              <div class="form-group">
+                <label for="contactReservationId" class="form-label">
+                  <span>Booking Code</span>
+                  <span class="optional-field-indicator">Optional</span>
+                </label>
+                <input type="text" id="contactReservationId" class="form-control" placeholder="e.g. STK-8821">
+              </div>
+
+              <!-- Message -->
+              <div class="form-group col-span-2">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <label for="contactMessage" class="form-label" style="margin-bottom: 0; display: inline-flex; align-items: center; gap: 8px;">
+                    <span>Message / Details <span class="required-asterisk">*</span></span>
+                    <span class="required-field-indicator">Required</span>
+                  </label>
+                  <span id="charCount" style="font-size: 0.75rem; color: var(--color-muted);">0 / 500</span>
+                </div>
+                <textarea id="contactMessage" class="form-control" rows="4" maxlength="500" placeholder="Please describe your dining request, dietary notes, party details, or partnership query..." required></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitContactBtn" class="btn btn-primary" style="width: 100%; padding: 15px; margin-top: 10px;">
+              <span>Submit Inquiry to Concierge →</span>
+            </button>
+            
+            <p style="font-size: 0.75rem; color: var(--color-muted); text-align: center; margin-top: 14px; line-height: 1.5;">
+              🛡️ <strong>Encrypted Transmission:</strong> Your personal contact and reservation information is protected under STACKLY Hospitality Privacy Standards.
+            </p>
+          </form>
+
+          <!-- Dynamic Confirmation Card (Hidden by default, shown upon submit) -->
+          <div id="formSuccessCard" style="display: none; margin-top: 24px; padding: 24px; background: #EBF7F1; border: 1px solid var(--color-green); border-radius: var(--radius-lg); animation: fadeIn 0.4s ease;">
+            <div style="display: flex; gap: 14px; align-items: flex-start;">
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-green); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div>
+              <div>
+                <h4 style="font-size: 1.0625rem; font-weight: 600; color: var(--color-green); margin-bottom: 4px;">Inquiry Dispatched Successfully!</h4>
+                <p style="font-size: 0.875rem; color: var(--color-charcoal); line-height: 1.5; margin-bottom: 8px;">
+                  Ticket Reference: <strong id="generatedTicketRef">#TKT-9421</strong> • Priority: <span id="ticketPriorityBadge" style="font-weight: 600;">Standard</span>
+                </p>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">
+                  Our concierge team will acknowledge your request at <strong id="confirmedEmailRecipient"></strong> shortly.
+                </p>
+                <button type="button" id="resetFormBtn" class="btn btn-sm btn-secondary" style="margin-top: 12px; font-size: 0.75rem; padding: 6px 14px;">Submit Another Inquiry</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Live Concierge Desk Status & Instant WhatsApp -->
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          
+          <!-- Live Shift Status Card -->
+          <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+              <h3 style="font-size: 1.25rem;">Concierge Desk Live</h3>
+              <span class="channel-badge" style="margin-bottom: 0;">
+                <span class="pulse-dot"></span>
+                <span>Active Shift</span>
+              </span>
+            </div>
+            
+            <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px;">
+              Our senior reservation coordinators are currently online managing guest allocations across all partner venues.
+            </p>
+
+            <div style="background: var(--color-sage-light); padding: 16px 20px; border-radius: var(--radius-md); margin-bottom: 24px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8125rem; margin-bottom: 6px;">
+                <span style="color: var(--color-muted);">Current Queue:</span>
+                <strong style="color: var(--color-green);">3 requests ahead</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.8125rem;">
+                <span style="color: var(--color-muted);">Estimated Wait:</span>
+                <strong style="color: var(--color-charcoal);">~4 minutes</strong>
+              </div>
+            </div>
+
+            <!-- Team Members on Shift -->
+            <div style="font-size: 0.8125rem; font-weight: 600; color: var(--color-charcoal); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">
+              Duty Leads on Shift
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="assets/images/user-avatar-1.webp" alt="Priya Ramanan" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div style="font-size: 0.875rem; font-weight: 600;">Priya Ramanan</div>
+                  <div style="font-size: 0.75rem; color: var(--color-muted);">Lead Dining Concierge • Fine Dining Desk</div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="assets/images/user-avatar-2.webp" alt="Karthik Sundar" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <div style="font-size: 0.875rem; font-weight: 600;">Karthik Sundar</div>
+                  <div style="font-size: 0.75rem; color: var(--color-muted);">Senior Partner Liaison • Venues Desk</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instant WhatsApp Concierge Button -->
+            <a href="404.html" target="_blank" rel="noopener noreferrer" class="btn" style="width: 100%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; border-radius: var(--radius-md); font-weight: 600; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Instant WhatsApp Concierge</span>
+            </a>
+          </div>
+
+          <!-- Operating Hours Card -->
+          <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow-sm);">
+            <h4 style="font-size: 1.0625rem; font-weight: 600; margin-bottom: 14px;">Concierge Hours of Service</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.875rem;">
+              <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--color-border); padding-bottom: 8px;">
+                <span style="color: var(--color-muted);">Monday – Friday:</span>
+                <strong>8:30 AM – 11:30 PM IST</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--color-border); padding-bottom: 8px;">
+                <span style="color: var(--color-muted);">Saturday & Sunday:</span>
+                <strong>8:00 AM – Midnight IST</strong>
+              </li>
+              <li style="display: flex; justify-content: space-between;">
+                <span style="color: var(--color-muted);">Public Holidays:</span>
+                <strong>Continuous Support</strong>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: INTERACTIVE RESERVATION STATUS QUICK-LOOKUP TOOL
+       ========================================================================== -->
+  <section class="section section-sage" id="statusCheckSection" style="padding-top: 70px; padding-bottom: 70px;">
+    <div class="container">
+      <div class="section-header text-center" style="margin-bottom: 40px;">
+        <span class="section-eyebrow">SELF-SERVICE CONCIERGE TOOL</span>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.75rem); margin-bottom: 12px;">Real-Time Reservation Status</h2>
+        <p style="color: var(--color-muted); max-width: 660px; margin: 0 auto;">
+          Already have a table booked? Enter your 6-digit booking reference code or registered phone number to verify host stand status, view table seating, or request a quick delay.
+        </p>
+      </div>
+
+      <div class="lookup-card-wrap">
+        <!-- Lookup Inputs -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; margin-bottom: 24px;">
+          <div>
+            <label for="lookupRefInput" style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 6px;">Booking Code</label>
+            <input type="text" id="lookupRefInput" class="form-control" placeholder="e.g. STK-8821" value="STK-8821">
+          </div>
+          <div>
+            <label for="lookupPhoneInput" style="display: block; font-size: 0.8125rem; font-weight: 600; margin-bottom: 6px;">Registered Mobile Number</label>
+            <input type="tel" id="lookupPhoneInput" class="form-control" placeholder="e.g. +91 98401 23456" value="+91 98401 23456">
+          </div>
+          <div style="display: flex; align-items: flex-end;">
+            <button type="button" id="lookupVerifyBtn" class="btn btn-primary" style="padding: 13px 26px; white-space: nowrap; width: 100%;">
+              <span>Verify Table →</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Simulated Booking Result Display Box -->
+        <div id="bookingResultDisplay" style="background: var(--color-ivory); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 24px; position: relative;">
+          
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--color-border); padding-bottom: 16px;">
+            <div>
+              <span id="bookingStatusBadge" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: var(--radius-full); background: #EBF7F1; color: var(--color-green); margin-bottom: 6px;">
+                <span class="pulse-dot"></span> Confirmed • Host Stand Ready
+              </span>
+              <h3 id="lookupVenueName" style="font-size: 1.375rem; margin-bottom: 2px;">The Olive Table</h3>
+              <p style="font-size: 0.8125rem; color: var(--color-muted);">Contemporary European • Anna Nagar East, Chennai</p>
+            </div>
+            <div style="text-align: right;">
+              <span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Booking Code</span>
+              <strong id="lookupRefDisplay" style="font-size: 1.125rem; font-family: monospace; letter-spacing: 0.05em; color: var(--color-green);">STK-8821</strong>
+            </div>
+          </div>
+
+          <!-- Booking Specs Grid -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 20px;">
+            <div style="background: var(--color-white); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+              <span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Dining Date & Time</span>
+              <strong style="font-size: 0.875rem;">Tonight • 7:30 PM</strong>
+            </div>
+            <div style="background: var(--color-white); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+              <span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Party Size</span>
+              <strong style="font-size: 0.875rem;">2 Guests (Reserved)</strong>
+            </div>
+            <div style="background: var(--color-white); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+              <span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Table Allocation</span>
+              <strong style="font-size: 0.875rem;">Table #14 (Window Bay)</strong>
+            </div>
+            <div style="background: var(--color-white); padding: 12px 16px; border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+              <span style="font-size: 0.75rem; color: var(--color-muted); display: block;">Special Requests</span>
+              <strong style="font-size: 0.875rem; color: var(--color-green);">Anniversary Floral Setup</strong>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons for Booked Guest -->
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; border-top: 1px solid var(--color-border); padding-top: 16px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <button type="button" id="requestDelayBtn" class="btn btn-secondary btn-sm" style="font-size: 0.8125rem;">
+                ⏱️ Request 15-Min Delay Hold
+              </button>
+              <button type="button" id="addNoteBtn" class="btn btn-secondary btn-sm" style="font-size: 0.8125rem;">
+                📝 Add Dietary Note
+              </button>
+            </div>
+            <a href="404.html" class="btn btn-primary btn-sm" style="font-size: 0.8125rem;">
+              Call Host Stand
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: REGIONAL HEADQUARTERS & CITY CONCIERGE HUBS (4 CITIES)
+       ========================================================================== -->
+  <section class="section" id="cityDesksSection" style="padding-top: 70px; padding-bottom: 70px; background-color: var(--color-white);">
+    <div class="container">
+      <div class="section-header text-center" style="margin-bottom: 44px;">
+        <span class="section-eyebrow">PHYSICAL PRESENCE & HUBS</span>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.75rem); margin-bottom: 12px;">Regional Headquarters & City Desks</h2>
+        <p style="color: var(--color-muted); max-width: 680px; margin: 0 auto;">
+          STACKLY operates on-the-ground concierge and restaurant relations teams in South India’s primary culinary destinations to cultivate personal relationships with head chefs and floor directors.
+        </p>
+      </div>
+
+      <div class="city-desks-grid">
+        
+        <!-- City 1: Chennai -->
+        <div class="city-desk-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+            <span class="channel-badge" style="margin-bottom: 0;">Flagship HQ</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">TAMIL NADU</span>
+          </div>
+          <h3 style="font-size: 1.375rem; margin-bottom: 6px;">Chennai</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 18px;">
+            Central guest concierge operations, tasting test kitchens, and executive culinary advisory labs.
+          </p>
+          <div style="font-size: 0.8125rem; line-height: 1.6; margin-bottom: 18px; flex-grow: 1;">
+            <div style="font-weight: 600; margin-bottom: 2px;">STACKLY Tower</div>
+            <div style="color: var(--color-muted);">100 Feet Road, Anna Nagar East, Chennai 600040</div>
+            <div style="margin-top: 8px; color: var(--color-green); font-weight: 500;">+91 (044) 4800 1200</div>
+            <div style="font-size: 0.75rem; color: var(--color-muted); margin-top: 4px;">Hours: 8:30 AM – 11:30 PM (Daily)</div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm copy-addr-btn" data-addr="STACKLY Tower, 100 Feet Road, Anna Nagar East, Chennai 600040" style="width: 100%; font-size: 0.75rem;">
+            Copy Address
+          </button>
+        </div>
+
+        <!-- City 2: Bengaluru -->
+        <div class="city-desk-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+            <span class="channel-badge" style="background-color: #EBF3FF; color: #1E60B5; margin-bottom: 0;">Tech & B2B Hub</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">KARNATAKA</span>
+          </div>
+          <h3 style="font-size: 1.375rem; margin-bottom: 6px;">Bengaluru</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 18px;">
+            Restaurant table SaaS engineering, POS sync integrations, and microbrewery partner curation.
+          </p>
+          <div style="font-size: 0.8125rem; line-height: 1.6; margin-bottom: 18px; flex-grow: 1;">
+            <div style="font-weight: 600; margin-bottom: 2px;">STACKLY Innovation Hub</div>
+            <div style="color: var(--color-muted);">12th Main Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038</div>
+            <div style="margin-top: 8px; color: var(--color-green); font-weight: 500;">+91 (080) 4123 9800</div>
+            <div style="font-size: 0.75rem; color: var(--color-muted); margin-top: 4px;">Hours: 9:00 AM – 9:30 PM (Mon – Sat)</div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm copy-addr-btn" data-addr="12th Main Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038" style="width: 100%; font-size: 0.75rem;">
+            Copy Address
+          </button>
+        </div>
+
+        <!-- City 3: Coimbatore -->
+        <div class="city-desk-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+            <span class="channel-badge" style="background-color: #FFF6E5; color: #B37400; margin-bottom: 0;">Regional Desk</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">KONGU BELT</span>
+          </div>
+          <h3 style="font-size: 1.375rem; margin-bottom: 6px;">Coimbatore</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 18px;">
+            Western Tamil Nadu heritage cuisine, plantation dining desks, and food festival coordination.
+          </p>
+          <div style="font-size: 0.8125rem; line-height: 1.6; margin-bottom: 18px; flex-grow: 1;">
+            <div style="font-weight: 600; margin-bottom: 2px;">STACKLY Regional Desk</div>
+            <div style="color: var(--color-muted);">48 Race Course Road, Gopalapuram, Coimbatore 641018</div>
+            <div style="margin-top: 8px; color: var(--color-green); font-weight: 500;">+91 (0422) 220 5400</div>
+            <div style="font-size: 0.75rem; color: var(--color-muted); margin-top: 4px;">Hours: 9:00 AM – 10:00 PM (Daily)</div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm copy-addr-btn" data-addr="48 Race Course Road, Gopalapuram, Coimbatore 641018" style="width: 100%; font-size: 0.75rem;">
+            Copy Address
+          </button>
+        </div>
+
+        <!-- City 4: Salem -->
+        <div class="city-desk-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+            <span class="channel-badge" style="background-color: #F5EBF7; color: #7B2889; margin-bottom: 0;">Growth Corridor</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted); font-weight: 600;">CENTRAL TN</span>
+          </div>
+          <h3 style="font-size: 1.375rem; margin-bottom: 6px;">Salem</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 18px;">
+            Emerging culinary corridors, highway boutique bistros, and regional partner onboarding.
+          </p>
+          <div style="font-size: 0.8125rem; line-height: 1.6; margin-bottom: 18px; flex-grow: 1;">
+            <div style="font-weight: 600; margin-bottom: 2px;">STACKLY Experience Desk</div>
+            <div style="color: var(--color-muted);">14 Fairlands Main Road, Salem 636016</div>
+            <div style="margin-top: 8px; color: var(--color-green); font-weight: 500;">+91 (0427) 244 8900</div>
+            <div style="font-size: 0.75rem; color: var(--color-muted); margin-top: 4px;">Hours: 9:30 AM – 8:30 PM (Mon – Sat)</div>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm copy-addr-btn" data-addr="14 Fairlands Main Road, Salem 636016" style="width: 100%; font-size: 0.75rem;">
+            Copy Address
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: LAST-MINUTE SEATING & RUNNING-LATE EMERGENCY PROTOCOL
+       ========================================================================== -->
+  <section class="section" id="emergencySection" style="padding-top: 60px; padding-bottom: 70px; background-color: var(--color-charcoal); color: var(--color-white);">
+    <div class="container">
+      <div class="emergency-protocol-card" style="border: 1px solid rgba(255,255,255,0.12); box-shadow: var(--shadow-xl);">
+        
+        <div style="max-width: 780px; margin-bottom: 36px;">
+          <span style="display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; color: var(--color-green-light); text-transform: uppercase; margin-bottom: 10px;">
+            EN ROUTE ASSISTANCE & GRACE PERIOD
+          </span>
+          <h2 style="font-size: clamp(2rem, 3.4vw, 2.75rem); color: var(--color-white); margin-bottom: 14px; line-height: 1.2;">
+            Stuck in Traffic or Running Late for Dinner? <br>
+            <span style="color: var(--color-green-light); font-family: var(--font-display); font-style: italic;">We Protect Your Table.</span>
+          </h2>
+          <p style="font-size: 1rem; color: rgba(255, 255, 255, 0.75); line-height: 1.7;">
+            Traffic delays and unexpected schedule shifts happen. STACKLY provides active host-stand intervention so your hard-won table is never prematurely given away.
+          </p>
+        </div>
+
+        <!-- 3-Step Protocol Cards -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 40px;">
+          
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 24px;">
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-green-light); margin-bottom: 8px;">01. 20-Min Hold</div>
+            <h4 style="font-size: 1.0625rem; color: var(--color-white); margin-bottom: 8px;">Automatic Grace Window</h4>
+            <p style="font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+              When you notify our concierge through our 1-click delay trigger or hotline, partner venues freeze your table reservation for an additional 20 minutes past booking time.
+            </p>
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 24px;">
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-green-light); margin-bottom: 8px;">02. Host Stand Patch</div>
+            <h4 style="font-size: 1.0625rem; color: var(--color-white); margin-bottom: 8px;">Direct Floor Management</h4>
+            <p style="font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+              Our shift coordinator speaks directly to the venue maître d' or floor captain, confirming that your party is en route and holding wine service preparations.
+            </p>
+          </div>
+
+          <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 24px;">
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--color-green-light); margin-bottom: 8px;">03. Priority Re-Seat</div>
+            <h4 style="font-size: 1.0625rem; color: var(--color-white); margin-bottom: 8px;">Guaranteed Alternative</h4>
+            <p style="font-size: 0.8125rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6;">
+              In extreme delays exceeding 40 minutes, our concierge instantly transitions your reservation to the next seating cycle or secures an equivalent table at a nearby partner venue.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Direct Hotline Banner -->
+        <div style="background: rgba(22, 122, 85, 0.2); border: 1px solid rgba(22, 122, 85, 0.4); border-radius: var(--radius-lg); padding: 20px 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+          <div>
+            <div style="font-weight: 600; font-size: 1.0625rem; color: var(--color-white); margin-bottom: 2px;">
+              Tonight's Urgent Dining Hotline:
+            </div>
+            <div style="font-size: 0.8125rem; color: rgba(255, 255, 255, 0.75);">
+              Dedicated priority line for patrons currently en route to partner restaurants.
+            </div>
+          </div>
+          <a href="404.html" class="btn btn-primary" style="padding: 12px 24px; font-weight: 600;">
+            <span>Call +91 (044) 4800 1299 Now →</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 7: HOSPITALITY ESCALATION & SERVICE RESOLUTION PROTOCOL
+       ========================================================================== -->
+  <section class="section section-sage" style="padding-top: 70px; padding-bottom: 70px;">
+    <div class="container">
+      <div class="section-header text-center" style="margin-bottom: 44px;">
+        <span class="section-eyebrow">QUALITY RESOLUTION FRAMEWORK</span>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.75rem); margin-bottom: 12px;">4-Tier Service Resolution Protocol</h2>
+        <p style="color: var(--color-muted); max-width: 680px; margin: 0 auto;">
+          How STACKLY safeguards every dining booking, from host-stand seating delays to dietary allergies and VIP table coordination.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+        
+        <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px 24px; position: relative;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 18px;">
+            01
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Immediate Host Stand Sync</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 16px;">
+            Within 5 minutes of your booking or modification, your party details, dietary notes, and seating requests sync directly to the restaurant floor tablet.
+          </p>
+          <div style="font-size: 0.75rem; color: var(--color-green); font-weight: 600; padding-top: 12px; border-top: 1px dashed var(--color-border);">
+            ✓ Host Screen Confirmation
+          </div>
+        </div>
+
+        <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px 24px; position: relative;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 18px;">
+            02
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Concierge Phone Patch</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 16px;">
+            If table readiness exceeds 10 minutes past booking time, our shift concierge calls the restaurant's general manager directly to prioritize your party's seating.
+          </p>
+          <div style="font-size: 0.75rem; color: var(--color-green); font-weight: 600; padding-top: 12px; border-top: 1px dashed var(--color-border);">
+            ✓ Direct Floor Intervention
+          </div>
+        </div>
+
+        <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px 24px; position: relative;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 18px;">
+            03
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Executive Alternative Re-Seat</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 16px;">
+            In the rare event of an unexpected venue disruption, our hospitality desk secures guaranteed seating at an equivalent partner restaurant within 2 km plus welcome refreshments.
+          </p>
+          <div style="font-size: 0.75rem; color: var(--color-green); font-weight: 600; padding-top: 12px; border-top: 1px dashed var(--color-border);">
+            ✓ Guaranteed Seating Protection
+          </div>
+        </div>
+
+        <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px 24px; position: relative;">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; font-weight: 700; margin-bottom: 18px;">
+            04
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Patron Redress & Audit</h3>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 16px;">
+            Every escalated ticket triggers a post-dining service review with the restaurant's culinary director, with compensatory dining credits issued to your STACKLY account.
+          </p>
+          <div style="font-size: 0.75rem; color: var(--color-green); font-weight: 600; padding-top: 12px; border-top: 1px dashed var(--color-border);">
+            ✓ 100% Service Accountability
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 8: CLOSING HOSPITALITY PLEDGE & DISCOVERY STRIP
+       ========================================================================== -->
+  <section class="section" style="padding-top: 70px; padding-bottom: 70px; background-color: var(--color-white);">
+    <div class="container">
+      <div style="background: var(--color-ivory); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 50px 40px; text-align: center; max-width: 920px; margin: 0 auto; box-shadow: var(--shadow-md);">
+        <span class="section-eyebrow">OUR COMMITMENT TO YOUR EVENING</span>
+        <h2 style="font-size: clamp(2rem, 3.2vw, 2.75rem); margin-bottom: 16px;">
+          Every Table Tells a Story. <br>
+          <span class="text-green" style="font-family: var(--font-display); font-style: italic;">We Ensure Yours Starts Flawlessly.</span>
+        </h2>
+        <p style="font-size: 1.0625rem; color: var(--color-muted); line-height: 1.8; max-width: 680px; margin: 0 auto 32px;">
+          From candlelit anniversaries to vibrant family gatherings, our team treats every reservation with personal hospitality devotion. Ready to explore Chennai and Bengaluru’s finest tables?
+        </p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;">
+          <a href="404.html" class="btn btn-primary" style="padding: 14px 28px;">
+            <span>Explore Curated Restaurants →</span>
+          </a>
+          <a href="404.html" class="btn btn-secondary" style="padding: 14px 28px;">
+            <span>View All Dining Services</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Page Specific Interactive Vanilla JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Live Character Counter for Message Area
+      const messageInput = document.getElementById("contactMessage");
+      const charCountDisplay = document.getElementById("charCount");
+      if (messageInput && charCountDisplay) {
+        messageInput.addEventListener("input", () => {
+          const currentLen = messageInput.value.length;
+          charCountDisplay.textContent = `${currentLen} / 500`;
+          if (currentLen > 450) {
+            charCountDisplay.style.color = "var(--color-error)";
+          } else {
+            charCountDisplay.style.color = "var(--color-muted)";
+          }
+        });
+      }
+
+      // 2. Multi-Category Contact Form Submission & Feedback
+      const contactForm = document.getElementById("contactForm");
+      const formSuccessCard = document.getElementById("formSuccessCard");
+      const generatedTicketRef = document.getElementById("generatedTicketRef");
+      const ticketPriorityBadge = document.getElementById("ticketPriorityBadge");
+      const confirmedEmailRecipient = document.getElementById("confirmedEmailRecipient");
+      const resetFormBtn = document.getElementById("resetFormBtn");
+
+      if (contactForm) {
+        // Clear errors in real-time as user types/changes
+        const formFields = contactForm.querySelectorAll("input, select, textarea");
+        formFields.forEach(field => {
+          field.addEventListener("input", () => {
+            if (typeof Validation !== "undefined") Validation.clearError(field);
+          });
+          field.addEventListener("change", () => {
+            if (typeof Validation !== "undefined") Validation.clearError(field);
+          });
+        });
+
+        contactForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name = document.getElementById("contactName");
+          const email = document.getElementById("contactEmail");
+          const phone = document.getElementById("contactPhone");
+          const category = document.getElementById("contactInquiryType");
+          const msg = document.getElementById("contactMessage");
+          const priority = document.getElementById("contactPriority") ? document.getElementById("contactPriority").value : "Standard";
+
+          // Use Validation module
+          const isName = typeof Validation !== "undefined" ? Validation.validateRequired(name, "Full name") : name.value.trim().length > 0;
+          const isEmail = typeof Validation !== "undefined" ? Validation.validateEmail(email) : email.value.includes("@");
+          const isPhone = typeof Validation !== "undefined" ? Validation.validatePhone(phone) : phone.value.trim().length > 5;
+          const isCategory = typeof Validation !== "undefined" ? Validation.validateRequired(category, "Inquiry category") : category.value.length > 0;
+          const isMsg = typeof Validation !== "undefined" ? Validation.validateRequired(msg, "Message details") : msg.value.trim().length > 0;
+
+          if (!isName || !isEmail || !isPhone || !isCategory || !isMsg) {
+            const firstError = contactForm.querySelector(".form-control.error");
+            if (firstError) {
+              firstError.focus();
+              firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+            if (typeof showToast === "function") {
+              showToast("Please fill in all required fields accurately.", true);
+            }
+            return;
+          }
+
+          // Generate simulated ticket reference
+          const randomTicketNum = Math.floor(1000 + Math.random() * 9000);
+          const ticketCode = `#TKT-${randomTicketNum}`;
+
+          if (generatedTicketRef) generatedTicketRef.textContent = ticketCode;
+          if (ticketPriorityBadge) {
+            ticketPriorityBadge.textContent = priority;
+            ticketPriorityBadge.style.color = priority === "Urgent" ? "var(--color-error)" : "var(--color-green)";
+          }
+          if (confirmedEmailRecipient) confirmedEmailRecipient.textContent = email.value;
+
+          // Show confirmation card and trigger toast
+          if (formSuccessCard) {
+            formSuccessCard.style.display = "block";
+            formSuccessCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+
+          if (typeof showToast === "function") {
+            showToast(`Inquiry logged as ${ticketCode}. Our concierge is reviewing your request!`);
+          }
+
+          contactForm.style.opacity = "0.7";
+          const submitBtn = document.getElementById("submitContactBtn");
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Inquiry Dispatched (${ticketCode})</span>`;
+          }
+        });
+      }
+
+      if (resetFormBtn && contactForm) {
+        resetFormBtn.addEventListener("click", () => {
+          contactForm.reset();
+          contactForm.style.opacity = "1";
+          if (charCountDisplay) charCountDisplay.textContent = "0 / 500";
+          if (formSuccessCard) formSuccessCard.style.display = "none";
+          const submitBtn = document.getElementById("submitContactBtn");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = `<span>Submit Inquiry to Concierge →</span>`;
+          }
+        });
+      }
+
+      // 3. Quick Reservation Status Lookup Widget
+      const lookupVerifyBtn = document.getElementById("lookupVerifyBtn");
+      const lookupRefInput = document.getElementById("lookupRefInput");
+      const lookupPhoneInput = document.getElementById("lookupPhoneInput");
+      const lookupRefDisplay = document.getElementById("lookupRefDisplay");
+      const bookingResultDisplay = document.getElementById("bookingResultDisplay");
+
+      if (lookupVerifyBtn && lookupRefInput) {
+        lookupVerifyBtn.addEventListener("click", () => {
+          const codeVal = lookupRefInput.value.trim().toUpperCase() || "STK-8821";
+          if (lookupRefDisplay) lookupRefDisplay.textContent = codeVal;
+
+          if (bookingResultDisplay) {
+            bookingResultDisplay.style.opacity = "0.5";
+            setTimeout(() => {
+              bookingResultDisplay.style.opacity = "1";
+              if (typeof showToast === "function") {
+                showToast(`Verified ${codeVal}: Host stand confirmed table allocation.`);
+              }
+            }, 300);
+          }
+        });
+      }
+
+      // 4. Request Delay Button Interaction
+      const requestDelayBtn = document.getElementById("requestDelayBtn");
+      const bookingStatusBadge = document.getElementById("bookingStatusBadge");
+      if (requestDelayBtn && bookingStatusBadge) {
+        requestDelayBtn.addEventListener("click", () => {
+          bookingStatusBadge.innerHTML = `<span class="pulse-dot"></span> 20-Min Grace Period Active`;
+          bookingStatusBadge.style.background = "#FFF6E5";
+          bookingStatusBadge.style.color = "#B37400";
+          requestDelayBtn.disabled = true;
+          requestDelayBtn.textContent = "✓ Host Stand Notified of Delay";
+          if (typeof showToast === "function") {
+            showToast("Host stand notified: 20-minute table hold confirmed!");
+          }
+        });
+      }
+
+      // 5. Add Dietary Note Interaction
+      const addNoteBtn = document.getElementById("addNoteBtn");
+      if (addNoteBtn) {
+        addNoteBtn.addEventListener("click", () => {
+          const note = prompt("Please enter special dietary notes or allergies for the kitchen:", "Nut allergy, gluten-sensitive");
+          if (note) {
+            if (typeof showToast === "function") {
+              showToast("Dietary note appended to host stand reservation ticket!");
+            }
+          }
+        });
+      }
+
+      // 6. Copy City Desk Address Buttons
+      const copyBtns = document.querySelectorAll(".copy-addr-btn");
+      copyBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const addr = btn.getAttribute("data-addr");
+          if (addr && navigator.clipboard) {
+            navigator.clipboard.writeText(addr).then(() => {
+              const originalText = btn.textContent;
+              btn.textContent = "✓ Copied to Clipboard";
+              btn.style.backgroundColor = "var(--color-sage)";
+              btn.style.color = "var(--color-green)";
+              setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.backgroundColor = "";
+                btn.style.color = "";
+              }, 2000);
+              if (typeof showToast === "function") {
+                showToast("Address copied to clipboard!");
+              }
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

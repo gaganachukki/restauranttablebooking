@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard — STACKLY</title>
+  <meta name="description" content="Manage your STACKLY dining reservations, saved favorite tables, and personal culinary preferences.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/client-dashboard.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+  <script src="js/client-dashboard.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="dashboard-body">
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-header">
+        <a href="404.html" class="sidebar-brand">
+          <img src="assets/logo/logo-white.svg" alt="STACKLY Logo">
+        </a>
+        <button class="sidebar-close-btn" aria-label="Close sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="sidebar-user-card">
+        <div class="user-avatar-purple">G</div>
+        <div class="user-details">
+          <div class="user-name">Gaganachukki</div>
+          <div class="user-email">email@gmail.com</div>
+          <span class="user-panel-badge">USER PANEL</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <!-- MAIN -->
+        <div class="sidebar-group-title">MAIN</div>
+        <a href="#dashboard" class="sidebar-link active" data-view="dashboard" data-title="Your Dining Dashboard" data-subtitle="Welcome back to your personalized culinary hub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#my-reservations" class="sidebar-link" data-view="my-reservations" data-title="My Table Reservations" data-subtitle="Review, filter, and manage your active and past reservations">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span>My Reservations</span>
+        </a>
+        <a href="#favorite-tables" class="sidebar-link" data-view="favorite-tables" data-title="Favorite Dining Spots" data-subtitle="Saved dining venues and curated tables for instant reservation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span>Favorite Tables</span>
+        </a>
+        <a href="#dining-history" class="sidebar-link" data-view="dining-history" data-title="Dining & Tasting History" data-subtitle="Past culinary visits, verified receipts, itemized bills, and guest reviews">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Dining History</span>
+        </a>
+
+        <!-- RESOURCES -->
+        <div class="sidebar-group-title">RESOURCES</div>
+        <a href="#explore-restaurants" class="sidebar-link" data-view="explore-restaurants" data-title="Explore Partner Restaurants" data-subtitle="Discover Michelin-rated tables, rooftop terraces, and trending chef tables">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"></path><path d="M12 2v20"></path><path d="M6 2v10a3 3 0 0 0 3 3 3 3 0 0 0 3-3V2"></path></svg>
+          <span>Explore Restaurants</span>
+        </a>
+        <a href="#concierge-chat" class="sidebar-link" data-view="concierge-chat" data-title="Concierge Desk Live Chat" data-subtitle="Instant 24/7 assistance from our Chief Maître d' Laurent for table reservations & private dining">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          <span>Concierge Chat</span>
+        </a>
+
+        <!-- SYSTEM -->
+        <div class="sidebar-group-title">SYSTEM</div>
+        <a href="#settings" class="sidebar-link" data-view="settings" data-title="Profile & Dining Preferences" data-subtitle="Manage your dining profile, culinary preferences, allergen warnings, and notifications">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span>Settings</span>
+        </a>
+        <a href="#help-support" class="sidebar-link" data-view="help-support" data-title="Help & Customer Support" data-subtitle="Frequently asked questions, booking policies, and priority member contact desk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span>Help & Support</span>
+        </a>
+        <button type="button" class="sidebar-link sidebar-logout-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          <span>Logout</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Main Client Content -->
+    <main class="dashboard-main">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <button class="dashboard-mobile-toggle" aria-label="Toggle menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div>
+            <h1 class="dashboard-page-title">Your Dining Dashboard</h1>
+            <p class="dashboard-page-subtitle" style="font-size: 0.8125rem; color: var(--color-muted);">Welcome back to your personalized culinary hub</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="header-date-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Today</span>
+          </div>
+
+          <div class="header-action-btn" title="Notifications">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="badge-dot"></span>
+          </div>
+
+          <div class="header-user-profile">
+            <img src="assets/images/user-avatar-2.webp" alt="Client User" class="user-avatar-mini">
+            <div class="user-info-text">
+              <h4>Arun Kumar</h4>
+              <p>Dine Club Member</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Multi-View Content -->
+      <div class="dashboard-content">
+
+        <!-- ===================================================================
+             VIEW 1: DASHBOARD OVERVIEW
+             =================================================================== -->
+        <div class="dashboard-view active" id="view-dashboard">
+          <!-- Summary KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-icon green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <div>
+                <div class="kpi-label">UPCOMING RESERVATIONS</div>
+                <div class="kpi-value">2</div>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-icon blue">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              </div>
+              <div>
+                <div class="kpi-label">SAVED FAVORITES</div>
+                <div class="kpi-value">6</div>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-icon amber">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <div class="kpi-label">COMPLETED BOOKINGS</div>
+                <div class="kpi-value">12</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4-Step Visual Reservation Journey Tracker -->
+          <div class="reservation-tracker-card">
+            <div class="tracker-header">
+              <div>
+                <h3>Active Reservation Journey: The Olive Table</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Tracking status for RES-1024 (28 Oct 2026 • 7:00 PM • 2 Guests)</p>
+              </div>
+              <span class="status-pill confirmed">Status: Confirmed</span>
+            </div>
+
+            <div class="tracker-steps">
+              <div class="tracker-progress-bar-bg"></div>
+              <div class="tracker-progress-bar-fill"></div>
+
+              <!-- Step 1 -->
+              <div class="tracker-step-node completed">
+                <div class="step-node-bubble">✓</div>
+                <span class="step-node-label">01 — Submitted</span>
+                <span class="step-node-sub">Request Logged</span>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="tracker-step-node completed">
+                <div class="step-node-bubble">✓</div>
+                <span class="step-node-label">02 — Awaiting</span>
+                <span class="step-node-sub">Host Review</span>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="tracker-step-node active">
+                <div class="step-node-bubble">03</div>
+                <span class="step-node-label">03 — Confirmed</span>
+                <span class="step-node-sub">Table Prepared</span>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="tracker-step-node">
+                <div class="step-node-bubble">04</div>
+                <span class="step-node-label">04 — Completed</span>
+                <span class="step-node-sub">Dining Finished</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Upcoming Reservations Snapshot -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Upcoming Reservations Snapshot</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Your confirmed and upcoming dining experiences.</p>
+              </div>
+              <button class="btn btn-outline-green btn-sm" data-jump-view="my-reservations">View All Reservations →</button>
+            </div>
+            <div style="padding: 24px;">
+              <div class="client-reservations-grid" id="clientReservationsList">
+                <!-- Rendered dynamically by js/client-dashboard.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended For You -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Recommended for Your Taste</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Personalized culinary suggestions based on your past dining history.</p>
+              </div>
+              <button class="btn btn-outline-green btn-sm" data-jump-view="explore-restaurants">Explore Partner Restaurants →</button>
+            </div>
+            <div style="padding: 24px;">
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;" id="clientRecommendationsList">
+                <!-- Rendered dynamically by js/client-dashboard.js -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Messages & Alerts -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Concierge Alerts & Notifications</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Direct hospitality updates from STACKLY Concierge Desk.</p>
+              </div>
+              <button class="btn btn-outline-green btn-sm" data-jump-view="concierge-chat">Open Live Chat →</button>
+            </div>
+            <div style="padding: 24px;">
+              <div class="messages-list">
+                <div class="message-item">
+                  <div class="message-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </div>
+                  <div class="message-body">
+                    <h4>Reservation RES-1024 Confirmed at The Olive Table</h4>
+                    <p>Your corner table for 2 guests on 28 Oct at 7:00 PM has been confirmed by the venue host with your wine pairing request noted.</p>
+                    <div class="message-time">Today, 10:15 AM</div>
+                  </div>
+                  <button class="message-dismiss-btn" title="Dismiss message">✕</button>
+                </div>
+
+                <div class="message-item">
+                  <div class="message-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  </div>
+                  <div class="message-body">
+                    <h4>Exclusive Weekend Chef's Special Available</h4>
+                    <p>Sakura Japanese House has opened 6 exclusive omakase counter seats for this upcoming Friday evening.</p>
+                    <div class="message-time">Yesterday, 4:30 PM</div>
+                  </div>
+                  <button class="message-dismiss-btn" title="Dismiss message">✕</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 2: MY RESERVATIONS (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-my-reservations">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>My Table Reservations</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Review, filter, cancel, or view details for all your table reservations.</p>
+              </div>
+              <button class="btn btn-primary btn-sm" data-jump-view="explore-restaurants">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>+ Book New Table</span>
+              </button>
+            </div>
+
+            <div style="padding: 24px;">
+              <!-- Filters and Search Toolbar -->
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+                <div class="dash-filter-tabs" style="margin-bottom: 0;">
+                  <button class="dash-filter-pill active" data-res-filter="all">All Bookings</button>
+                  <button class="dash-filter-pill" data-res-filter="confirmed">Confirmed</button>
+                  <button class="dash-filter-pill" data-res-filter="pending">Pending</button>
+                  <button class="dash-filter-pill" data-res-filter="completed">Completed</button>
+                  <button class="dash-filter-pill" data-res-filter="cancelled">Cancelled</button>
+                </div>
+
+                <div class="search-input-wrap" style="max-width: 280px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" id="clientResSearchInput" placeholder="Search by restaurant or ID...">
+                </div>
+              </div>
+
+              <!-- Full Reservations Container -->
+              <div class="client-reservations-grid" id="clientFullReservationsList">
+                <!-- Rendered dynamically by js/client-dashboard.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 3: FAVORITE TABLES (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-favorite-tables">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Favorite Dining Spots</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Saved tables for effortless repeat booking. Quick reserve at any time.</p>
+              </div>
+              <button class="btn btn-outline-green btn-sm" data-jump-view="explore-restaurants">Find More Venues →</button>
+            </div>
+
+            <div style="padding: 24px;">
+              <!-- Cuisine Filter Pills -->
+              <div class="dash-filter-tabs">
+                <button class="dash-filter-pill active" data-fav-filter="all">All Saved</button>
+                <button class="dash-filter-pill" data-fav-filter="Fine Dining">Fine Dining</button>
+                <button class="dash-filter-pill" data-fav-filter="European">European</button>
+                <button class="dash-filter-pill" data-fav-filter="Japanese">Japanese</button>
+                <button class="dash-filter-pill" data-fav-filter="Indian">Indian</button>
+                <button class="dash-filter-pill" data-fav-filter="Rooftop Dining">Rooftop Dining</button>
+              </div>
+
+              <!-- Dedicated Favorites Grid -->
+              <div class="favorites-grid" id="clientDedicatedFavoritesList">
+                <!-- Rendered dynamically by js/client-dashboard.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 4: DINING HISTORY (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-dining-history">
+          <!-- History Metrics -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-icon green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              </div>
+              <div>
+                <div class="kpi-label">TOTAL EXPERIENCES</div>
+                <div class="kpi-value">12</div>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-icon purple">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              </div>
+              <div>
+                <div class="kpi-label">LIFETIME TASTING SPEND</div>
+                <div class="kpi-value">₹24,800</div>
+              </div>
+            </div>
+
+            <div class="kpi-card">
+              <div class="kpi-icon amber">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div>
+                <div class="kpi-label">DINE CLUB POINTS</div>
+                <div class="kpi-value">2,480 pts</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Verified Dining Logs & Itemized Receipts Card -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Past Dining Logs & Verified Receipts</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Download tax invoices, itemized receipts, and leave culinary reviews.</p>
+              </div>
+            </div>
+
+            <div>
+              <!-- History Item 1 -->
+              <div class="history-item-row">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <img src="assets/images/featured-olive-table.webp" alt="The Olive Table" style="width: 54px; height: 54px; border-radius: 10px; object-fit: cover;">
+                  <div>
+                    <h4 style="font-size: 1.0625rem; font-family: var(--font-display); font-weight: 600;">The Olive Table</h4>
+                    <p style="font-size: 0.8125rem; color: var(--color-muted);">28 Sep 2026 • 7:30 PM • 2 Guests (Corner Booth)</p>
+                    <span style="font-size: 0.75rem; color: var(--color-green); font-weight: 600;">Bill Total: ₹3,600 • Paid via Card</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="status-pill confirmed">Completed</span>
+                  <button class="btn btn-secondary btn-sm download-receipt-btn" data-resto="The Olive Table">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Receipt</span>
+                  </button>
+                  <button class="btn btn-outline-green btn-sm leave-review-btn" data-resto="The Olive Table">★ Review</button>
+                </div>
+              </div>
+
+              <!-- History Item 2 -->
+              <div class="history-item-row">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <img src="assets/images/hero-restaurant.webp" alt="Sakura Japanese House" style="width: 54px; height: 54px; border-radius: 10px; object-fit: cover;">
+                  <div>
+                    <h4 style="font-size: 1.0625rem; font-family: var(--font-display); font-weight: 600;">Sakura Japanese House</h4>
+                    <p style="font-size: 0.8125rem; color: var(--color-muted);">14 Sep 2026 • 8:00 PM • 2 Guests (Omakase Counter)</p>
+                    <span style="font-size: 0.75rem; color: var(--color-green); font-weight: 600;">Bill Total: ₹4,800 • Paid via UPI</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="status-pill confirmed">Completed</span>
+                  <button class="btn btn-secondary btn-sm download-receipt-btn" data-resto="Sakura Japanese House">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Receipt</span>
+                  </button>
+                  <button class="btn btn-outline-green btn-sm leave-review-btn" data-resto="Sakura Japanese House">★ Review</button>
+                </div>
+              </div>
+
+              <!-- History Item 3 -->
+              <div class="history-item-row">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <img src="assets/images/featured-olive-table.webp" alt="Bella Italia Ristorante" style="width: 54px; height: 54px; border-radius: 10px; object-fit: cover;">
+                  <div>
+                    <h4 style="font-size: 1.0625rem; font-family: var(--font-display); font-weight: 600;">Bella Italia Ristorante</h4>
+                    <p style="font-size: 0.8125rem; color: var(--color-muted);">29 Aug 2026 • 1:30 PM • 4 Guests (Garden Patio)</p>
+                    <span style="font-size: 0.75rem; color: var(--color-green); font-weight: 600;">Bill Total: ₹5,200 • Paid via NetBanking</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="status-pill confirmed">Completed</span>
+                  <button class="btn btn-secondary btn-sm download-receipt-btn" data-resto="Bella Italia Ristorante">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Receipt</span>
+                  </button>
+                  <button class="btn btn-outline-green btn-sm leave-review-btn" data-resto="Bella Italia Ristorante">★ Review</button>
+                </div>
+              </div>
+
+              <!-- History Item 4 -->
+              <div class="history-item-row">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <img src="assets/images/hero-restaurant.webp" alt="Royal Feast Banquet" style="width: 54px; height: 54px; border-radius: 10px; object-fit: cover;">
+                  <div>
+                    <h4 style="font-size: 1.0625rem; font-family: var(--font-display); font-weight: 600;">Royal Feast Banquet</h4>
+                    <p style="font-size: 0.8125rem; color: var(--color-muted);">15 Aug 2026 • 8:15 PM • 6 Guests (Private Dining Suite)</p>
+                    <span style="font-size: 0.75rem; color: var(--color-green); font-weight: 600;">Bill Total: ₹8,400 • Paid via Card</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="status-pill confirmed">Completed</span>
+                  <button class="btn btn-secondary btn-sm download-receipt-btn" data-resto="Royal Feast Banquet">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Receipt</span>
+                  </button>
+                  <button class="btn btn-outline-green btn-sm leave-review-btn" data-resto="Royal Feast Banquet">★ Review</button>
+                </div>
+              </div>
+
+              <!-- History Item 5 -->
+              <div class="history-item-row">
+                <div style="display: flex; align-items: center; gap: 16px;">
+                  <img src="assets/images/featured-olive-table.webp" alt="Amber Rooftop Terrace" style="width: 54px; height: 54px; border-radius: 10px; object-fit: cover;">
+                  <div>
+                    <h4 style="font-size: 1.0625rem; font-family: var(--font-display); font-weight: 600;">Amber Rooftop Terrace</h4>
+                    <p style="font-size: 0.8125rem; color: var(--color-muted);">02 Aug 2026 • 7:00 PM • 2 Guests (Skyline Lounge)</p>
+                    <span style="font-size: 0.75rem; color: var(--color-green); font-weight: 600;">Bill Total: ₹2,800 • Paid via UPI</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <span class="status-pill confirmed">Completed</span>
+                  <button class="btn btn-secondary btn-sm download-receipt-btn" data-resto="Amber Rooftop Terrace">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Download Receipt</span>
+                  </button>
+                  <button class="btn btn-outline-green btn-sm leave-review-btn" data-resto="Amber Rooftop Terrace">★ Review</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 5: EXPLORE RESTAURANTS (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-explore-restaurants">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Explore Partner Establishments</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Curated Michelin-starred, fine dining, and rooftop venues across Tamil Nadu & Karnataka.</p>
+              </div>
+            </div>
+
+            <div style="padding: 24px;">
+              <!-- Toolbar: City filters & Search -->
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+                <div class="dash-filter-tabs" style="margin-bottom: 0;">
+                  <button class="dash-filter-pill active" data-explore-city="all">All Cities</button>
+                  <button class="dash-filter-pill" data-explore-city="Chennai">Chennai</button>
+                  <button class="dash-filter-pill" data-explore-city="Bengaluru">Bengaluru</button>
+                  <button class="dash-filter-pill" data-explore-city="Coimbatore">Coimbatore</button>
+                  <button class="dash-filter-pill" data-explore-city="Salem">Salem</button>
+                </div>
+
+                <div class="search-input-wrap" style="max-width: 280px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" id="clientExploreSearch" placeholder="Search cuisines, venues, cities...">
+                </div>
+              </div>
+
+              <!-- Explore Restaurants Grid -->
+              <div class="client-explore-grid" id="clientExploreGrid">
+                <!-- Rendered dynamically by js/client-dashboard.js -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 6: CONCIERGE CHAT (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-concierge-chat">
+          <div class="concierge-chat-card">
+            <!-- Chat Header -->
+            <div class="chat-header">
+              <div class="chat-concierge-status">
+                <div class="chat-avatar-badge">ML</div>
+                <div>
+                  <h4 style="font-size: 1rem; margin: 0; font-weight: 600;">Maître d' Laurent</h4>
+                  <span style="font-size: 0.75rem; color: #D1FAE5; display: flex; align-items: center;">
+                    <span class="chat-online-indicator"></span> Online — STACKLY VIP Hospitality Concierge
+                  </span>
+                </div>
+              </div>
+              <span style="font-size: 0.75rem; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 9999px;">24/7 Priority Support</span>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chat-messages-area" id="conciergeChatMessages">
+              <div class="chat-bubble concierge">
+                <p style="margin: 0;">Good day, Mr. Kumar. I am Laurent, your private STACKLY Maître d'. How may I curate your upcoming dining experience or assist with custom table seating today?</p>
+                <div class="chat-time">Just now</div>
+              </div>
+            </div>
+
+            <!-- Prompt Chips -->
+            <div class="chat-prompt-chips">
+              <button type="button" class="prompt-chip">Recommend wine pairing</button>
+              <button type="button" class="prompt-chip">Anniversary celebration</button>
+              <button type="button" class="prompt-chip">Quiet corner booth</button>
+              <button type="button" class="prompt-chip">Dietary & allergy accommodations</button>
+            </div>
+
+            <!-- Input Bar -->
+            <div class="chat-input-bar">
+              <input type="text" id="conciergeChatInput" class="chat-input-field" placeholder="Ask Maître d' Laurent for table recommendations, wine pairings, or special requests...">
+              <button type="button" id="conciergeSendBtn" class="chat-send-btn">
+                <span>Send</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 7: PROFILE & SETTINGS (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-settings">
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Profile & Dining Preferences</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Customize your patron details, seating preferences, and dietary notes.</p>
+              </div>
+            </div>
+
+            <div style="padding: 32px;">
+              <form id="clientProfileForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" value="Arun Kumar" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-control" value="client@stackly.com" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" value="+91 98401 23456" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Preferred City</label>
+                    <select class="form-control">
+                      <option value="Chennai" selected>Chennai</option>
+                      <option value="Bengaluru">Bengaluru</option>
+                      <option value="Coimbatore">Coimbatore</option>
+                      <option value="Salem">Salem</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label class="form-label">Dietary Notes & Allergen Restrictions</label>
+                    <input type="text" class="form-control" value="Gluten-sensitive • Prefers fresh organic farm-to-table ingredients">
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label class="form-label">Favorite Cuisines & Seating Atmosphere</label>
+                    <input type="text" class="form-control" value="European, Japanese, South Indian • Corner booth & quiet candlelit atmosphere preferred">
+                  </div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--color-border);">
+                  <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 12px;">Notification Preferences</h4>
+                  <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer;">
+                      <input type="checkbox" checked style="accent-color: var(--color-green);">
+                      <span>Receive real-time SMS reminders 2 hours prior to reservation</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer;">
+                      <input type="checkbox" checked style="accent-color: var(--color-green);">
+                      <span>Email itemized receipts and tax invoices automatically upon visit completion</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer;">
+                      <input type="checkbox" checked style="accent-color: var(--color-green);">
+                      <span>Exclusive invitations to private tastings and chef special tables</span>
+                    </label>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 24px;">
+                  <span>Save Profile Preferences</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             VIEW 8: HELP & SUPPORT (Dedicated Page)
+             =================================================================== -->
+        <div class="dashboard-view" id="view-help-support">
+          <!-- Support Desks Grid -->
+          <div class="system-health-grid">
+            <div class="health-status-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-muted);">VIP TELEPHONE HOTLINE</span>
+                <span class="health-indicator-dot"></span>
+              </div>
+              <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-charcoal);">+91 44 2811 0000</div>
+              <span style="font-size: 0.75rem; color: var(--color-green);">Available 10 AM – 11:30 PM</span>
+            </div>
+
+            <div class="health-status-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-muted);">CONCIERGE DESK EMAIL</span>
+                <span class="health-indicator-dot"></span>
+              </div>
+              <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-charcoal);">concierge@stackly.com</div>
+              <span style="font-size: 0.75rem; color: var(--color-green);">Average response time: 15m</span>
+            </div>
+
+            <div class="health-status-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-muted);">INSTANT LIVE CHAT</span>
+                <span class="health-indicator-dot"></span>
+              </div>
+              <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-charcoal);">Maître d' Laurent</div>
+              <button class="btn btn-outline-green btn-sm" data-jump-view="concierge-chat" style="padding: 4px 8px; font-size: 0.75rem; align-self: flex-start; margin-top: 4px;">Open Live Chat →</button>
+            </div>
+
+            <div class="health-status-card">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-muted);">CANCELLATION POLICY</span>
+                <span class="health-indicator-dot"></span>
+              </div>
+              <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-charcoal);">Zero Cancellation Fee</div>
+              <span style="font-size: 0.75rem; color: var(--color-muted);">Up to 2 hours prior to seating</span>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="dashboard-card" style="margin-bottom: 24px;">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Frequently Asked Questions</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Quick guidance on reservation policies, arrival protocols, and special requests.</p>
+              </div>
+            </div>
+
+            <div style="padding: 24px;">
+              <details class="client-faq-item" open>
+                <summary>How do I modify or cancel an existing reservation?</summary>
+                <div class="client-faq-content">
+                  You can modify or cancel any active reservation directly from the "My Reservations" tab up to 2 hours before your scheduled dining time. Simply click the "Cancel" button or reach out to our concierge via Live Chat for party size adjustments.
+                </div>
+              </details>
+
+              <details class="client-faq-item">
+                <summary>What is the grace period if my party is running late?</summary>
+                <div class="client-faq-content">
+                  Our partnered establishments hold reserved tables for 15 minutes beyond your scheduled seating time. If you anticipate arriving past this window, please notify the Maître d' through our Concierge Live Chat to safeguard your table.
+                </div>
+              </details>
+
+              <details class="client-faq-item">
+                <summary>Is there a dress code requirement at fine dining partners?</summary>
+                <div class="client-faq-content">
+                  Most of our fine dining and rooftop venues observe an elegant smart-casual attire guideline. Collared shirts and closed footwear are recommended for evening seatings. Athletic wear and beachwear are restricted.
+                </div>
+              </details>
+
+              <details class="client-faq-item">
+                <summary>How does STACKLY handle severe dietary allergies?</summary>
+                <div class="client-faq-content">
+                  When you input your dietary restrictions in your Profile Settings or during booking, our platform automatically transmits your allergen alerts directly to the restaurant's executive kitchen team prior to your arrival.
+                </div>
+              </details>
+
+              <details class="client-faq-item">
+                <summary>Is valet parking complimentary with my booking?</summary>
+                <div class="client-faq-content">
+                  Yes, all premier and five-star partnered venues featured on STACKLY offer complimentary valet parking upon presenting your digital STACKLY booking confirmation.
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- Direct Support Inquiry Form -->
+          <div class="dashboard-card">
+            <div class="dashboard-card-header">
+              <div>
+                <h3>Submit a Direct Support Ticket</h3>
+                <p style="font-size: 0.8125rem; color: var(--color-muted);">Our member hospitality desk responds within 15 minutes.</p>
+              </div>
+            </div>
+
+            <div style="padding: 24px;">
+              <form id="clientSupportTicketForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Subject</label>
+                    <input type="text" class="form-control" placeholder="e.g. Table preference adjustment for anniversary dinner" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Related Reservation ID (Optional)</label>
+                    <input type="text" class="form-control" placeholder="e.g. RES-1024">
+                  </div>
+                  <div class="form-group col-span-2">
+                    <label class="form-label">Message Details</label>
+                    <textarea class="form-control" rows="3" placeholder="Please elaborate on your request, dietary requirements, or feedback..." required></textarea>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 14px;">
+                  <span>Submit Support Ticket</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

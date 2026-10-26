@@ -1,0 +1,294 @@
+/* ==========================================================================
+   STACKLY — RESTAURANT TABLE BOOKING PLATFORM
+   Authentication Stylesheet (css/auth.css)
+   ========================================================================== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--color-ivory);
+  overflow-x: hidden;
+}
+
+.auth-split-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Left Hero Visual */
+.auth-visual-side {
+  flex: 1.1;
+  position: relative;
+  background-color: var(--color-charcoal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 56px;
+  overflow: hidden;
+}
+
+.auth-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: contrast(1.05) brightness(0.9);
+}
+
+.auth-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23, 35, 31, 0.4) 0%, rgba(23, 35, 31, 0.88) 100%);
+}
+
+.auth-visual-header {
+  position: relative;
+  z-index: 2;
+}
+
+.auth-visual-footer {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white);
+  max-width: 520px;
+}
+
+.auth-quote-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #A7F3D0;
+  margin-bottom: 18px;
+}
+
+.auth-visual-quote {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  line-height: 1.25;
+  margin-bottom: 14px;
+  color: var(--color-white);
+}
+
+.auth-visual-subtext {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* Right Form Side */
+.auth-form-side {
+  flex: 0.9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 64px;
+  background-color: var(--color-white);
+  overflow-y: auto;
+  position: relative;
+}
+
+.auth-top-nav {
+  position: absolute;
+  top: 36px;
+  left: 64px;
+  right: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: color var(--transition-fast);
+}
+
+.back-home-link:hover {
+  color: var(--color-green);
+}
+
+.auth-card {
+  max-width: 440px;
+  width: 100%;
+  margin: 60px auto 40px auto;
+}
+
+.auth-header {
+  margin-bottom: 32px;
+}
+
+.auth-header h1 {
+  font-size: 2rem;
+  color: var(--color-charcoal);
+  margin-bottom: 8px;
+}
+
+.auth-header p {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+}
+
+/* Segmented Role Selector */
+.role-segmented-control {
+  display: flex;
+  background-color: var(--color-sage-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.role-pill {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.role-pill.active {
+  background-color: var(--color-white);
+  color: var(--color-green);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Form Styles */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.auth-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-row-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--color-charcoal);
+}
+
+.checkbox-label input[type="checkbox"] {
+  accent-color: var(--color-green);
+  width: 16px;
+  height: 16px;
+}
+
+.forgot-link {
+  color: var(--color-green);
+  font-weight: 500;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer-prompt {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.auth-footer-prompt a {
+  color: var(--color-green);
+  font-weight: 600;
+}
+
+.auth-footer-prompt a:hover {
+  text-decoration: underline;
+}
+
+/* Quick Fill Demo Credentials Banner */
+.demo-credentials-box {
+  margin-top: 28px;
+  padding: 16px;
+  background-color: var(--color-sage-light);
+  border: 1px dashed rgba(22, 122, 85, 0.4);
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+}
+
+.demo-credentials-title {
+  font-weight: 600;
+  color: var(--color-green);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-credentials-desc {
+  color: var(--color-muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.demo-quick-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.demo-quick-btn {
+  padding: 4px 10px;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.demo-quick-btn:hover {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+
+/* Auth Responsive */
+@media (max-width: 1024px) {
+  .auth-visual-side {
+    display: none;
+  }
+  
+  .auth-form-side {
+    flex: 1;
+    padding: 32px 24px;
+  }
+  
+  .auth-top-nav {
+    left: 24px;
+    right: 24px;
+  }
+}

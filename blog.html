@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culinary Blog & Dining Guides — STACKLY</title>
+  <meta name="description" content="Editorial food essays, chef interviews, restaurant discovery guides, and table etiquette tips from STACKLY.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+    </div>
+    <div class="preloader-text">STACKLY</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link active">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link active">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- SECTION 1: BLOG HERO & LIVE SEARCH BAR -->
+  <section class="section" style="padding-top: 80px; padding-bottom: 50px; background-color: var(--color-white);">
+    <div class="container" style="text-align: center; max-width: 840px;">
+      <span class="section-eyebrow">THE CULINARY CHRONICLES</span>
+      <h1 style="font-size: clamp(2.4rem, 4.5vw, 4rem); margin-bottom: 20px; line-height: 1.15;">
+        Stories, Guides, & <br><span class="text-green">Gastronomy Perspectives.</span>
+      </h1>
+      <p style="font-size: 1.125rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 32px;">
+        Curated culinary insights, chef interviews, dining etiquette handbooks, and seasonal regional food guides from South India's independent kitchen movement.
+      </p>
+
+      <!-- Live Blog Search Bar -->
+      <div style="position: relative; max-width: 520px; margin: 0 auto;">
+        <input type="text" id="blogSearchInput" class="form-control" placeholder="Search guides, cuisines, date night tips..." style="padding-left: 48px; border-radius: var(--radius-full); font-size: 0.9375rem; background: var(--color-ivory);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--color-green);">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FEATURED LONG-FORM EDITORIAL ARTICLE -->
+  <section style="padding-bottom: 60px; background-color: var(--color-white);">
+    <div class="container">
+      <div style="background-color: var(--color-ivory); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; box-shadow: var(--shadow-md);">
+        <div style="height: 420px;">
+          <img src="assets/images/blog-hero.webp" alt="Editorial food styling and plated dessert" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="padding: 48px; display: flex; flex-direction: column; justify-content: center;">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-green); text-transform: uppercase; letter-spacing: 0.08em;">EDITOR'S PICK</span>
+            <span style="font-size: 0.75rem; color: var(--color-muted);">• 8 MIN READ • OCT 2026</span>
+          </div>
+          <h2 style="font-size: 1.95rem; font-family: var(--font-display); line-height: 1.25; margin-bottom: 16px;">
+            The Secret Life of Sourdough & Wood-Fired Heat: The Craft Pizzeria Renaissance
+          </h2>
+          <p style="color: var(--color-muted); font-size: 0.9375rem; line-height: 1.7; margin-bottom: 24px;">
+            From 48-hour slow cold fermentation to 450°C clay dome ovens imported from Naples, discover how visionary pizza artisans across Bengaluru and Chennai are rewriting the rules of modern Italian gastronomy.
+          </p>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <img src="assets/images/user-avatar-1.webp" alt="Meera Krishnan" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover;">
+            <div>
+              <div style="font-size: 0.875rem; font-weight: 600;">Meera Krishnan</div>
+              <div style="font-size: 0.75rem; color: var(--color-muted);">Senior Gastronomy Critic</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: TOPIC FILTER STRIP (VANILLA JS FILTERING) -->
+  <section class="section section-sage" style="padding-top: 50px; padding-bottom: 30px;">
+    <div class="container">
+      <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 10px; justify-content: center; flex-wrap: wrap;" id="blogCategoryPills">
+        <button class="category-item active" data-cat="all">All Articles (8)</button>
+        <button class="category-item" data-cat="guides">Dining Guides</button>
+        <button class="category-item" data-cat="cuisines">Cuisine Deep Dives</button>
+        <button class="category-item" data-cat="etiquette">Dining Etiquette</button>
+        <button class="category-item" data-cat="spotlights">Chef Spotlights</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: EDITORIAL ARTICLES GRID (8 BESPOKE ARTICLES) -->
+  <section class="section section-sage" style="padding-top: 0;">
+    <div class="container">
+      <div class="occasions-grid" id="articlesGrid" style="grid-template-columns: repeat(3, 1fr);">
+        <!-- Article 1 -->
+        <div class="occasion-card" data-cat="guides" data-title="How to Choose the Perfect Restaurant for Date Night">
+          <div class="occasion-card-img">
+            <img src="assets/images/romantic-dinner.webp" alt="Romantic candlelit dining table">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">DINING GUIDE • 5 MIN</span>
+            <h3>How to Choose the Perfect Restaurant for Date Night</h3>
+            <p>From decibel levels and table spacing to candle lighting temperature, how to engineer a flawless intimate evening.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="occasion-card" data-cat="cuisines" data-title="A Beginner's Guide to Exploring Authentic Japanese Omakase">
+          <div class="occasion-card-img">
+            <img src="assets/images/japanese-restaurant.webp" alt="Omakase sushi counter">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">CUISINES • 6 MIN</span>
+            <h3>A Beginner's Guide to Exploring Authentic Japanese Omakase</h3>
+            <p>Mastering sushi counter etiquette: when to use chopsticks versus fingers, and the flavor order of seasonal nigiri.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="occasion-card" data-cat="cuisines" data-title="The Resurgence of Heirloom Chettinad Spices in Fine Dining">
+          <div class="occasion-card-img">
+            <img src="assets/images/south-indian-cuisine.webp" alt="Traditional South Indian spice thali">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">CUISINES • 7 MIN</span>
+            <h3>The Resurgence of Heirloom Chettinad Spices in Fine Dining</h3>
+            <p>How star anise, stone flower (kalpasi), and marathi moggu are finding their way into progressive tasting menus.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="occasion-card" data-cat="guides" data-title="Planning a Memorable Multi-Generational Family Dinner">
+          <div class="occasion-card-img">
+            <img src="assets/images/family-gathering.webp" alt="Family banquet table">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">DINING GUIDE • 5 MIN</span>
+            <h3>Planning a Memorable Multi-Generational Family Dinner</h3>
+            <p>Essential checklist for balancing grandparents' dietary habits, lively toddler spaces, and relaxed multi-course pacing.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="occasion-card" data-cat="etiquette" data-title="What to Consider Before Booking an Executive Corporate Table">
+          <div class="occasion-card-img">
+            <img src="assets/images/business-dining.webp" alt="Executive corporate dining room">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">ETIQUETTE • 4 MIN</span>
+            <h3>What to Consider Before Booking an Executive Table</h3>
+            <p>Strategic tips for setting confidential business dinners: pre-ordering wine, handling billing discreetly, and acoustic privacy.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="occasion-card" data-cat="guides" data-title="The Art of Weekend Brunch: 7 Trends Redefining Sunday Mornings">
+          <div class="occasion-card-img">
+            <img src="assets/images/sunday-brunch.webp" alt="Gourmet weekend brunch table">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">DINING GUIDE • 5 MIN</span>
+            <h3>The Art of Weekend Brunch: 7 Trends Redefining Sundays</h3>
+            <p>Pasture-raised eggs benedict, single-origin cold brews, acoustic sets, and why terrace seating is king on weekends.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 7 -->
+        <div class="occasion-card" data-cat="etiquette" data-title="Deciphering Restaurant Wine Lists Without Intimidation">
+          <div class="occasion-card-img">
+            <img src="assets/images/featured-olive-table.webp" alt="Wine glass and contemporary table">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">ETIQUETTE • 6 MIN</span>
+            <h3>Deciphering Restaurant Wine Lists Without Intimidation</h3>
+            <p>Understand tannin structure, oak aging, and regional varietals so you can order with calm confidence every time.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+
+        <!-- Article 8 -->
+        <div class="occasion-card" data-cat="spotlights" data-title="Behind the Pass: The Seven-Course Tasting Philosophy">
+          <div class="occasion-card-img">
+            <img src="assets/images/chefs-special.webp" alt="Chef plating fine dining course">
+          </div>
+          <div class="occasion-card-body">
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase; margin-bottom: 6px;">CHEF SPOTLIGHT • 8 MIN</span>
+            <h3>Behind the Pass: The Seven-Course Tasting Philosophy</h3>
+            <p>Inside the culinary mind of Executive Chef Kenji Sato: pacing acidity, umami crescendos, and storytelling on a plate.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Read Guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: CHEF SPOTLIGHT & BEHIND THE PASS (IN-DEPTH INTERVIEW) -->
+  <section class="section section-white">
+    <div class="container">
+      <div style="background: var(--color-ivory); border-radius: var(--radius-xl); border: 1px solid var(--color-border); padding: 50px; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 48px; align-items: center;">
+        <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 380px;">
+          <img src="assets/images/chefs-special.webp" alt="Chef Kenji Sato in kitchen pass" style="width: 100%; height: 100%; object-fit: cover;">
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(23,35,31,0.85); backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 9999px; color: var(--color-white); font-size: 0.75rem;">
+            Chef Kenji Sato • Sakura House
+          </div>
+        </div>
+
+        <div>
+          <span class="section-eyebrow">CHEF CONVERSATION</span>
+          <h2 style="font-size: 2.15rem; margin-bottom: 16px; line-height: 1.25;">“A Great Dish Is 90% Respect for the Ingredient.”</h2>
+          <p style="color: var(--color-muted); line-height: 1.8; margin-bottom: 20px;">
+            In our candid conversation with Chef Kenji Sato of Bengaluru's Sakura House, he reflects on the spiritual discipline of Japanese knife sharpening, sourcing fresh tuna within 14 hours of harvest, and how counter seating transforms diners from spectators into culinary confidants.
+          </p>
+          <div style="border-left: 2px solid var(--color-green); padding-left: 16px; margin-bottom: 24px; font-style: italic; color: var(--color-charcoal); font-size: 0.9375rem;">
+            “When a patron sits at my 8-seat counter, they aren't just buying dinner. They are giving me two hours of their life. My sacred duty is to honor that trust.”
+          </div>
+          <a href="404.html" class="btn btn-primary btn-sm">Reserve Sakura House Counter →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: DINING ETIQUETTE POCKET GUIDE (4 CARDS) -->
+  <section class="section section-sage">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">TABLE PROTOCOL</span>
+        <h2 class="section-title">The Modern Dining Etiquette Handbook</h2>
+        <p class="section-subtitle">Effortless guidelines to ensure your dining experience is gracious and memorable for both guests and staff.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <div class="why-card">
+          <div style="font-family: var(--font-display); font-size: 1.75rem; color: var(--color-green); font-weight: 700; margin-bottom: 10px;">01</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">The 15-Minute Courtesy</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">If running late, notify the venue via your dashboard or text. Restaurants hold tables for 15 minutes before releasing to waiting parties.</p>
+        </div>
+
+        <div class="why-card">
+          <div style="font-family: var(--font-display); font-size: 1.75rem; color: var(--color-green); font-weight: 700; margin-bottom: 10px;">02</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Dietary Transparency</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Always communicate allergies during booking, not when plates arrive at the table. This allows the kitchen to prepare allergen-free prep surfaces.</p>
+        </div>
+
+        <div class="why-card">
+          <div style="font-family: var(--font-display); font-size: 1.75rem; color: var(--color-green); font-weight: 700; margin-bottom: 10px;">03</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Discreet Photography</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Capturing your beautiful dish is celebrated, but avoid flash photography and standing over tables in fine dining spaces to respect fellow diners.</p>
+        </div>
+
+        <div class="why-card">
+          <div style="font-family: var(--font-display); font-size: 1.75rem; color: var(--color-green); font-weight: 700; margin-bottom: 10px;">04</div>
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Course Coordination</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">During tasting menus, try to eat dishes when warm to savor the intended textures. The kitchen orchestrates subsequent courses to your table's pace.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: INTERACTIVE CULINARY QUIZ: WHAT'S YOUR DINING PERSONALITY? -->
+  <section class="section section-white" id="diningQuiz">
+    <div class="container" style="max-width: 780px;">
+      <div style="background: var(--color-ivory); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 48px; box-shadow: var(--shadow-md);">
+        <div style="text-align: center; margin-bottom: 32px;">
+          <span class="section-eyebrow">INTERACTIVE QUIZ</span>
+          <h2 style="font-size: 2.1rem; margin-bottom: 10px;">What Is Your Dining Personality?</h2>
+          <p style="font-size: 0.875rem; color: var(--color-muted);">Answer 3 quick questions to discover your gastronomic persona and curated restaurant matches.</p>
+        </div>
+
+        <div id="quizContainer">
+          <!-- Question 1 -->
+          <div style="margin-bottom: 24px;">
+            <label style="font-weight: 600; font-size: 0.9375rem; display: block; margin-bottom: 10px;">1. What is your ideal weekend dinner vibe?</label>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer; padding: 10px; background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-border);">
+                <input type="radio" name="q1" value="omakase" checked> Intimate, chef-led counter with seasonal surprise courses.
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer; padding: 10px; background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-border);">
+                <input type="radio" name="q1" value="rooftop"> Breezy rooftop with handcrafted cocktails and skyline city lights.
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer; padding: 10px; background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-border);">
+                <input type="radio" name="q1" value="heritage"> Generous family feast with heirloom biryanis and warm tandoori breads.
+              </label>
+            </div>
+          </div>
+
+          <!-- Question 2 -->
+          <div style="margin-bottom: 24px;">
+            <label style="font-weight: 600; font-size: 0.9375rem; display: block; margin-bottom: 10px;">2. How adventurous are you with spices & exotic flavors?</label>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer; padding: 10px; background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-border);">
+                <input type="radio" name="q2" value="bold" checked> Take me on a journey! I love spicy Chettinad, fermented wasabi, and truffles.
+              </label>
+              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer; padding: 10px; background: var(--color-white); border-radius: 8px; border: 1px solid var(--color-border);">
+                <input type="radio" name="q2" value="balanced"> Balanced: authentic Italian pastas, coastal grilled prawns, and artisan bakes.
+              </label>
+            </div>
+          </div>
+
+          <button id="calculateQuizBtn" class="btn btn-primary" style="width: 100%; padding: 14px;">Reveal My Dining Persona ✦</button>
+        </div>
+
+        <!-- Quiz Result Box -->
+        <div id="quizResultBox" style="display: none; margin-top: 28px; background: var(--color-white); border: 2px solid var(--color-green); border-radius: var(--radius-lg); padding: 28px; text-align: center;">
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-green); text-transform: uppercase;">YOUR DINING ARCHETYPE</span>
+          <h3 id="quizPersonaTitle" style="font-size: 1.625rem; font-family: var(--font-display); margin: 6px 0 10px 0;">The Adventurous Gastronome</h3>
+          <p id="quizPersonaDesc" style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 20px;">
+            You crave culinary depth, authentic knife-work, and uncompromised flavors. You value intimacy and storytelling on the plate.
+          </p>
+          <div style="background: var(--color-sage-light); padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.8125rem;">
+            <strong>Top Recommended Matches:</strong> Sakura House (Bengaluru) & The Olive Table (Chennai)
+          </div>
+          <a href="404.html" class="btn btn-primary btn-sm">Explore Your Recommended Tables →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: THE STACKLY GAZETTE NEWSLETTER DISPATCH -->
+  <section class="section section-sage" style="text-align: center;">
+    <div class="container" style="max-width: 680px;">
+      <span class="section-eyebrow">WEEKLY CULINARY DISPATCH</span>
+      <h2 style="font-size: 2.25rem; margin-bottom: 14px;">Stay Hungry for Great Tables.</h2>
+      <p style="color: var(--color-muted); line-height: 1.7; margin-bottom: 28px;">
+        Subscribe to receive weekly restaurant spotlight notifications, chef interviews, and weekend dining recommendations.
+      </p>
+      <form class="newsletter-form" style="max-width: 480px; margin: 0 auto;">
+        <input type="email" class="newsletter-input" placeholder="Your email address..." required style="color: var(--color-charcoal); background: var(--color-white);">
+        <button type="submit" class="btn btn-primary">Join Dispatch</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Blog Interactive Filtering & Quiz Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Live Article Filter by Category
+      const catPills = document.querySelectorAll("#blogCategoryPills .category-item");
+      const articles = document.querySelectorAll("#articlesGrid .occasion-card");
+
+      catPills.forEach(pill => {
+        pill.addEventListener("click", () => {
+          catPills.forEach(p => p.classList.remove("active"));
+          pill.classList.add("active");
+          const selectedCat = pill.dataset.cat;
+
+          articles.forEach(art => {
+            if (selectedCat === "all" || art.dataset.cat === selectedCat) {
+              art.style.display = "flex";
+            } else {
+              art.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // 2. Live Search in Blog
+      const searchInput = document.getElementById("blogSearchInput");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          const q = e.target.value.toLowerCase().trim();
+          articles.forEach(art => {
+            const title = (art.dataset.title || "").toLowerCase();
+            const text = art.textContent.toLowerCase();
+            if (!q || title.includes(q) || text.includes(q)) {
+              art.style.display = "flex";
+            } else {
+              art.style.display = "none";
+            }
+          });
+        });
+      }
+
+      // 3. Culinary Personality Quiz
+      const calcQuizBtn = document.getElementById("calculateQuizBtn");
+      const resultBox = document.getElementById("quizResultBox");
+      const titleElem = document.getElementById("quizPersonaTitle");
+      const descElem = document.getElementById("quizPersonaDesc");
+
+      if (calcQuizBtn && resultBox) {
+        calcQuizBtn.addEventListener("click", () => {
+          const q1 = document.querySelector('input[name="q1"]:checked')?.value || 'omakase';
+          const q2 = document.querySelector('input[name="q2"]:checked')?.value || 'bold';
+
+          if (q1 === "omakase") {
+            titleElem.textContent = "The Fine Dining Connoisseur";
+            descElem.textContent = "You seek artistry, masterclass knife-work, and wine pairings that challenge and elevate the senses.";
+          } else if (q1 === "rooftop") {
+            titleElem.textContent = "The Modern Social Epicure";
+            descElem.textContent = "You love electric atmospheres, scenic skyline views, craft cocktails, and sharing tapas with friends.";
+          } else {
+            titleElem.textContent = "The Heritage Feast Lover";
+            descElem.textContent = "You celebrate soulful, slow-cooked family traditions, aromatic spices, and generous multi-course tables.";
+          }
+
+          resultBox.style.display = "block";
+          resultBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

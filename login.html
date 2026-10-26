@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — STACKLY Restaurant Table Booking</title>
+  <meta name="description" content="Sign in to your STACKLY client dining dashboard or restaurant admin management portal.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/auth.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <script src="js/validation.js" defer></script>
+  <script src="js/auth.js" defer></script>
+</head>
+<body class="auth-page">
+
+  <div class="auth-split-wrapper">
+    <!-- Left Hero Visual Side -->
+    <div class="auth-visual-side">
+      <img src="assets/images/auth-bg.webp" alt="Luxury restaurant atmosphere" class="auth-bg-img">
+      <div class="auth-visual-overlay"></div>
+
+      <div class="auth-visual-header">
+        <a href="404.html">
+          <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" style="height: 38px;">
+        </a>
+      </div>
+
+      <div class="auth-visual-footer">
+        <div class="auth-quote-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>PREMIER DINING COMMUNITY</span>
+        </div>
+        <h2 class="auth-visual-quote">
+          “A great meal begins with the certainty of a welcoming table.”
+        </h2>
+        <p class="auth-visual-subtext">
+          Access your saved reservations, favorite culinary haunts, and exclusive dining privileges across South India's top venues.
+        </p>
+      </div>
+    </div>
+
+    <!-- Right Login Form Side -->
+    <div class="auth-form-side">
+      <div class="auth-top-nav">
+        <a href="404.html" class="nav-logo" style="display: none;">
+          <img src="assets/logo/logo.svg" alt="STACKLY">
+        </a>
+        <a href="index.html" class="back-home-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Back to Home</span>
+        </a>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1>Welcome Back</h1>
+          <p>Sign in to your STACKLY account to manage your dining reservations.</p>
+        </div>
+
+        <!-- Role Switcher -->
+        <div class="role-segmented-control">
+          <button type="button" class="role-pill active" data-role="client">Guest / Client</button>
+          <button type="button" class="role-pill" data-role="admin">Admin Portal</button>
+        </div>
+        <input type="hidden" id="authRoleInput" value="client">
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="loginEmail" class="form-label">Email Address *</label>
+            <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword" class="form-label">Password *</label>
+            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+          </div>
+
+          <div class="auth-row-options">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" checked>
+              <span>Remember me</span>
+            </label>
+            <a href="404.html" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; margin-top: 8px;">
+            <span>Sign In to STACKLY →</span>
+          </button>
+        </form>
+
+        <p class="auth-footer-prompt">
+          Don't have an account yet? <a href="404.html">Create an Account</a>
+        </p>
+
+        <!-- Quick Fill Demo Credentials -->
+        <div class="demo-credentials-box">
+          <div class="demo-credentials-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span>Demonstration Quick-Fill:</span>
+          </div>
+          <p class="demo-credentials-desc">Click below to automatically fill sample login credentials:</p>
+          <div class="demo-quick-buttons">
+            <button type="button" class="demo-quick-btn" id="quickFillClient">👤 Fill Client (Arun)</button>
+            <button type="button" class="demo-quick-btn" id="quickFillAdmin">🛡️ Fill Admin</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.gsap) {
+        gsap.from(".auth-card > *", {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "power2.out"
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

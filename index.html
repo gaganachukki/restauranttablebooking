@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STACKLY — Restaurant Table Booking Platform</title>
+  <meta name="description" content="Discover exceptional restaurants, explore unforgettable dining experiences, and reserve your perfect table in just a few clicks.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Application Scripts -->
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/restaurant-filter.js" defer></script>
+  <script src="js/booking.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+    </div>
+    <div class="preloader-text">STACKLY</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Shared Header & Navigation -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Left: Logo -->
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+
+      <!-- Center: Navigation Links -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Right: Search & Login -->
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants" title="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <!-- Hamburger for Mobile -->
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link active">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- 3. HOMEPAGE HERO SECTION (Matches Reference Composition) -->
+  <section class="hero-section">
+    <!-- Cinematic Right Background Image with Mask -->
+    <div class="hero-bg-overlay">
+      <img src="assets/images/hero-restaurant.webp" alt="Atmospheric luxury dining room overlooking city skyline" class="hero-bg-image">
+      <div class="hero-gradient-mask"></div>
+    </div>
+
+    <div class="container hero-content-wrapper">
+      <!-- Left Content -->
+      <div class="hero-left">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"/><path d="M12 2v20"/><path d="M6 2v10a3 3 0 0 0 3 3 3 3 0 0 0 3-3V2"/></svg>
+          <span>Dine • Relax • Enjoy</span>
+        </div>
+
+        <h1 class="hero-headline">
+          Book Your Table,<br>
+          <span class="highlight">Not Just a Meal</span>
+        </h1>
+
+        <p class="hero-description">
+          Discover exceptional restaurants, explore unforgettable dining experiences, and reserve your perfect table in just a few clicks.
+        </p>
+
+        <!-- Quick Table Booking Bar (Reference Design) -->
+        <div class="hero-booking-bar">
+          <div class="booking-bar-item">
+            <span class="booking-bar-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div class="booking-bar-input">
+              <span class="booking-bar-label">City</span>
+              <select id="heroBookingCity" class="booking-bar-select">
+                <option value="Chennai" selected>Chennai</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Salem">Salem</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="booking-bar-item">
+            <span class="booking-bar-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <div class="booking-bar-input">
+              <span class="booking-bar-label">Date</span>
+              <input type="date" id="heroBookingDate" class="booking-bar-select" style="cursor: pointer;">
+            </div>
+          </div>
+
+          <div class="booking-bar-item">
+            <span class="booking-bar-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <div class="booking-bar-input">
+              <span class="booking-bar-label">Guests</span>
+              <select id="heroBookingGuests" class="booking-bar-select">
+                <option value="1 Guest">1 Person</option>
+                <option value="2 Guests" selected>2 People</option>
+                <option value="3 Guests">3 People</option>
+                <option value="4 Guests">4 People</option>
+                <option value="5 Guests">5 People</option>
+                <option value="6+ Guests">6+ People</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="heroFindTableBtn" class="booking-bar-btn" aria-label="Find a Table">
+            <span>Find a Table</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Secondary CTA & Editorial Handwritten Text -->
+        <div class="hero-cta-group">
+          <a href="404.html" class="btn btn-primary">
+            <span>Explore Restaurants</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </a>
+          <a href="404.html" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Reserve a Table</span>
+          </a>
+        </div>
+
+        <div class="hero-handwritten-note">
+          <span>Good Food Brings Us Together</span>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+      </div>
+
+      <!-- Right Floating Reservation Card (Reference Visual) -->
+      <div class="hero-right">
+        <div class="floating-restaurant-card">
+          <div class="card-img-wrapper">
+            <img src="assets/images/featured-olive-table.webp" alt="The Olive Table contemporary dining room">
+            <span class="card-top-tag">★ Top Rated</span>
+            <button class="card-arrow-btn" aria-label="View restaurant details" onclick="window.location.href='404.html'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+
+          <div class="card-eyebrow">FEATURED TONIGHT</div>
+          <h3 class="card-restaurant-name">The Olive Table</h3>
+
+          <div class="card-rating-row">
+            <div class="stars">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <span class="rating-number">4.8</span>
+            <span class="review-count">(2.4k reviews)</span>
+          </div>
+
+          <p class="card-cuisines">Contemporary European Dining • Anna Nagar, Chennai</p>
+
+          <div class="card-availability-heading">Available Demonstration Slots</div>
+          <div class="card-time-slots">
+            <button class="time-pill active">7:00 PM</button>
+            <button class="time-pill">7:30 PM</button>
+            <button class="time-pill">8:00 PM</button>
+          </div>
+
+          <button class="card-book-btn">Book a Table</button>
+          <div class="demo-notice-tag">Sample demonstration data</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TRUST AND DISCOVERY STRIP -->
+  <section class="trust-strip">
+    <div class="container trust-strip-inner">
+      <div class="trust-items-grid">
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Instant Booking</h4>
+            <p>Secure your table in seconds with real-time availability.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2v6a3 3 0 0 1-3 3 3 3 0 0 1-3-3V2"/><path d="M12 2v20"/><path d="M6 2v10a3 3 0 0 0 3 3 3 3 0 0 0 3-3V2"/></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Top Restaurants</h4>
+            <p>Explore curated restaurants for every mood and occasion.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="trust-text">
+            <h4>No Hidden Charges</h4>
+            <p>Transparent reservations, zero unexpected surprises.</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="trust-text">
+            <h4>Exclusive Experiences</h4>
+            <p>Get chef specials and tailored dining moments.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-strip-script">
+        <span>Good Food Brings People Together</span>
+        <span style="color: var(--color-green);">♡</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. RESTAURANT CATEGORY STRIP -->
+  <section class="category-section">
+    <div class="container">
+      <div class="category-row" id="categoryStrip">
+        <button class="category-item active" data-category="all">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          <span>All Cuisines</span>
+        </button>
+        <button class="category-item" data-category="fine-dining">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Fine Dining</span>
+        </button>
+        <button class="category-item" data-category="italian">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16 3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>
+          <span>Italian</span>
+        </button>
+        <button class="category-item" data-category="indian">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          <span>Indian</span>
+        </button>
+        <button class="category-item" data-category="japanese">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6 2.54 6 6s-2.44 6-6 6c-3.56 0-7.56-2.54-8.5-6Z"/><path d="M18 12v.5"/></svg>
+          <span>Japanese</span>
+        </button>
+        <button class="category-item" data-category="cafes">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          <span>Cafés</span>
+        </button>
+        <button class="category-item" data-category="seafood">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+          <span>Seafood</span>
+        </button>
+        <button class="category-item" data-category="rooftop">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          <span>Rooftop Dining</span>
+        </button>
+        <button class="category-item" data-category="family">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Family Restaurants</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. ABOUT STACKLY SECTION -->
+  <section class="section about-section" id="aboutSection">
+    <div class="container about-grid">
+      <!-- Left Column -->
+      <div class="about-content">
+        <span class="section-eyebrow">ABOUT STACKLY</span>
+        <h2>More Than a Reservation.<br><span class="highlight">It’s an Experience.</span></h2>
+        <p class="about-lead">
+          At STACKLY, we make discovering great food and reserving the perfect table effortless. From intimate dinners to celebrations with friends and family, our platform helps you explore dining experiences that turn ordinary moments into memorable occasions.
+        </p>
+
+        <!-- Dynamic Viewport Statistics Counters -->
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number" data-count="150" data-suffix="+">150+</span>
+            <span class="stat-label">Restaurants Listed</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="25" data-suffix="+">25+</span>
+            <span class="stat-label">Cuisine Experiences</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="4.8" data-suffix="/5">4.8/5</span>
+            <span class="stat-label">Illustrative Rating</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" data-count="24" data-suffix="/7">24/7</span>
+            <span class="stat-label">Reservation Access</span>
+          </div>
+        </div>
+
+        <a href="404.html" class="btn btn-outline-green">
+          <span>Discover Our Story</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Right Visual -->
+      <div class="about-visual">
+        <div class="about-image-card">
+          <img src="assets/images/restaurant-experience.webp" alt="Warmly lit dining setting with celebratory guests" loading="lazy">
+        </div>
+        <div class="about-floating-card">
+          <h4>Made for Every Occasion</h4>
+          <p>From casual lunches to unforgettable milestone celebrations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FEATURED RESTAURANTS -->
+  <section class="section featured-section" id="featuredRestaurants">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">TRENDING NOW</span>
+        <h2 class="section-title">Discover Places Worth Gathering For.</h2>
+        <p class="section-subtitle">Explore handpicked dining destinations for every craving, occasion, and mood.</p>
+      </div>
+
+      <!-- Filter & Sort Bar -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label for="cityFilter" style="font-size: 0.8125rem; font-weight: 600; color: var(--color-muted);">City:</label>
+          <select id="cityFilter" class="filter-select">
+            <option value="all">All Locations</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Coimbatore">Coimbatore</option>
+            <option value="Salem">Salem</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sortFilter" style="font-size: 0.8125rem; font-weight: 600; color: var(--color-muted);">Sort by:</label>
+          <select id="sortFilter" class="filter-select">
+            <option value="rating-desc">Highest Rating</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Restaurant Grid -->
+      <div class="restaurant-grid" id="restaurantCardsGrid">
+        <!-- Rendered dynamically by js/restaurant-filter.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. RESTAURANT TABLE BOOKING SECTION -->
+  <section class="section booking-section" id="reservationSection">
+    <div class="container">
+      <div class="booking-container-box">
+        <!-- Visual Left Column -->
+        <div class="booking-visual-col">
+          <img src="assets/images/fine-dining-interior.webp" alt="Fine dining interior table setup">
+          <div class="booking-visual-overlay">
+            <span class="section-eyebrow" style="background: rgba(255,255,255,0.2); color: #FAF8F3; border-color: transparent;">RESERVE YOUR MOMENT</span>
+            <h3>Your Table Is Waiting</h3>
+            <p>Select your favorite venue, choose your time, and enjoy guaranteed hospitality tailored for your group.</p>
+          </div>
+        </div>
+
+        <!-- Form Right Column -->
+        <div class="booking-form-col">
+          <div class="booking-form-header">
+            <h3>Your Perfect Table Is Just a Few Clicks Away.</h3>
+            <p>Choose your dining destination, select a convenient time, and create space for your next memorable meal.</p>
+          </div>
+
+          <form id="tableBookingForm">
+            <div class="form-grid">
+              <!-- Restaurant Selection -->
+              <div class="form-group col-span-2">
+                <label for="bookingRestaurantSelect" class="form-label">
+                  <span>Restaurant <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <select id="bookingRestaurantSelect" class="form-control" required>
+                  <option value="">Select a Restaurant...</option>
+                </select>
+              </div>
+
+              <!-- Dining Date -->
+              <div class="form-group">
+                <label for="bookingDate" class="form-label">
+                  <span>Dining Date <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="date" id="bookingDate" class="form-control" required>
+              </div>
+
+              <!-- Preferred Time -->
+              <div class="form-group">
+                <label for="bookingTime" class="form-label">
+                  <span>Preferred Time <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <select id="bookingTime" class="form-control" required>
+                  <option value="">Select Time Slot...</option>
+                  <option value="12:30 PM">12:30 PM (Lunch)</option>
+                  <option value="1:15 PM">1:15 PM (Lunch)</option>
+                  <option value="7:00 PM">7:00 PM (Dinner)</option>
+                  <option value="7:30 PM">7:30 PM (Dinner)</option>
+                  <option value="8:00 PM">8:00 PM (Dinner)</option>
+                  <option value="8:45 PM">8:45 PM (Dinner)</option>
+                  <option value="9:30 PM">9:30 PM (Late Dinner)</option>
+                </select>
+              </div>
+
+              <!-- Guests -->
+              <div class="form-group">
+                <label for="bookingGuests" class="form-label">
+                  <span>Number of Guests <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <select id="bookingGuests" class="form-control" required>
+                  <option value="">Select Guests...</option>
+                  <option value="1 Guest">1 Guest</option>
+                  <option value="2 Guests">2 Guests</option>
+                  <option value="3 Guests">3 Guests</option>
+                  <option value="4 Guests">4 Guests</option>
+                  <option value="5 Guests">5 Guests</option>
+                  <option value="6+ Guests">6+ Guests (Large Group)</option>
+                </select>
+              </div>
+
+              <!-- Occasion -->
+              <div class="form-group">
+                <label for="bookingOccasion" class="form-label">
+                  <span>Occasion</span>
+                  <span class="optional-field-indicator">Optional</span>
+                </label>
+                <select id="bookingOccasion" class="form-control">
+                  <option value="Casual Dining" selected>Casual Dining</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Anniversary">Anniversary</option>
+                  <option value="Business Meeting">Business Meeting</option>
+                  <option value="Family Gathering">Family Gathering</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Guest Name -->
+              <div class="form-group col-span-2">
+                <label for="bookingName" class="form-label">
+                  <span>Full Name <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="text" id="bookingName" class="form-control" placeholder="e.g. Priya Sharma" required>
+              </div>
+
+              <!-- Email Address -->
+              <div class="form-group">
+                <label for="bookingEmail" class="form-label">
+                  <span>Email Address <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="email" id="bookingEmail" class="form-control" placeholder="e.g. priya@example.com" required>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="form-group">
+                <label for="bookingPhone" class="form-label">
+                  <span>Phone Number <span class="required-asterisk">*</span></span>
+                  <span class="required-field-indicator">Required</span>
+                </label>
+                <input type="tel" id="bookingPhone" class="form-control" placeholder="e.g. +91 98401 23456" required>
+              </div>
+
+              <!-- Special Requests -->
+              <div class="form-group col-span-2">
+                <label for="bookingRequests" class="form-label">
+                  <span>Special Requests</span>
+                  <span class="optional-field-indicator">Optional</span>
+                </label>
+                <textarea id="bookingRequests" class="form-control" placeholder="Corner table, dietary preferences, celebratory dessert candle..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
+              <span>Find Available Tables →</span>
+            </button>
+
+            <p class="booking-disclaimer">
+              * Frontend demonstration: reservations are simulated using client-side localStorage. No live payment or real restaurant booking is executed.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. HOW IT WORKS -->
+  <section class="section how-it-works-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">EFFORTLESS DINING</span>
+        <h2 class="section-title">From Craving to Reservation.</h2>
+        <p class="section-subtitle">Discover how STACKLY simplifies table booking in four seamless steps.</p>
+      </div>
+
+      <div class="process-steps-grid">
+        <div class="process-step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3 class="step-title">DISCOVER</h3>
+          <p class="step-desc">Explore restaurants, cuisines, verified community ratings, and tailored dining experiences.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3 class="step-title">CHOOSE</h3>
+          <p class="step-desc">Select your preferred restaurant, dining date, convenient time slot, and exact guest count.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="step-title">RESERVE</h3>
+          <p class="step-desc">Enter your contact details, note special requests, and submit the instant reservation request.</p>
+        </div>
+
+        <div class="process-step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="step-title">ENJOY</h3>
+          <p class="step-desc">Review your demonstration booking confirmation and get ready for an unforgettable dining experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. CUISINE DISCOVERY GALLERY -->
+  <section class="section cuisine-gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">TASTE EXPLORATION</span>
+        <h2 class="section-title">Cuisine Discovery Gallery</h2>
+        <p class="section-subtitle">Click any cuisine tile to filter handpicked dining options across our directory.</p>
+      </div>
+
+      <div class="cuisine-editorial-grid">
+        <!-- Authentic Indian (Large Tile) -->
+        <div class="cuisine-tile span-7" data-cuisine="indian">
+          <img src="assets/images/south-indian-cuisine.webp" alt="Authentic South Indian feast">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Authentic Indian Cuisine</h3>
+            <p class="cuisine-tile-desc">Rich Awadhi gravies, clay-oven tandoori aromas, and heirloom South Indian coastal thalis.</p>
+            <span class="cuisine-tile-link">Explore Indian Restaurants →</span>
+          </div>
+        </div>
+
+        <!-- Italian Classics -->
+        <div class="cuisine-tile span-5" data-cuisine="italian">
+          <img src="assets/images/italian-classics.webp" alt="Artisanal pasta and wine">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Italian Classics</h3>
+            <p class="cuisine-tile-desc">Wood-fired Neapolitan pizzas and slow-simmered regional sauces.</p>
+            <span class="cuisine-tile-link">Explore Italian →</span>
+          </div>
+        </div>
+
+        <!-- Japanese Dining -->
+        <div class="cuisine-tile span-4" data-cuisine="japanese">
+          <img src="assets/images/japanese-restaurant.webp" alt="Fresh sushi platter">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Japanese Dining</h3>
+            <p class="cuisine-tile-desc">Masterful omakase sushi and delicate robata grills.</p>
+            <span class="cuisine-tile-link">Explore Japanese →</span>
+          </div>
+        </div>
+
+        <!-- Asian Fusion -->
+        <div class="cuisine-tile span-4" data-cuisine="asian-fusion">
+          <img src="assets/images/asian-fusion.webp" alt="Steaming dim sum baskets">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Asian Fusion</h3>
+            <p class="cuisine-tile-desc">Steamed dim sums, Thai coconut broths, and sizzling woks.</p>
+            <span class="cuisine-tile-link">Explore Asian Fusion →</span>
+          </div>
+        </div>
+
+        <!-- Coastal & Seafood -->
+        <div class="cuisine-tile span-4" data-cuisine="seafood">
+          <img src="assets/images/coastal-seafood.webp" alt="Grilled coastal seafood platter">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Coastal & Seafood</h3>
+            <p class="cuisine-tile-desc">Fresh ocean catches prepared with fragrant coastal spices.</p>
+            <span class="cuisine-tile-link">Explore Seafood →</span>
+          </div>
+        </div>
+
+        <!-- Cafés & Desserts -->
+        <div class="cuisine-tile span-6" data-cuisine="cafes">
+          <img src="assets/images/cafes-desserts.webp" alt="Artisan café pastries and coffee">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Cafés & Desserts</h3>
+            <p class="cuisine-tile-desc">Single-origin roast coffees, flaky morning pastries, and handcrafted desserts.</p>
+            <span class="cuisine-tile-link">Explore Cafés →</span>
+          </div>
+        </div>
+
+        <!-- Rooftop Dining -->
+        <div class="cuisine-tile span-6" data-cuisine="rooftop">
+          <img src="assets/images/skyline-kitchen.webp" alt="Evening rooftop dining with city view">
+          <div class="cuisine-tile-overlay">
+            <h3 class="cuisine-tile-title">Rooftop & Skyline Dining</h3>
+            <p class="cuisine-tile-desc">Sunset cocktails, starry nightscapes, and breezy outdoor terrace settings.</p>
+            <span class="cuisine-tile-link">Explore Rooftops →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. SPECIAL OCCASIONS SECTION -->
+  <section class="section occasions-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">CURATED MOMENTS</span>
+        <h2 class="section-title">Make Every Gathering Special.</h2>
+        <p class="section-subtitle">Find the perfect ambiance tailored for your specific celebration.</p>
+      </div>
+
+      <div class="occasions-grid">
+        <div class="occasion-card">
+          <div class="occasion-card-img">
+            <img src="assets/images/romantic-dinner.webp" alt="Romantic candlelit table" loading="lazy">
+          </div>
+          <div class="occasion-card-body">
+            <h3>Romantic Dinners</h3>
+            <p>Intimate candlelit spaces, soft music, and privacy for meaningful conversations.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Explore Intimate Dining →</a>
+          </div>
+        </div>
+
+        <div class="occasion-card">
+          <div class="occasion-card-img">
+            <img src="assets/images/birthday-celebration.webp" alt="Birthday champagne celebration" loading="lazy">
+          </div>
+          <div class="occasion-card-body">
+            <h3>Birthday Celebrations</h3>
+            <p>Vibrant spaces with custom cake presentations and celebratory hospitality.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Find Celebration Venues →</a>
+          </div>
+        </div>
+
+        <div class="occasion-card">
+          <div class="occasion-card-img">
+            <img src="assets/images/family-gathering.webp" alt="Large family dinner" loading="lazy">
+          </div>
+          <div class="occasion-card-body">
+            <h3>Family Gatherings</h3>
+            <p>Bring everyone together over generous multi-course platters and comfortable seating.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Family-Friendly Tables →</a>
+          </div>
+        </div>
+
+        <div class="occasion-card">
+          <div class="occasion-card-img">
+            <img src="assets/images/business-dining.webp" alt="Executive private dining room" loading="lazy">
+          </div>
+          <div class="occasion-card-body">
+            <h3>Business Dining</h3>
+            <p>Quiet, professional spaces ideal for confidential executive conversations and client dinners.</p>
+            <a href="404.html" class="btn btn-secondary btn-sm">Executive Spaces →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. WHY CHOOSE STACKLY -->
+  <section class="section why-choose-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">HOSPITALITY REFINED</span>
+        <h2 class="section-title">Dining Plans Made Simpler.</h2>
+        <p class="section-subtitle">Built to make reserving exceptional restaurant tables effortless from discovery to dining.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Easy Reservations</h3>
+          <p>Discover restaurants and submit booking requests with minimal effort and instant confirmation.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          </div>
+          <h3>Restaurant Discovery</h3>
+          <p>Explore curated dining destinations across diverse cuisines, price points, and neighborhoods.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Flexible Guest Selection</h3>
+          <p>Choose the exact number of people joining your reservation from solo dining to large groups.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Occasion-Based Discovery</h3>
+          <p>Filter dining options specially curated for birthdays, anniversaries, and executive meetings.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Simple Booking Management</h3>
+          <p>Review, track, and manage your saved demonstration reservations in your personalized dashboard.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>Responsive Experience</h3>
+          <p>Enjoy a responsive booking interface on desktop, iPad, tablet, and mobile browsers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. UPCOMING DINING EXPERIENCES -->
+  <section class="section experiences-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">LIMITED TASTINGS</span>
+        <h2 class="section-title">Upcoming Dining Experiences</h2>
+        <p class="section-subtitle">Exclusive culinary events, curated chef tastings, and seasonal weekend feasts.</p>
+      </div>
+
+      <div class="experience-grid">
+        <div class="experience-card">
+          <div class="experience-img">
+            <img src="assets/images/sunday-brunch.webp" alt="Sunday grand brunch" loading="lazy">
+            <span class="experience-price-tag">₹1,450 / person</span>
+          </div>
+          <div class="experience-body">
+            <div class="experience-date-tag">EVERY SUNDAY • 12:30 PM</div>
+            <h3>Sunday Garden Grand Brunch</h3>
+            <p class="experience-restaurant">The Olive Table • Anna Nagar, Chennai</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 18px;">Over 45 live counters featuring artisan cheeses, freshly tossed pastas, and live acoustic music.</p>
+            <a href="404.html" class="btn btn-outline-green btn-sm" style="width: 100%;">Book Brunch Table →</a>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-img">
+            <img src="assets/images/chefs-special.webp" alt="Chef's omakase dinner" loading="lazy">
+            <span class="experience-price-tag">₹2,800 / person</span>
+          </div>
+          <div class="experience-body">
+            <div class="experience-date-tag">THU – SAT • 7:30 PM</div>
+            <h3>Chef's 7-Course Omakase</h3>
+            <p class="experience-restaurant">Sakura House • Indiranagar, Bengaluru</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 18px;">An intimate 8-seat counter experience guided personally by Chef Kenji spotlighting seasonal sashimi.</p>
+            <a href="404.html" class="btn btn-outline-green btn-sm" style="width: 100%;">Reserve Omakase →</a>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-img">
+            <img src="assets/images/tasting-menu.webp" alt="Seasonal tasting menu" loading="lazy">
+            <span class="experience-price-tag">₹2,200 / person</span>
+          </div>
+          <div class="experience-body">
+            <div class="experience-date-tag">DAILY • 8:00 PM</div>
+            <h3>Artisanal Tasting Menu</h3>
+            <p class="experience-restaurant">The Urban Grill • Lavelle Road, Bengaluru</p>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 18px;">A multi-sensory culinary voyage pairing prime charcoal-grilled textures with farm-to-table root reductions.</p>
+            <a href="404.html" class="btn btn-outline-green btn-sm" style="width: 100%;">Reserve Tasting →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. RESTAURANT MAP AND LOCATION DISCOVERY -->
+  <section class="section location-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">CITY DIRECTORY</span>
+        <h2 class="section-title">Find Great Food Around You.</h2>
+        <p class="section-subtitle">Select a destination city to view verified addresses and neighborhood guides.</p>
+      </div>
+
+      <!-- City Selection Tabs -->
+      <div class="city-tabs">
+        <button class="city-tab-btn active" data-city="Chennai">Chennai</button>
+        <button class="city-tab-btn" data-city="Bengaluru">Bengaluru</button>
+        <button class="city-tab-btn" data-city="Coimbatore">Coimbatore</button>
+        <button class="city-tab-btn" data-city="Salem">Salem</button>
+      </div>
+
+      <!-- Map & Location Layout -->
+      <div class="location-layout">
+        <!-- City Restaurants List -->
+        <div class="city-restaurants-list" id="cityRestaurantsList">
+          <div class="city-restaurant-item active" data-name="The Olive Table" data-address="14, 2nd Avenue, Anna Nagar, Chennai, Tamil Nadu 600040">
+            <img src="assets/images/featured-olive-table.webp" alt="The Olive Table" class="city-rest-thumb">
+            <div class="city-rest-info">
+              <h4>The Olive Table</h4>
+              <p>Contemporary European • Anna Nagar, Chennai</p>
+            </div>
+          </div>
+
+          <div class="city-restaurant-item" data-name="Spice Garden" data-address="88, Usman Road, T. Nagar, Chennai, Tamil Nadu 600017">
+            <img src="assets/images/south-indian-cuisine.webp" alt="Spice Garden" class="city-rest-thumb">
+            <div class="city-rest-info">
+              <h4>Spice Garden</h4>
+              <p>South Indian • T. Nagar, Chennai</p>
+            </div>
+          </div>
+
+          <div class="city-restaurant-item" data-name="Skyline Kitchen" data-address="Khader Nawaz Khan Road, Nungambakkam, Chennai 600006">
+            <img src="assets/images/skyline-kitchen.webp" alt="Skyline Kitchen" class="city-rest-thumb">
+            <div class="city-rest-info">
+              <h4>Skyline Kitchen</h4>
+              <p>Rooftop & Continental • Nungambakkam, Chennai</p>
+            </div>
+          </div>
+
+          <div class="city-restaurant-item" data-name="Seaside Resto" data-address="East Coast Road, Palavakkam, Chennai 600041">
+            <img src="assets/images/seaside-resto.webp" alt="Seaside Resto" class="city-rest-thumb">
+            <div class="city-rest-info">
+              <h4>Seaside Resto</h4>
+              <p>Coastal & Seafood • ECR, Chennai</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Map Visual Mockup -->
+        <div class="map-visual-container">
+          <!-- Stylized SVG Map Graphic -->
+          <svg class="map-svg-mockup" viewBox="0 0 500 320" fill="none">
+            <!-- Stylized Roads / City Grid -->
+            <path d="M40 80 Q160 120 300 60 T480 140" stroke="#CBDDD3" stroke-width="12" stroke-linecap="round"/>
+            <path d="M80 280 Q220 220 360 260 T460 200" stroke="#CBDDD3" stroke-width="10" stroke-linecap="round"/>
+            <path d="M120 30 L160 290" stroke="#CBDDD3" stroke-width="8" stroke-linecap="round"/>
+            <path d="M340 30 L320 290" stroke="#CBDDD3" stroke-width="8" stroke-linecap="round"/>
+            <path d="M220 40 L260 280" stroke="#B4CFBF" stroke-width="16" stroke-linecap="round"/>
+            <path d="M30 180 L470 160" stroke="#B4CFBF" stroke-width="14" stroke-linecap="round"/>
+            
+            <!-- Map Landmark Parks -->
+            <rect x="60" y="110" width="80" height="50" rx="10" fill="#D2E8DA"/>
+            <rect x="360" y="80" width="90" height="60" rx="10" fill="#D2E8DA"/>
+
+            <!-- Animated Location Pins -->
+            <g class="map-pin" transform="translate(240, 130)">
+              <circle cx="16" cy="16" r="16" fill="#167A55" fill-opacity="0.2"/>
+              <circle cx="16" cy="16" r="10" fill="#167A55"/>
+              <circle cx="16" cy="16" r="4" fill="#FFFFFF"/>
+            </g>
+            <g transform="translate(140, 100)">
+              <circle cx="10" cy="10" r="10" fill="#167A55" fill-opacity="0.2"/>
+              <circle cx="10" cy="10" r="6" fill="#167A55"/>
+            </g>
+            <g transform="translate(330, 160)">
+              <circle cx="10" cy="10" r="10" fill="#167A55" fill-opacity="0.2"/>
+              <circle cx="10" cy="10" r="6" fill="#167A55"/>
+            </g>
+          </svg>
+
+          <!-- Selected Location Card Overlay -->
+          <div class="selected-address-card" id="selectedAddressCard">
+            <div>
+              <h4 class="sel-name" style="font-size: 0.9375rem; font-weight: 600; margin-bottom: 2px;">The Olive Table</h4>
+              <p class="sel-address" style="font-size: 0.75rem; color: var(--color-muted);">14, 2nd Avenue, Anna Nagar, Chennai, Tamil Nadu 600040</p>
+            </div>
+            <button class="btn btn-primary btn-sm" id="getDirectionsBtn" style="flex-shrink: 0;">Get Directions →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. TESTIMONIALS -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">PATRON EXPERIENCES</span>
+        <h2 class="section-title">Loved by Food Lovers.</h2>
+        <p class="section-subtitle">Here is what our dining community says about booking through STACKLY.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+            <p class="testimonial-quote">
+              "Booking a table for our anniversary at The Olive Table took less than a minute. The staff greeted us with our requested corner candlelit table seamlessly!"
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <img src="assets/images/user-avatar-1.webp" alt="Priya Sharma" class="author-avatar">
+            <div class="author-info">
+              <h4>Priya Sharma</h4>
+              <span>Dined at The Olive Table • Chennai</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+            <p class="testimonial-quote">
+              "STACKLY made choosing an authentic Japanese dinner in Bengaluru effortless. Sakura House was spectacular, and having guaranteed counter seating made our evening."
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <img src="assets/images/user-avatar-2.webp" alt="Arun Kumar" class="author-avatar">
+            <div class="author-info">
+              <h4>Arun Kumar</h4>
+              <span>Dined at Sakura House • Bengaluru</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div>
+            <div class="testimonial-stars">
+              ★★★★★
+            </div>
+            <p class="testimonial-quote">
+              "Finding family-friendly dining spots for 6 people on busy weekends was always stressful. With STACKLY, we booked Spice Garden easily with high chairs ready."
+            </p>
+          </div>
+          <div class="testimonial-author">
+            <img src="assets/images/user-avatar-3.webp" alt="Deepa Raman" class="author-avatar">
+            <div class="author-info">
+              <h4>Deepa Raman</h4>
+              <span>Dined at Spice Garden • Chennai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16. FAQ SECTION -->
+  <section class="section faq-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">FREQUENTLY ASKED</span>
+        <h2 class="section-title">Common Questions Answered.</h2>
+        <p class="section-subtitle">Learn more about discovering restaurants and submitting reservations on STACKLY.</p>
+      </div>
+
+      <div class="faq-accordion-wrap">
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>How do I book a restaurant table?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>You can discover restaurants from the homepage or category strip, select your desired date, preferred dining time, and guest count, and submit the booking form. In this front-end demonstration, your reservation request is saved instantly to your local browser storage.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Can I choose my preferred dining time?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Each restaurant card displays available demonstration time slots (such as 7:00 PM, 7:30 PM, or 8:00 PM). You can select your preferred slot directly from the card or through the reservation form.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Can I book a table for a large group?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Our booking form allows guest selection ranging from 1 to 6+ guests. For large groups, you can note additional requirements in the special requests field.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Can I cancel or modify a reservation?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! In your dedicated Client Dashboard (`ClientDashboard.html`), you can review all saved bookings and easily cancel or view detailed tickets with a single click.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>How do I find restaurants by cuisine?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>You can use the horizontal category filter strip directly beneath the hero, or click any photographic tile in the Cuisine Discovery Gallery to filter the restaurant cards automatically.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Can I save my favorite restaurants?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Simply click the heart icon on any restaurant card. Your favorites are persisted in local browser storage and can be accessed anytime from your Client Dashboard.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Is STACKLY available on mobile devices?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, STACKLY is responsive and optimized for mobile screens (375px, 390px, 414px), tablets, and high-resolution desktop displays with fluid touch controls and animated menus.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" aria-expanded="false">
+            <span>Does the website confirm real restaurant availability?</span>
+            <span class="faq-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer">
+            <p>This is a frontend demonstration website. All restaurant listings, ratings, and time slots are sample illustrative data, and reservations are stored locally in your browser without connecting to live restaurant point-of-sale systems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17. FINAL CALL TO ACTION -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner-box">
+        <img src="assets/images/auth-bg.webp" alt="Warm atmospheric restaurant dining hall" class="cta-banner-bg" loading="lazy">
+        <div class="cta-banner-overlay">
+          <div class="cta-banner-content">
+            <h2>Your Next Great Meal Starts Here.</h2>
+            <p>Discover exceptional dining, bring your favorite people together, and find the perfect place for your next memorable occasion.</p>
+            <div class="cta-buttons">
+              <a href="404.html" class="btn btn-secondary">Explore Restaurants →</a>
+              <a href="404.html" class="btn btn-primary" style="background-color: var(--color-white); color: var(--color-green);">Reserve a Table</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

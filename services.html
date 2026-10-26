@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — STACKLY Restaurant Table Booking</title>
+  <meta name="description" content="Explore STACKLY's suite of table booking features, private dining suites, chef's table omakase, and VIP concierge experiences.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+    </div>
+    <div class="preloader-text">STACKLY</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link active">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- SECTION 1: SERVICES HERO SECTION -->
+  <section class="section" style="padding-top: 80px; padding-bottom: 70px; background-color: var(--color-white);">
+    <div class="container" style="text-align: center; max-width: 860px;">
+      <span class="section-eyebrow">TAILORED HOSPITALITY SOLUTIONS</span>
+      <h1 style="font-size: clamp(2.4rem, 4.5vw, 4rem); margin-bottom: 24px; line-height: 1.15;">
+        Elevating Every Dining Occasion <br><span class="text-green">From Simple Table to Memory.</span>
+      </h1>
+      <p style="font-size: 1.125rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 36px;">
+        Whether you require an intimate booth for an anniversary, a private boardroom dining room for corporate negotiations, or guaranteed omakase counter seating, STACKLY provides precision table curation with zero booking fees.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="404.html" class="btn btn-primary">Browse Services ↓</a>
+        <a href="404.html" class="btn btn-secondary">Use Occasion Planner ✦</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CORE DINER SERVICES (6 EXPANDED MODULES) -->
+  <section class="section section-sage" id="coreServices">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">DESIGNED FOR PATRONS</span>
+        <h2 class="section-title">Comprehensive Diner Solutions</h2>
+        <p class="section-subtitle">Every tool and concierge touchpoint designed to give you effortless dining confidence.</p>
+      </div>
+
+      <div class="why-grid">
+        <!-- Service 1 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Instant Table Reservations</h3>
+          <p>Direct sync with restaurant seating management. Select your exact date, dinner shift, and party size with instant visual confirmation.</p>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Chef's Table & Omakase Counter</h3>
+          <p>Access coveted front-row counter seats where executive chefs personally curate tasting menus and explain course pairings.</p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Private Dining Rooms (PDR)</h3>
+          <p>Book sound-isolated luxury suites for milestone birthdays, anniversaries, and family reunions with custom floral arrangements and cake service.</p>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Corporate Entertaining</h3>
+          <p>Streamlined booking for executive dinners, client hospitality, and team gatherings with consolidated digital expense receipts.</p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/></svg>
+          </div>
+          <h3>Weekend Garden Brunches</h3>
+          <p>Reserve terrace tables for Sunday grand brunches featuring live pasta counters, artisanal cheeses, and acoustic afternoon music.</p>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Dietary & Allergy Pre-Alerts</h3>
+          <p>Notify head chefs ahead of arrival regarding vegan, Jain, gluten-free, or specific allergen requirements for a worry-free feast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: INTERACTIVE DINING OCCASION PLANNER & BUDGET ESTIMATOR WIDGET -->
+  <section class="section section-white" id="diningPlanner">
+    <div class="container">
+      <div style="background: var(--color-ivory); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 50px; box-shadow: var(--shadow-md);">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 36px auto;">
+          <span class="section-eyebrow">INTERACTIVE PLANNING TOOL</span>
+          <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Dining Occasion & Budget Planner</h2>
+          <p style="font-size: 0.9375rem; color: var(--color-muted);">Select your dining parameters below to calculate estimated costs and receive instant personalized venue recommendations.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+          <!-- Controls -->
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="form-group">
+              <label class="form-label">Destination City</label>
+              <select id="plannerCity" class="form-control" style="background: var(--color-white);">
+                <option value="Chennai" selected>Chennai</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Salem">Salem</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Occasion Type</label>
+              <select id="plannerOccasion" class="form-control" style="background: var(--color-white);">
+                <option value="romantic" selected>Romantic Date Night (Wine & Intimate Tables)</option>
+                <option value="business">Corporate / Business Dining (Executive Privacy)</option>
+                <option value="family">Family Celebration (Multi-Course Feast)</option>
+                <option value="casual">Casual Gathering with Friends (Craft & Cocktails)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Party Size</label>
+              <select id="plannerGuests" class="form-control" style="background: var(--color-white);">
+                <option value="2" selected>2 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="6">6 Guests</option>
+                <option value="8">8 Guests (Large Group)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Dining Tier</label>
+              <select id="plannerTier" class="form-control" style="background: var(--color-white);">
+                <option value="premium" selected>Premium Fine Dining (₹1,200 – ₹1,800 / person)</option>
+                <option value="luxury">Luxury / Omakase / Chef Tasting (₹2,200+ / person)</option>
+                <option value="comfort">Contemporary Casual Bistro (₹650 – ₹950 / person)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dynamic Result Card -->
+          <div style="background: var(--color-white); border-radius: var(--radius-lg); padding: 36px; border: 1.5px solid var(--color-green); box-shadow: var(--shadow-lg);">
+            <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-green); letter-spacing: 0.08em;">RECOMMENDED DINING PLAN</span>
+            <h3 id="plannerResultTitle" style="font-size: 1.5rem; font-family: var(--font-display); margin: 8px 0 12px 0;">Romantic Fine Dining Experience</h3>
+            
+            <div style="padding: 16px; background: var(--color-sage-light); border-radius: var(--radius-md); margin-bottom: 20px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px;">
+                <span style="font-size: 0.8125rem; color: var(--color-muted);">Estimated Total Budget:</span>
+                <span id="plannerBudgetValue" style="font-size: 1.625rem; font-family: var(--font-display); font-weight: 700; color: var(--color-green);">₹3,000</span>
+              </div>
+              <p style="font-size: 0.75rem; color: var(--color-muted);">Includes approx. appetizers, main courses, and beverages for selected party.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.8125rem; color: var(--color-charcoal); margin-bottom: 24px;">
+              <div><strong>Suggested Venue Style:</strong> <span id="plannerStyleText">Candlelit contemporary European or rooftop lounge</span></div>
+              <div><strong>Recommended Seating:</strong> <span id="plannerSeatingText">Quiet corner booth with low ambient acoustics</span></div>
+              <div><strong>Suggested Time:</strong> 7:30 PM – 8:30 PM dinner seating</div>
+            </div>
+
+            <a href="404.html" class="btn btn-primary" style="width: 100%;">
+              <span>Reserve Recommended Table →</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: STACKLY VIP DINING CONCIERGE (BLACK TIER MEMBERSHIP) -->
+  <section class="section" style="background: var(--color-charcoal); color: var(--color-white);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+        <div>
+          <span style="display: inline-block; background: rgba(22,122,85,0.4); color: #34D399; padding: 6px 14px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">STACKLY PRIVÉ MEMBERSHIP</span>
+          <h2 style="color: var(--color-white); font-size: 2.35rem; margin-bottom: 20px; line-height: 1.25;">
+            Dedicated Concierge for the Connoisseur.
+          </h2>
+          <p style="color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 24px; font-size: 1.0625rem;">
+            For frequent diners, corporate hosts, and wine enthusiasts who require priority booking access at high-demand tables, STACKLY Privé provides dedicated hospitality concierges ready on WhatsApp and phone.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; font-size: 0.875rem;">
+            <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+              <strong style="color: #34D399; display: block; margin-bottom: 4px;">Priority Table Bumping</strong>
+              Bypasses standard weekend waiting lists at elite venues.
+            </div>
+            <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+              <strong style="color: #34D399; display: block; margin-bottom: 4px;">Sommelier Guidance</strong>
+              Bespoke wine list consultations before you arrive.
+            </div>
+            <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+              <strong style="color: #34D399; display: block; margin-bottom: 4px;">Chef Amuse-Bouche</strong>
+              Complimentary welcome courses prepared exclusively.
+            </div>
+            <div style="background: rgba(255,255,255,0.06); padding: 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1);">
+              <strong style="color: #34D399; display: block; margin-bottom: 4px;">Valet & Seating Prep</strong>
+              Pre-arranged arrival coordination with restaurant hosts.
+            </div>
+          </div>
+          <a href="404.html" class="btn btn-primary" style="background-color: var(--color-green); color: var(--color-white);">Inquire for Privé Concierge →</a>
+        </div>
+
+        <div style="position: relative;">
+          <img src="assets/images/auth-bg.webp" alt="Exclusive dining room lounge" style="border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); width: 100%; height: 440px; object-fit: cover; filter: brightness(0.95);">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: FOR RESTAURATEURS: THE STACKLY PARTNER SUITE -->
+  <section class="section section-sage">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">B2B HOSPITALITY PLATFORM</span>
+        <h2 class="section-title">The STACKLY Restaurant Partner Suite</h2>
+        <p class="section-subtitle">A digital floor management and guest relationship platform built with restaurateurs, for restaurateurs.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <div style="background: var(--color-white); padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          </div>
+          <h4 style="font-size: 1.1875rem; margin-bottom: 8px;">Dynamic Floor Plans</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Configure indoor, terrace, and private dining rooms with real-time seat turning times.</p>
+        </div>
+
+        <div style="background: var(--color-white); padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <h4 style="font-size: 1.1875rem; margin-bottom: 8px;">No-Show Prevention</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Polite automated WhatsApp confirmations reduce forgotten bookings and empty chairs by 42%.</p>
+        </div>
+
+        <div style="background: var(--color-white); padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <h4 style="font-size: 1.1875rem; margin-bottom: 8px;">Guest Memory CRM</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Remember regular patrons' preferred corner booths, anniversary dates, and favorite wine labels.</p>
+        </div>
+
+        <div style="background: var(--color-white); padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--color-sage); color: var(--color-green); display: flex; align-items: center; justify-content: center; margin-bottom: 18px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h4 style="font-size: 1.1875rem; margin-bottom: 8px;">Tasting Event Ticketing</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Sell fixed-price chef tasting tickets and weekend brunch seats without external ticketing fees.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: THE STACKLY SERVICE GUARANTEE (4 QUALITY COMMITMENTS) -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">PATRON ASSURANCE</span>
+        <h2 class="section-title">The STACKLY Service Guarantee</h2>
+        <p class="section-subtitle">Our binding commitments to ensure every dining booking is honored with precision.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+        <div style="border-top: 3px solid var(--color-green); padding-top: 20px;">
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">15-Min Seating Commitment</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">If a confirmed table is not ready within 15 minutes of your booking time, our host liaison compensates immediately.</p>
+        </div>
+
+        <div style="border-top: 3px solid var(--color-green); padding-top: 20px;">
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Zero Hidden Markups</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">You always pay the true, in-restaurant menu price. We never inflate dish prices or add reservation fees.</p>
+        </div>
+
+        <div style="border-top: 3px solid var(--color-green); padding-top: 20px;">
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">Direct Host Confirmation</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Every booking request is confirmed directly through restaurant POS or designated shift host screens.</p>
+        </div>
+
+        <div style="border-top: 3px solid var(--color-green); padding-top: 20px;">
+          <h4 style="font-size: 1.125rem; margin-bottom: 8px;">1-Click Effortless Cancellation</h4>
+          <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.6;">Plans change. Cancel any standard reservation from your dashboard in one click with zero penalty.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: SERVICE TIER COMPARISON MATRIX -->
+  <section class="section section-sage">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">HOSPITALITY ACCESS TIERS</span>
+        <h2 class="section-title">Compare STACKLY Service Tiers</h2>
+        <p class="section-subtitle">Choose the hospitality tier that matches your dining frequency and entertaining needs.</p>
+      </div>
+
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 36px;">
+        <table style="width: 100%; min-width: 680px; border-collapse: separate; border-spacing: 0; background: var(--color-white); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-md);">
+          <thead>
+            <tr style="background: var(--color-charcoal); color: var(--color-white);">
+              <th style="padding: 22px 24px; text-align: left; font-size: 1rem; font-weight: 600; width: 34%;">Service Feature</th>
+              <th style="padding: 22px 20px; text-align: center; font-size: 1rem; font-weight: 600; width: 22%;">
+                Standard Patron
+                <span style="display: block; font-size: 0.75rem; font-weight: 400; opacity: 0.8; margin-top: 4px;">Free Forever</span>
+              </th>
+              <th style="padding: 22px 20px; text-align: center; font-size: 1rem; font-weight: 600; width: 22%; background: rgba(22, 122, 85, 0.4); border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1);">
+                Corporate Entertaining
+                <span style="display: block; font-size: 0.75rem; font-weight: 400; color: #34D399; margin-top: 4px;">Company Accounts</span>
+              </th>
+              <th style="padding: 22px 20px; text-align: center; font-size: 1rem; font-weight: 600; width: 22%;">
+                STACKLY Privé
+                <span style="display: block; font-size: 0.75rem; font-weight: 400; color: #FBBF24; margin-top: 4px;">By Invitation / VIP</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody style="font-size: 0.875rem; color: var(--color-charcoal);">
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 18px 24px; font-weight: 600;">Advance Booking Window</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">Up to 30 Days</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">Up to 60 Days</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">Unlimited Priority Window</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-ivory);">
+              <td style="padding: 18px 24px; font-weight: 600;">Preferred Table Placement (Window / Booth)</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-green);">✓ Subject to Availability</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green); background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">✓ Guaranteed Placement</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">✓ VIP Best Table in House</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 18px 24px; font-weight: 600;">Private Dining Room (PDR) Buyout Liaison</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">Standard Request Form</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green); background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">✓ Dedicated Account Manager</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">✓ Immediate Direct Host Lock</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-ivory);">
+              <td style="padding: 18px 24px; font-weight: 600;">Dedicated WhatsApp Concierge</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">—</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green); background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">✓ Dedicated Business Line</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">✓ 24/7 Personal Concierge</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border);">
+              <td style="padding: 18px 24px; font-weight: 600;">Chef Welcome Amuse-Bouche</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">—</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted); background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">On Select Venues</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">✓ Complimentary Every Visit</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--color-border); background: var(--color-ivory);">
+              <td style="padding: 18px 24px; font-weight: 600;">Consolidated Monthly GST Invoice</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">Direct at Restaurant</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green); background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">✓ Automated Multi-Venue Billing</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">✓ Itemized Monthly Statement</td>
+            </tr>
+            <tr>
+              <td style="padding: 18px 24px; font-weight: 600;">Late Arrival Grace Window</td>
+              <td style="padding: 18px 20px; text-align: center; color: var(--color-muted);">15 Minutes</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; background: rgba(22, 122, 85, 0.04); border-left: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">20 Minutes Guaranteed</td>
+              <td style="padding: 18px 20px; text-align: center; font-weight: 600; color: var(--color-green);">30 Minutes with Table Hold</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FINAL CTA -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner-box">
+        <img src="assets/images/services-hero.webp" alt="Service hospitality" class="cta-banner-bg">
+        <div class="cta-banner-overlay">
+          <div class="cta-banner-content">
+            <h2>Ready for an Effortless Meal?</h2>
+            <p>Select your restaurant, pick your favorite time slot, and leave the table preparation to us.</p>
+            <div class="cta-buttons">
+              <a href="404.html" class="btn btn-secondary">Explore Restaurants →</a>
+              <a href="404.html" class="btn btn-primary" style="background-color: var(--color-white); color: var(--color-green);">Book a Table</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Planner Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const citySelect = document.getElementById("plannerCity");
+      const occasionSelect = document.getElementById("plannerOccasion");
+      const guestsSelect = document.getElementById("plannerGuests");
+      const tierSelect = document.getElementById("plannerTier");
+
+      const resultTitle = document.getElementById("plannerResultTitle");
+      const resultBudget = document.getElementById("plannerBudgetValue");
+      const resultStyle = document.getElementById("plannerStyleText");
+      const resultSeating = document.getElementById("plannerSeatingText");
+
+      function updatePlanner() {
+        if (!citySelect || !occasionSelect || !guestsSelect || !tierSelect) return;
+
+        const guests = parseInt(guestsSelect.value, 10);
+        const occasion = occasionSelect.value;
+        const tier = tierSelect.value;
+        const city = citySelect.value;
+
+        let perPerson = 1200;
+        if (tier === "luxury") perPerson = 2400;
+        if (tier === "comfort") perPerson = 750;
+
+        const totalEst = guests * perPerson;
+        resultBudget.textContent = "₹" + totalEst.toLocaleString();
+
+        if (occasion === "romantic") {
+          resultTitle.textContent = `Romantic Intimate Dining in ${city}`;
+          resultStyle.textContent = "Candlelit contemporary European or rooftop lounge overlooking city skyline";
+          resultSeating.textContent = "Corner booth with low acoustic noise & soft lighting";
+        } else if (occasion === "business") {
+          resultTitle.textContent = `Executive Corporate Table in ${city}`;
+          resultStyle.textContent = "Upscale grill room or quiet Japanese omakase private room";
+          resultSeating.textContent = "Spacious boardroom table with confidential acoustic isolation";
+        } else if (occasion === "family") {
+          resultTitle.textContent = `Family Gathering & Banquet in ${city}`;
+          resultStyle.textContent = "Heritage South Indian or royal Mughlai banquet dining";
+          resultSeating.textContent = "Generous round table with comfortable high-chair accommodation";
+        } else {
+          resultTitle.textContent = `Casual Gastro-Bistro Evening in ${city}`;
+          resultStyle.textContent = "Wood-fired pizzeria or vibrant botanical garden terrace";
+          resultSeating.textContent = "Casual indoor or garden patio high-top table";
+        }
+      }
+
+      [citySelect, occasionSelect, guestsSelect, tierSelect].forEach(el => {
+        if (el) el.addEventListener("change", updatePlanner);
+      });
+
+      updatePlanner();
+    });
+  </script>
+
+</body>
+</html>

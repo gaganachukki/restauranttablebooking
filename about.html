@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — STACKLY Restaurant Table Booking</title>
+  <meta name="description" content="Discover STACKLY's culinary mission, founding story, leadership team, dining ethics, and sustainable gastronomy initiatives.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script src="js/restaurant-data.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-emblem">
+      <img src="assets/logo/logo-icon.svg" alt="STACKLY">
+    </div>
+    <div class="preloader-text">STACKLY</div>
+    <div class="preloader-bar"></div>
+  </div>
+
+  <!-- Shared Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="nav-logo" aria-label="STACKLY Home">
+        <img src="assets/logo/logo.svg" alt="STACKLY Logo">
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="restaurants.html" class="nav-link">Restaurants</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="nav-search-btn" aria-label="Search restaurants">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <a href="login.html" class="nav-login-btn">
+          <span>Login</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <button class="hamburger-btn" aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-backdrop"></div>
+  <aside class="mobile-nav">
+    <div class="mobile-nav-links">
+      <a href="index.html" class="mobile-nav-link">Home <span>→</span></a>
+      <a href="about.html" class="mobile-nav-link active">About <span>→</span></a>
+      <a href="restaurants.html" class="mobile-nav-link">Restaurants <span>→</span></a>
+      <a href="services.html" class="mobile-nav-link">Services <span>→</span></a>
+      <a href="blog.html" class="mobile-nav-link">Blog <span>→</span></a>
+      <a href="contact.html" class="mobile-nav-link">Contact <span>→</span></a>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 40px;">
+      <a href="404.html" class="btn btn-primary" style="width: 100%;">Client / Admin Login →</a>
+      <a href="404.html" class="btn btn-secondary" style="width: 100%;">Create Account</a>
+    </div>
+  </aside>
+
+  <!-- SECTION 1: ABOUT HERO SECTION -->
+  <section class="section" style="padding-top: 80px; padding-bottom: 70px; background-color: var(--color-white); position: relative;">
+    <div class="container" style="text-align: center; max-width: 920px;">
+      <span class="section-eyebrow">OUR CULINARY ODYSSEY</span>
+      <h1 style="font-size: clamp(2.4rem, 4.5vw, 4rem); margin-bottom: 24px; line-height: 1.15;">
+        Bringing People Together, <br><span class="text-green">One Exceptional Table at a Time.</span>
+      </h1>
+      <p style="font-size: 1.125rem; color: var(--color-muted); line-height: 1.8; margin-bottom: 36px; max-width: 760px; margin-left: auto; margin-right: auto;">
+        STACKLY was founded on a simple conviction: sharing a meal is an enduring human ritual. We bridge discerning diners with the most passionate independent kitchens across South India, eliminating guesswork, waiting queues, and impersonal reservation barriers.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="404.html" class="btn btn-primary">Read Our Story ↓</a>
+        <a href="404.html" class="btn btn-secondary">Explore Our Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: EDITORIAL CINEMATIC PHOTO STRIP -->
+  <section style="position: relative; height: 500px; overflow: hidden;">
+    <img src="assets/images/about-hero.webp" alt="Atmospheric luxury dining room with grand chandeliers and curated tables" style="width: 100%; height: 100%; object-fit: cover;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(23,35,31,0.2) 0%, rgba(23,35,31,0.7) 100%);"></div>
+    <div class="container" style="position: absolute; bottom: 40px; left: 0; right: 0; color: var(--color-white); display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <span style="font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.12em; color: #A7F3D0; font-weight: 600;">ESTABLISHED 2024</span>
+        <h3 style="font-size: 1.75rem; font-family: var(--font-display); color: var(--color-white); margin-top: 4px;">Curating Dining Moments Across 4 Metropolitan Hubs</h3>
+      </div>
+      <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 12px 24px; border-radius: var(--radius-full); font-size: 0.875rem; border: 1px solid rgba(255,255,255,0.25);">
+        Chennai • Bengaluru • Coimbatore • Salem
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: THE GENESIS OF STACKLY (BRAND STORY & EDITORIAL COLUMN) -->
+  <section class="section section-sage" id="brandStory">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 64px; align-items: center;">
+        <div>
+          <span class="section-eyebrow">OUR GENESIS</span>
+          <h2 style="font-size: 2.35rem; margin-bottom: 22px; line-height: 1.25;">
+            From Frustrated Foodies to <br><span class="text-green">Hospitality Innovators.</span>
+          </h2>
+          <p style="color: var(--color-muted); line-height: 1.85; margin-bottom: 20px; font-size: 1.0625rem;">
+            It started on a crowded Saturday evening in Chennai. Our founding team had spent over forty minutes phoning five renowned restaurants, navigating busy signals, uncertain scribbled waitlists, and noisy background chatter—only to be told on arrival that their table was given away to a walk-in party.
+          </p>
+          <p style="color: var(--color-muted); line-height: 1.85; margin-bottom: 24px;">
+            We realized that while food delivery had advanced by leaps and bounds, the physical act of gathering at a restaurant remained grounded in outdated pen-and-paper friction. STACKLY was created to restore elegance, respect, and technological reliability to table reservations.
+          </p>
+          <div style="border-left: 3px solid var(--color-green); padding-left: 20px; margin-bottom: 28px;">
+            <p style="font-family: var(--font-display); font-size: 1.125rem; font-style: italic; color: var(--color-charcoal); line-height: 1.6;">
+              “We don’t treat dining as an algorithmic transaction. Every reservation is a promise between a guest looking forward to an evening and a kitchen preparing to welcome them.”
+            </p>
+            <span style="font-size: 0.8125rem; font-weight: 600; color: var(--color-green); display: block; margin-top: 8px;">— Vikram Sengupta, Culinary Director & Co-Founder</span>
+          </div>
+          <a href="404.html" class="btn btn-outline-green">Connect With Our Team →</a>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl);">
+            <img src="assets/images/services-hero.webp" alt="Sommelier and host offering bespoke dining hospitality" style="width: 100%; height: 480px; object-fit: cover;">
+          </div>
+          <div style="position: absolute; bottom: -20px; left: -20px; background: var(--color-white); border: 1px solid var(--color-border); padding: 22px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 260px;">
+            <h4 style="font-size: 1.0625rem; font-family: var(--font-primary); font-weight: 600; color: var(--color-charcoal); margin-bottom: 4px;">Verified Kitchens</h4>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5;">Every single partner venue is physically reviewed for food quality and hospitality standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: CORE PHILOSOPHY & DINING ETHICS (4 EXPANDED PILLARS) -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">OUR PILLARS</span>
+        <h2 class="section-title">The Principles We Stand By</h2>
+        <p class="section-subtitle">Four foundational values that guide our product choices, restaurant partnerships, and community relationships.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;">
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Zero Surcharges</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            We believe table reservations should never come with hidden convenience fees or markups. Dining at a STACKLY venue costs exactly the menu price.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Personal Curation</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            We do not scrape or list every restaurant blindly. We celebrate dining spots with distinct culinary voices, fresh ingredients, and exceptional service.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Guaranteed Seating</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            Confirmed bookings mean your table is reserved and prepped. If a wait occurs over 15 minutes, our host concierge team assists immediately.
+          </p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+          </div>
+          <h3 style="font-size: 1.1875rem; margin-bottom: 10px;">Kitchen Respect</h3>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            We empower restaurant hosts and culinary teams with intelligent tools that respect kitchen capacity, prevent overbooking, and minimize food waste.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: INTERACTIVE TIMELINE / MILESTONES (THE STACKLY JOURNEY) -->
+  <section class="section section-sage">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">OUR EVOLUTION</span>
+        <h2 class="section-title">The STACKLY Milestone Journey</h2>
+        <p class="section-subtitle">How a weekend passion project evolved into a benchmark table reservation platform.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative;">
+        <!-- Milestone 1 -->
+        <div style="background: var(--color-white); border-radius: var(--radius-lg); padding: 32px 24px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); position: relative;">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--color-green); margin-bottom: 8px;">Q1 2024</div>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 10px;">The Genesis</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            Launched pilot program in Anna Nagar & Nungambakkam, Chennai, partnering with 15 independent European and coastal kitchens.
+          </p>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div style="background: var(--color-white); border-radius: var(--radius-lg); padding: 32px 24px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--color-green); margin-bottom: 8px;">Q3 2024</div>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 10px;">Bengaluru Launch</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            Expanded across Indiranagar, Koramangala, and Lavelle Road with dedicated omakase sushi and artisanal rooftop partners.
+          </p>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div style="background: var(--color-white); border-radius: var(--radius-lg); padding: 32px 24px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--color-green); margin-bottom: 8px;">Q2 2025</div>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 10px;">Smart Floor Suite</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            Unveiled real-time seating synchronization for venue partners, reducing table wait times and no-show rates by 42%.
+          </p>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div style="background: var(--color-white); border-radius: var(--radius-lg); padding: 32px 24px; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--color-green); margin-bottom: 8px;">PRESENT 2026</div>
+          <h4 style="font-size: 1.25rem; font-family: var(--font-display); margin-bottom: 10px;">150+ Curated Venues</h4>
+          <p style="font-size: 0.875rem; color: var(--color-muted); line-height: 1.6;">
+            Now serving diners across Chennai, Coimbatore, Bengaluru, and Salem with instant booking and personalized client dashboards.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: MEET THE CULINARY ADVISORY BOARD & LEADERSHIP -->
+  <section class="section section-white">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">THE MINDS BEHIND STACKLY</span>
+        <h2 class="section-title">Culinary Advisors & Leadership</h2>
+        <p class="section-subtitle">A collective of executive chefs, hospitality operators, and food critics ensuring quality at every table.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;">
+        <!-- Team 1 -->
+        <div style="background: var(--color-ivory); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-border); text-align: center;">
+          <img src="assets/images/user-avatar-2.webp" alt="Vikram Sengupta" style="width: 100%; height: 260px; object-fit: cover;">
+          <div style="padding: 24px;">
+            <h4 style="font-size: 1.1875rem; font-family: var(--font-display); margin-bottom: 4px;">Vikram Sengupta</h4>
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase;">Culinary Director & Sommelier</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5; margin-top: 10px;">Former executive chef with 18 years across Michelin-recommended French & Japanese kitchens.</p>
+          </div>
+        </div>
+
+        <!-- Team 2 -->
+        <div style="background: var(--color-ivory); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-border); text-align: center;">
+          <img src="assets/images/user-avatar-1.webp" alt="Ananya Sundaram" style="width: 100%; height: 260px; object-fit: cover;">
+          <div style="padding: 24px;">
+            <h4 style="font-size: 1.1875rem; font-family: var(--font-display); margin-bottom: 4px;">Ananya Sundaram</h4>
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase;">Head of Restaurant Relations</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5; margin-top: 10px;">Hospitality strategist passionate about championing independent restaurateurs and family bistros.</p>
+          </div>
+        </div>
+
+        <!-- Team 3 -->
+        <div style="background: var(--color-ivory); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-border); text-align: center;">
+          <img src="assets/images/business-dining.webp" alt="Rohit Varma" style="width: 100%; height: 260px; object-fit: cover;">
+          <div style="padding: 24px;">
+            <h4 style="font-size: 1.1875rem; font-family: var(--font-display); margin-bottom: 4px;">Rohit Varma</h4>
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase;">Chief Experience Officer</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5; margin-top: 10px;">Dedicated to crafting effortless, human-first digital booking interfaces that delight every patron.</p>
+          </div>
+        </div>
+
+        <!-- Team 4 -->
+        <div style="background: var(--color-ivory); border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--color-border); text-align: center;">
+          <img src="assets/images/user-avatar-3.webp" alt="Meera Krishnan" style="width: 100%; height: 260px; object-fit: cover;">
+          <div style="padding: 24px;">
+            <h4 style="font-size: 1.1875rem; font-family: var(--font-display); margin-bottom: 4px;">Meera Krishnan</h4>
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--color-green); text-transform: uppercase;">Gastronomy Editorial Lead</span>
+            <p style="font-size: 0.8125rem; color: var(--color-muted); line-height: 1.5; margin-top: 10px;">Award-winning food journalist documenting regional heritage recipes, spice trails, and culinary history.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: SUSTAINABLE DINING & FARM-TO-FORK INITIATIVE -->
+  <section class="section section-sage">
+    <div class="container">
+      <div style="background: var(--color-white); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; height: 340px;">
+          <img src="assets/images/terrace-thyme.webp" alt="Herb garden and sustainable outdoor terrace" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div>
+          <span class="section-eyebrow">GREEN GASTRONOMY</span>
+          <h2 style="font-size: 2.1rem; margin-bottom: 16px;">Championing Sustainable Dining & Local Producers</h2>
+          <p style="color: var(--color-muted); line-height: 1.8; margin-bottom: 20px;">
+            Over 65% of STACKLY partner kitchens actively source their vegetables, dairy, and seafood within a 100-kilometer radius. We feature eco-certified badges for restaurants that eliminate single-use plastics, recycle cooking oils, and prioritize zero-waste kitchen practices.
+          </p>
+          <ul style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; font-size: 0.875rem; color: var(--color-charcoal);">
+            <li style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--color-green); font-weight: bold;">✓</span> Support for local organic farmers and artisanal micro-cheesemakers
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--color-green); font-weight: bold;">✓</span> Seasonal menu highlights that follow indigenous South Indian agricultural cycles
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: var(--color-green); font-weight: bold;">✓</span> Transparent traceability indicators on participating restaurant listings
+            </li>
+          </ul>
+          <a href="404.html" class="btn btn-primary btn-sm">Explore Sustainable Tables →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FINAL CTA -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner-box">
+        <img src="assets/images/auth-bg.webp" alt="Dining atmosphere" class="cta-banner-bg">
+        <div class="cta-banner-overlay">
+          <div class="cta-banner-content">
+            <h2>Experience Dining Curation for Yourself.</h2>
+            <p>From anniversary dinners to spontaneous weekend brunches, explore handpicked tables waiting for your group.</p>
+            <div class="cta-buttons">
+              <a href="404.html" class="btn btn-secondary">Explore Restaurants →</a>
+              <a href="404.html" class="btn btn-primary" style="background-color: var(--color-white); color: var(--color-green);">Reserve a Table</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-grid">
+        <!-- 1. Brand & Social -->
+        <div class="footer-col footer-brand-col">
+          <a href="404.html" class="footer-logo-link" aria-label="STACKLY">
+            <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" class="footer-logo-img">
+          </a>
+          <p class="footer-desc">
+            A premium partner for luxury sports and fitness worldwide. Experience training in unparalleled comfort.
+          </p>
+          <div class="footer-social-row">
+            <a href="404.html" class="footer-social-btn" aria-label="Facebook">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="X (Twitter)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="Instagram">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="404.html" class="footer-social-btn" aria-label="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Quick Links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Home</a></li>
+            <li><a href="404.html" class="footer-nav-link">About</a></li>
+            <li><a href="404.html" class="footer-nav-link">Training</a></li>
+            <li><a href="404.html" class="footer-nav-link">Services</a></li>
+            <li><a href="404.html" class="footer-nav-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- 3. Company -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links-list">
+            <li><a href="404.html" class="footer-nav-link">Contact Us</a></li>
+            <li><a href="404.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="404.html" class="footer-nav-link">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- 4. Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>support@stacklyfitness.com</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              <span>+91 98765 43210</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Salem, Tamil Nadu 636008</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Newsletter -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Newsletter</h4>
+          <p class="footer-newsletter-desc">
+            Subscribe to receive the latest fitness updates, exclusive offers, and health news.
+          </p>
+          <form class="footer-newsletter-box" onsubmit="event.preventDefault(); window.location.href='404.html';">
+            <input type="email" placeholder="Your email address" required class="footer-email-field">
+            <button type="submit" class="footer-sub-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copyright">
+          &copy; 2026 STACKLY Fitness. All rights reserved.
+        </p>
+        <button class="footer-scroll-top" id="footerScrollTop" aria-label="Scroll to top" title="Scroll to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
