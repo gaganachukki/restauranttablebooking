@@ -49,6 +49,12 @@
   z-index: 2;
 }
 
+.auth-visual-header img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
 .auth-visual-footer {
   position: relative;
   z-index: 2;

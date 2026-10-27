@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login — STACKLY Restaurant Table Booking</title>
   <meta name="description" content="Sign in to your STACKLY client dining dashboard or restaurant admin management portal.">
-  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-icon.svg">
+  <link rel="icon" type="image/webp" href="images/logo.webp">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/auth.css?v=2">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
   <script src="js/validation.js" defer></script>
-  <script src="js/auth.js" defer></script>
+  <script src="js/auth.js?v=2" defer></script>
 </head>
 <body class="auth-page">
 
@@ -25,8 +25,8 @@
       <div class="auth-visual-overlay"></div>
 
       <div class="auth-visual-header">
-        <a href="404.html">
-          <img src="assets/logo/logo-white.svg" alt="STACKLY Logo" style="height: 38px;">
+        <a href="index.html" class="auth-brand-logo" aria-label="STACKLY Home">
+          <img src="images/logo.webp" alt="STACKLY Logo" style="height: 38px;">
         </a>
       </div>
 
@@ -47,8 +47,8 @@
     <!-- Right Login Form Side -->
     <div class="auth-form-side">
       <div class="auth-top-nav">
-        <a href="404.html" class="nav-logo" style="display: none;">
-          <img src="assets/logo/logo.svg" alt="STACKLY">
+        <a href="index.html" class="nav-logo" style="display: none;">
+          <img src="images/logo.webp" alt="STACKLY">
         </a>
         <a href="index.html" class="back-home-link">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -95,7 +95,7 @@
         </form>
 
         <p class="auth-footer-prompt">
-          Don't have an account yet? <a href="404.html">Create an Account</a>
+          Don't have an account yet? <a href="signup.html" id="goToSignupLink" class="auth-switch-link">Create an Account</a>
         </p>
 
         <!-- Quick Fill Demo Credentials -->

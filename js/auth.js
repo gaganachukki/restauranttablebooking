@@ -154,11 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
   logoutBtns.forEach(btn => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      sessionStorage.removeItem("stackly_user");
-      if (typeof showToast === "function") showToast("Signed out successfully.");
-      setTimeout(() => {
-        window.location.href = "login.html";
-      }, 400);
+      try {
+        sessionStorage.removeItem("stackly_user");
+        localStorage.removeItem("stackly_user");
+      } catch (err) {}
+      window.location.href = "login.html";
     });
   });
 
@@ -189,6 +189,33 @@ function initUniversal404Interceptor() {
 
     if (!clickable) return;
 
+    // auth.js ONLY enforces whitelist on login.html and signup.html
+    if (currentPath !== "login.html" && currentPath !== "signup.html") {
+      return;
+    }
+
+    // 0. UNIVERSAL STACKLY LOGO: Must always lead directly to home page (index.html)
+    const isStacklyLogo = clickable.classList.contains("nav-logo") ||
+                          clickable.closest(".nav-logo") ||
+                          clickable.classList.contains("footer-logo-link") ||
+                          clickable.closest(".footer-logo-link") ||
+                          clickable.classList.contains("sidebar-brand") ||
+                          clickable.closest(".sidebar-brand") ||
+                          clickable.classList.contains("auth-brand-logo") ||
+                          clickable.closest(".auth-brand-logo") ||
+                          clickable.closest(".auth-visual-header") ||
+                          clickable.querySelector("img[src*='logo']") ||
+                          (clickable.tagName === "IMG" && clickable.src.includes("logo")) ||
+                          (clickable.tagName === "A" && clickable.querySelector("img[alt*='STACKLY']"));
+
+    if (isStacklyLogo) {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      window.location.href = "index.html";
+      return;
+    }
+
     // 1. LOGIN PAGE WHITELIST
     if (currentPath === "login.html") {
       if (
@@ -204,6 +231,23 @@ function initUniversal404Interceptor() {
       if (clickable.type === "submit" && clickable.closest("#loginForm")) {
         return;
       }
+      // Allow Create an Account link to navigate directly to signup.html
+      const isCreateAccount = (clickable.tagName === "A" && clickable.getAttribute("href") === "signup.html") ||
+                              clickable.closest("a[href*='signup']") ||
+                              clickable.id === "goToSignupLink" ||
+                              clickable.classList.contains("auth-switch-link") ||
+                              (clickable.tagName === "A" && clickable.textContent.includes("Create an Account"));
+      if (isCreateAccount) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        window.location.href = "signup.html";
+        return;
+      }
+      // Quick fill demo buttons
+      if (clickable.id === "quickFillClient" || clickable.id === "quickFillAdmin" || clickable.closest(".demo-quick-btn")) {
+        return;
+      }
 
       e.preventDefault();
       e.stopPropagation();
@@ -214,10 +258,30 @@ function initUniversal404Interceptor() {
 
     // 2. SIGNUP PAGE WHITELIST
     if (currentPath === "signup.html") {
+      if (
+        clickable.classList.contains("back-home-link") ||
+        clickable.closest(".back-home-link") ||
+        (clickable.tagName === "A" && clickable.textContent.includes("Back to Home"))
+      ) {
+        return;
+      }
       if (clickable.classList.contains("role-pill") || clickable.closest(".role-pill")) {
         return;
       }
       if (clickable.type === "submit" && clickable.closest("#signupForm")) {
+        return;
+      }
+      // Allow Sign In link to navigate directly to login.html
+      const isSignIn = (clickable.tagName === "A" && clickable.getAttribute("href") === "login.html") ||
+                       clickable.closest("a[href*='login']") ||
+                       clickable.id === "goToLoginLink" ||
+                       clickable.classList.contains("auth-switch-link") ||
+                       (clickable.tagName === "A" && clickable.textContent.includes("Sign In"));
+      if (isSignIn) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        window.location.href = "login.html";
         return;
       }
 
@@ -230,15 +294,23 @@ function initUniversal404Interceptor() {
 
     // 3. DASHBOARD PAGES (ClientDashboard.html, AdminDashboard.html)
     if (currentPath === "clientdashboard.html" || currentPath === "admindashboard.html") {
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      window.location.href = "404.html";
       return;
     }
 
-    // 4. STANDARD SITE PAGES (index.html, about.html, services.html, blog.html, contact.html)
-    // Footer links & footer logo are NOT whitelisted
+    // Allow footer navigation links pointing to valid site pages (Home, About, Restaurants, Services, Blog, Contact)
+    const footerLink = clickable.classList.contains("footer-nav-link") ? clickable : clickable.closest(".footer-nav-link, .footer-links-list a");
+    if (footerLink) {
+      const href = footerLink.getAttribute("href");
+      if (href && href !== "404.html" && href !== "#") {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        window.location.href = href;
+        return;
+      }
+    }
+
+    // Other footer elements (social icons, privacy/terms 404 links, newsletter) redirect to 404
     const isInsideFooter = clickable.closest("footer, .site-footer");
     if (isInsideFooter) {
       e.preventDefault();

@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 14px;">${r.cuisine} • ${r.city} • ₹${r.pricePerson}/person</p>
           <div style="display: flex; gap: 8px;">
-            <button class="btn btn-primary btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="flex: 1.2; padding: 8px 12px; font-size: 0.75rem;">Reserve Table</button>
+            <a href="404.html" class="btn btn-primary btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="flex: 1.2; padding: 8px 12px; font-size: 0.75rem; text-decoration: none;">Reserve Table</a>
             <button class="btn btn-sm remove-fav-btn" data-id="${r.id}" style="color: var(--color-error); border: 1px solid #FECACA; padding: 8px 12px; font-size: 0.75rem;" title="Remove from favorites">Remove</button>
           </div>
         </div>
@@ -211,10 +211,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Instant book event
+    // Reserve table event -> navigate directly to 404
     document.querySelectorAll(".client-instant-book-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        openClientBookingModal(btn.dataset.resto, btn.dataset.id);
+        window.location.href = "404.html";
       });
     });
   }
@@ -242,13 +242,13 @@ document.addEventListener("DOMContentLoaded", () => {
           <p style="font-size: 0.75rem; color: var(--color-muted); margin-bottom: 4px;">${r.cuisine} • ₹${r.pricePerson}/person</p>
           <span style="font-size: 0.6875rem; font-weight: 600; color: var(--color-green); background: var(--color-sage); padding: 2px 8px; border-radius: 9999px;">★ ${r.rating} Recommended</span>
         </div>
-        <button class="btn btn-outline-green btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="padding: 6px 12px; font-size: 0.75rem;">Book</button>
+        <a href="404.html" class="btn btn-outline-green btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="padding: 6px 12px; font-size: 0.75rem; text-decoration: none;">Book</a>
       </div>
     `).join("");
 
     document.querySelectorAll("#clientRecommendationsList .client-instant-book-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        openClientBookingModal(btn.dataset.resto, btn.dataset.id);
+        window.location.href = "404.html";
       });
     });
   }
@@ -297,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 12px; margin-top: 6px;">
             <span style="font-size: 0.8125rem; font-weight: 600; color: var(--color-green);">₹${r.pricePerson} / guest</span>
-            <button class="btn btn-primary btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="padding: 7px 14px; font-size: 0.8125rem;">Reserve Table</button>
+            <a href="404.html" class="btn btn-primary btn-sm client-instant-book-btn" data-resto="${r.name}" data-id="${r.id}" style="padding: 7px 14px; font-size: 0.8125rem; text-decoration: none;">Reserve Table</a>
           </div>
         </div>
       </div>
@@ -305,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     exploreGrid.querySelectorAll(".client-instant-book-btn").forEach(btn => {
       btn.addEventListener("click", () => {
-        openClientBookingModal(btn.dataset.resto, btn.dataset.id);
+        window.location.href = "404.html";
       });
     });
   }
@@ -324,142 +324,17 @@ document.addEventListener("DOMContentLoaded", () => {
     exploreSearchInput.addEventListener("input", renderClientExplore);
   }
 
-  // 6. Quick In-Dashboard Booking Modal
-  function openClientBookingModal(presetName = "The Olive Table", presetId = null) {
-    let modal = document.getElementById("clientBookingModal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.id = "clientBookingModal";
-      modal.className = "crud-modal-backdrop";
-      document.body.appendChild(modal);
+  // Remove booking modal form entirely from page
+  const existingModal = document.getElementById("clientBookingModal");
+  if (existingModal) existingModal.remove();
+
+  // Global reserve table button handler to navigate directly to 404
+  document.addEventListener("click", (e) => {
+    const reserveBtn = e.target.closest(".client-instant-book-btn");
+    if (reserveBtn) {
+      window.location.href = "404.html";
     }
-
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const dateStr = tomorrow.toISOString().split("T")[0];
-
-    const restaurants = typeof StacklyData !== "undefined" ? StacklyData.getRestaurants() : [];
-
-    modal.innerHTML = `
-      <div class="crud-modal-window">
-        <button class="modal-close-btn client-book-close-btn" style="position: absolute; top: 20px; right: 20px; background: none; border: none; cursor: pointer;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-        <h3 style="font-size: 1.375rem; margin-bottom: 6px; font-family: var(--font-display);">Reserve a Table</h3>
-        <p style="font-size: 0.8125rem; color: var(--color-muted); margin-bottom: 24px;">Curated dining reservation with instant host confirmation.</p>
-        
-        <form id="inDashboardBookingForm" style="display: flex; flex-direction: column; gap: 16px;">
-          <div class="form-group">
-            <label class="form-label">Selected Restaurant</label>
-            <select id="modalBookingRestaurant" class="form-control" required>
-              ${restaurants.map(r => `
-                <option value="${r.name}" ${r.name === presetName ? 'selected' : ''}>${r.name} (${r.cuisine} • ${r.city})</option>
-              `).join("")}
-            </select>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-            <div class="form-group">
-              <label class="form-label">Reservation Date</label>
-              <input type="date" id="modalBookingDate" class="form-control" value="${dateStr}" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Seating Time</label>
-              <select id="modalBookingTime" class="form-control">
-                <option value="7:00 PM">7:00 PM (Dinner)</option>
-                <option value="7:45 PM">7:45 PM (Dinner)</option>
-                <option value="8:30 PM" selected>8:30 PM (Peak Dinner)</option>
-                <option value="9:15 PM">9:15 PM (Late Evening)</option>
-                <option value="1:00 PM">1:00 PM (Lunch)</option>
-              </select>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-            <div class="form-group">
-              <label class="form-label">Number of Guests</label>
-              <select id="modalBookingGuests" class="form-control">
-                <option value="1">1 Guest (Solo Dining)</option>
-                <option value="2" selected>2 Guests (Table for Two)</option>
-                <option value="4">4 Guests (Standard Table)</option>
-                <option value="6">6 Guests (Celebration Table)</option>
-                <option value="8">8 Guests (Private Dining)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Dining Occasion</label>
-              <select id="modalBookingOccasion" class="form-control">
-                <option value="Casual Dining" selected>Casual Dining</option>
-                <option value="Anniversary">Anniversary Celebration</option>
-                <option value="Birthday Dinner">Birthday Dinner</option>
-                <option value="Business Dinner">Business Dinner</option>
-                <option value="Family Gathering">Family Gathering</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Special Seating or Dietary Notes</label>
-            <input type="text" id="modalBookingNotes" class="form-control" placeholder="e.g. Quiet corner booth, window view, allergy to shellfish">
-          </div>
-
-          <div style="display: flex; gap: 12px; margin-top: 10px;">
-            <button type="button" class="btn btn-secondary client-book-cancel-btn" style="flex: 1;">Cancel</button>
-            <button type="submit" class="btn btn-primary" style="flex: 1.5;">Confirm Reservation</button>
-          </div>
-        </form>
-      </div>
-    `;
-
-    modal.classList.add("show");
-
-    modal.querySelector(".client-book-close-btn").addEventListener("click", () => modal.classList.remove("show"));
-    modal.querySelector(".client-book-cancel-btn").addEventListener("click", () => modal.classList.remove("show"));
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.remove("show");
-    });
-
-    const form = modal.querySelector("#inDashboardBookingForm");
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const rName = document.getElementById("modalBookingRestaurant").value;
-      const dateVal = document.getElementById("modalBookingDate").value;
-      const timeVal = document.getElementById("modalBookingTime").value;
-      const guestsVal = parseInt(document.getElementById("modalBookingGuests").value, 10);
-      const occasionVal = document.getElementById("modalBookingOccasion").value;
-      const notesVal = document.getElementById("modalBookingNotes").value;
-
-      const newId = "RES-" + (Math.floor(1000 + Math.random() * 9000));
-
-      const newReservation = {
-        id: newId,
-        restaurantName: rName,
-        guestName: "Arun Kumar",
-        email: "client@stackly.com",
-        phone: "+91 98401 23456",
-        date: dateVal,
-        time: timeVal,
-        guests: guestsVal,
-        occasion: occasionVal,
-        specialRequests: notesVal,
-        status: "Confirmed",
-        tableNumber: "T-" + Math.floor(1 + Math.random() * 12)
-      };
-
-      const list = StacklyData.getReservations();
-      list.unshift(newReservation);
-      StacklyData.saveReservations(list);
-
-      modal.classList.remove("show");
-      renderClientReservations();
-
-      if (typeof showToast === "function") {
-        showToast(`Reservation ${newId} confirmed at ${rName}!`);
-      } else {
-        alert(`Reservation ${newId} confirmed at ${rName}!`);
-      }
-    });
-  }
+  });
 
   // 7. Profile Form Submission
   if (profileForm) {

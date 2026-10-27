@@ -11,16 +11,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const userProfileName = document.querySelector(".user-info-text h4");
   const userProfileRole = document.querySelector(".user-info-text p");
 
+  const backdrop = document.querySelector(".dashboard-backdrop");
+
+  const openSidebar = () => {
+    if (sidebar) sidebar.classList.add("open");
+    if (backdrop) backdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeSidebar = () => {
+    if (sidebar) sidebar.classList.remove("open");
+    if (backdrop) backdrop.classList.remove("show");
+    document.body.style.overflow = "";
+  };
+
   // 1. Mobile Sidebar Toggle
-  if (mobileToggle && sidebar) {
-    mobileToggle.addEventListener("click", () => {
-      sidebar.classList.add("open");
+  if (mobileToggle) {
+    mobileToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      openSidebar();
     });
   }
 
-  if (sidebarClose && sidebar) {
-    sidebarClose.addEventListener("click", () => {
-      sidebar.classList.remove("open");
+  if (sidebarClose) {
+    sidebarClose.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeSidebar();
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", () => {
+      closeSidebar();
     });
   }
 
@@ -28,8 +50,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("click", (e) => {
     if (sidebar && sidebar.classList.contains("open")) {
       if (!sidebar.contains(e.target) && !mobileToggle.contains(e.target)) {
-        sidebar.classList.remove("open");
+        closeSidebar();
       }
+    }
+  });
+
+  // ESC key dismiss for mobile sidebar
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar && sidebar.classList.contains("open")) {
+      closeSidebar();
     }
   });
 
@@ -72,9 +101,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 8. Logout Handlers
   initLogoutHandlers();
-
-  // 9. Universal Whitelist Interceptor
-  initUniversal404Interceptor();
 });
 
 /**
@@ -137,20 +163,31 @@ function initDashboardViewSwitcher() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Click handler
+  // Click handler on links
   sidebarLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
+      e.stopPropagation();
       switchView(link.dataset.view, true);
     });
   });
 
-  // Direct buttons that switch views (supports dynamic elements via delegation)
+  // Delegated click handler for sidebar links and jump-view buttons (supports all dynamic elements)
   document.addEventListener("click", (e) => {
+    const link = e.target.closest(".sidebar-nav .sidebar-link[data-view]");
+    if (link) {
+      e.preventDefault();
+      e.stopPropagation();
+      switchView(link.dataset.view, true);
+      return;
+    }
+
     const jumpBtn = e.target.closest("[data-jump-view]");
     if (jumpBtn) {
       e.preventDefault();
+      e.stopPropagation();
       switchView(jumpBtn.dataset.jumpView, true);
+      return;
     }
   });
 
@@ -228,144 +265,34 @@ function initConciergeChat() {
 }
 
 function initClientDiningHistory() {
-  document.querySelectorAll(".download-receipt-btn").forEach(btn => {
+  document.querySelectorAll(".download-receipt-btn, .leave-review-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const resto = btn.dataset.resto || "Dining Experience";
-      if (typeof showToast === "function") {
-        showToast(`Tax invoice and itemized receipt for ${resto} downloaded.`);
-      } else {
-        alert(`Demonstration PDF Receipt downloaded for ${resto}.`);
-      }
-    });
-  });
-
-  document.querySelectorAll(".leave-review-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const resto = btn.dataset.resto || "the restaurant";
-      const rating = prompt(`Leave a star rating for ${resto} (1-5 stars):`, "5");
-      if (rating) {
-        if (typeof showToast === "function") {
-          showToast(`Thank you! Your ${rating}★ review for ${resto} has been published.`);
-        } else {
-          alert(`Thank you! Your ${rating}★ review for ${resto} has been recorded.`);
-        }
-      }
+      window.location.href = "404.html";
     });
   });
 }
 
 function initLogoutHandlers() {
-  const logoutButtons = document.querySelectorAll(".sidebar-logout-btn, #clientLogoutBtn, #adminLogoutBtn");
-  logoutButtons.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (confirm("Are you sure you want to log out of STACKLY?")) {
-        sessionStorage.removeItem("stackly_user");
-        window.location.href = "login.html";
-      }
-    });
-  });
-}
-
-/**
- * Universal 404 Click Interceptor
- * Strictly enforces that ONLY circled elements function normally.
- */
-function initUniversal404Interceptor() {
-  if (window.__stackly404InterceptorAttached) return;
-  window.__stackly404InterceptorAttached = true;
-
   document.addEventListener("click", (e) => {
-    const rawPath = window.location.pathname.split("/").pop() || "index.html";
-    const currentPath = rawPath.toLowerCase();
-
-    // 404.html itself has its own back navigation - do not intercept
-    if (currentPath === "404.html") return;
-
-    // Find any clicked interactive element
-    const target = e.target;
-    const clickable = target.closest(
-      "a, button, summary, [role='button'], .category-item, .time-pill, .city-tab-btn, .card-book-btn, .card-arrow-btn, .booking-bar-btn, .header-action-btn, .copy-addr-btn"
-    );
-
-    if (!clickable) return;
-
-    // 1. LOGIN PAGE WHITELIST
-    if (currentPath === "login.html") {
-      if (
-        clickable.classList.contains("back-home-link") ||
-        clickable.closest(".back-home-link") ||
-        (clickable.tagName === "A" && clickable.textContent.includes("Back to Home"))
-      ) {
-        return;
-      }
-      if (clickable.classList.contains("role-pill") || clickable.closest(".role-pill")) {
-        return;
-      }
-      if (clickable.type === "submit" && clickable.closest("#loginForm")) {
-        return;
-      }
-
+    const logoutBtn = e.target.closest(".sidebar-logout-btn, #clientLogoutBtn, #adminLogoutBtn");
+    if (logoutBtn) {
       e.preventDefault();
       e.stopPropagation();
-      e.stopImmediatePropagation();
-      window.location.href = "404.html";
-      return;
+      try {
+        sessionStorage.removeItem("stackly_user");
+        localStorage.removeItem("stackly_user");
+      } catch (err) {}
+      window.location.href = "login.html";
     }
-
-    // 2. SIGNUP PAGE WHITELIST
-    if (currentPath === "signup.html") {
-      if (clickable.classList.contains("role-pill") || clickable.closest(".role-pill")) {
-        return;
-      }
-      if (clickable.type === "submit" && clickable.closest("#signupForm")) {
-        return;
-      }
-
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      window.location.href = "404.html";
-      return;
-    }
-
-    // 3. DASHBOARD PAGES (ClientDashboard.html, AdminDashboard.html)
-    if (currentPath === "clientdashboard.html" || currentPath === "admindashboard.html") {
-      // Allow dashboard sidebar navigation options, action buttons, modals, and tabs to work
-      return;
-    }
-
-    // 4. STANDARD SITE PAGES (index.html, about.html, services.html, blog.html, contact.html)
-    // Footer links & footer logo are NOT whitelisted
-    const isInsideFooter = clickable.closest("footer, .site-footer");
-    if (isInsideFooter) {
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation();
-      window.location.href = "404.html";
-      return;
-    }
-
-    const isNavLogo = clickable.classList.contains("nav-logo") || clickable.closest(".nav-logo");
-    const isNavLink = clickable.classList.contains("nav-link");
-    const isNavLoginBtn = clickable.classList.contains("nav-login-btn") || clickable.closest(".nav-login-btn");
-    const isNavSearchBtn = clickable.classList.contains("nav-search-btn") || clickable.closest(".nav-search-btn");
-    const isHamburger = clickable.classList.contains("hamburger-btn") || clickable.closest(".hamburger-btn");
-    const isMobileNavLink = clickable.classList.contains("mobile-nav-link");
-    const isModalCloseBtn = clickable.classList.contains("modal-close-btn") || clickable.closest(".modal-close-btn");
-    const isFaqToggle = clickable.classList.contains("faq-question") || clickable.closest(".faq-question") || clickable.closest(".faq-item");
-    const isRestoFilter = clickable.classList.contains("resto-filter-btn") || clickable.closest(".resto-filter-btn") || clickable.classList.contains("resto-search-btn");
-    const isFormSubmit = clickable.type === "submit" && (clickable.closest("#tableBookingForm") || clickable.closest("#contactForm"));
-    const isFormActionBtn = clickable.id === "resetFormBtn" || clickable.closest("#resetFormBtn") || clickable.classList.contains("modal-done-btn") || clickable.closest(".modal-done-btn");
-
-    if (isNavLogo || isNavLink || isNavLoginBtn || isNavSearchBtn || isHamburger || isMobileNavLink || isModalCloseBtn || isFaqToggle || isRestoFilter || isFormSubmit || isFormActionBtn) {
-      return; // Allowed navbar, FAQ accordion, filter, or form submission element
-    }
-
-    // All other buttons, links, cards, filters, and submit buttons redirect to 404.html
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
-    window.location.href = "404.html";
   }, true);
 }
+
+// Dashboard global navigation safeguard: Ensures no dashboard navigation ever redirects to 404
+document.addEventListener("click", (e) => {
+  const brandLogo = e.target.closest(".sidebar-brand, .nav-logo, .footer-logo-link");
+  if (brandLogo) {
+    e.preventDefault();
+    window.location.href = "index.html";
+    return;
+  }
+});
