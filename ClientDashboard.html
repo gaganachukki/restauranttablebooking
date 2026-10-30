@@ -9,14 +9,14 @@
 
   <link rel="stylesheet" href="css/style.css?v=2">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/dashboard.css?v=2">
+  <link rel="stylesheet" href="css/dashboard.css?v=3">
   <link rel="stylesheet" href="css/client-dashboard.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
   <script src="js/restaurant-data.js?v=3" defer></script>
-  <script src="js/dashboard.js?v=3" defer></script>
-  <script src="js/client-dashboard.js?v=3" defer></script>
+  <script src="js/dashboard.js?v=4" defer></script>
+  <script src="js/client-dashboard.js?v=4" defer></script>
 </head>
 <body class="dashboard-body">
 
@@ -34,10 +34,10 @@
 
       <!-- User Profile Card -->
       <div class="sidebar-user-card">
-        <div class="user-avatar-purple">G</div>
+        <div class="user-avatar-purple">A</div>
         <div class="user-details">
-          <div class="user-name">Gaganachukki</div>
-          <div class="user-email">email@gmail.com</div>
+          <div class="user-name">Arun Kumar</div>
+          <div class="user-email">client@stackly.com</div>
           <span class="user-panel-badge">USER PANEL</span>
         </div>
       </div>
@@ -293,10 +293,10 @@
                 <h3>My Table Reservations</h3>
                 <p style="font-size: 0.8125rem; color: var(--color-muted);">Review, filter, cancel, or view details for all your table reservations.</p>
               </div>
-              <button class="btn btn-primary btn-sm" data-jump-view="explore-restaurants">
+              <a href="404.html" class="btn btn-primary btn-sm">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <span>+ Book New Table</span>
-              </button>
+              </a>
             </div>
 
             <div style="padding: 24px;">
@@ -552,14 +552,19 @@
             <div class="chat-header">
               <div class="chat-concierge-status">
                 <div class="chat-avatar-badge">ML</div>
-                <div>
-                  <h4 style="font-size: 1rem; margin: 0; font-weight: 600;">Maître d' Laurent</h4>
-                  <span style="font-size: 0.75rem; color: #D1FAE5; display: flex; align-items: center;">
-                    <span class="chat-online-indicator"></span> Online — STACKLY VIP Hospitality Concierge
-                  </span>
+                <div class="chat-concierge-meta">
+                  <h4 class="chat-concierge-name">Maître d' Laurent</h4>
+                  <div class="chat-online-status">
+                    <span class="chat-online-indicator"></span>
+                    <span class="chat-status-text-full">Online — STACKLY VIP Hospitality Concierge</span>
+                    <span class="chat-status-text-short">Online — VIP Concierge</span>
+                  </div>
                 </div>
               </div>
-              <span style="font-size: 0.75rem; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 9999px;">24/7 Priority Support</span>
+              <span class="chat-priority-badge">
+                <span class="badge-full">24/7 Priority Support</span>
+                <span class="badge-short">24/7 VIP</span>
+              </span>
             </div>
 
             <!-- Messages Area -->
@@ -580,7 +585,7 @@
 
             <!-- Input Bar -->
             <div class="chat-input-bar">
-              <input type="text" id="conciergeChatInput" class="chat-input-field" placeholder="Ask Maître d' Laurent for table recommendations, wine pairings, or special requests...">
+              <input type="text" id="conciergeChatInput" class="chat-input-field" placeholder="Ask Maître d' Laurent or request tables...">
               <button type="button" id="conciergeSendBtn" class="chat-send-btn">
                 <span>Send</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -863,6 +868,9 @@
       function onHash() {
         var h = window.location.hash.replace('#', '').trim();
         showView(h || 'dashboard');
+        if (typeof window.syncUserSessionProfile === 'function') {
+          window.syncUserSessionProfile();
+        }
       }
 
       window.addEventListener('hashchange', onHash);

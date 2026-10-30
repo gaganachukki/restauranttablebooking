@@ -721,27 +721,6 @@
     padding: 14px 12px;
   }
 
-  /* Chat card */
-  .concierge-chat-card {
-    height: 440px;
-  }
-
-  .chat-messages-area {
-    padding: 14px;
-  }
-
-  .chat-bubble {
-    max-width: 88%;
-  }
-
-  .chat-input-bar {
-    padding: 10px 14px;
-  }
-
-  .chat-prompt-chips {
-    padding: 8px 14px;
-  }
-
   /* Tables inside cards */
   .table-responsive {
     border-radius: var(--radius-md);
@@ -837,7 +816,9 @@
   border-color: var(--color-green);
 }
 
-/* Concierge Live Chat */
+/* ==========================================================================
+   Concierge Live Chat Component & Mobile Architecture
+   ========================================================================== */
 .concierge-chat-card {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -845,8 +826,10 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 560px;
+  height: 580px;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chat-header {
@@ -856,12 +839,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .chat-concierge-status {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+  flex: 1;
 }
 
 .chat-avatar-badge {
@@ -874,7 +862,34 @@
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  flex-shrink: 0;
+}
+
+.chat-concierge-meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.chat-concierge-name {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-online-status {
+  font-size: 0.75rem;
+  color: #D1FAE5;
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
 }
 
 .chat-online-indicator {
@@ -883,7 +898,26 @@
   height: 8px;
   border-radius: 50%;
   background: #34D399;
-  margin-right: 4px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.chat-status-text-short {
+  display: none;
+}
+
+.chat-priority-badge {
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chat-priority-badge .badge-short {
+  display: none;
 }
 
 .chat-messages-area {
@@ -894,6 +928,8 @@
   flex-direction: column;
   gap: 16px;
   background: #FAFBFA;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 .chat-bubble {
@@ -902,6 +938,9 @@
   border-radius: 16px;
   font-size: 0.875rem;
   line-height: 1.5;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
 }
 
 .chat-bubble.concierge {
@@ -927,17 +966,24 @@
 }
 
 .chat-bubble.user .chat-time {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.75);
   text-align: right;
 }
 
 .chat-prompt-chips {
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: var(--color-white);
   border-top: 1px solid var(--color-border);
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.chat-prompt-chips::-webkit-scrollbar {
+  display: none;
 }
 
 .prompt-chip {
@@ -949,6 +995,7 @@
   font-size: 0.75rem;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: all var(--transition-fast);
 }
 
@@ -959,16 +1006,21 @@
 }
 
 .chat-input-bar {
-  padding: 16px 24px;
+  padding: 14px 20px;
   background: var(--color-white);
   border-top: 1px solid var(--color-border);
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .chat-input-field {
   flex: 1;
+  min-width: 0 !important;
+  width: 100%;
   padding: 12px 18px;
   border: 1px solid var(--color-border);
   border-radius: 9999px;
@@ -976,14 +1028,22 @@
   outline: none;
   font-family: var(--font-primary);
   transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: var(--color-white);
+  color: var(--color-charcoal);
 }
 
 .chat-input-field:focus {
   border-color: var(--color-green);
 }
 
+.chat-input-field::placeholder {
+  color: var(--color-muted);
+  font-size: 0.84375rem;
+}
+
 .chat-send-btn {
-  padding: 12px 22px;
+  padding: 12px 20px;
   border-radius: 9999px;
   background: var(--color-green);
   color: var(--color-white);
@@ -994,11 +1054,220 @@
   align-items: center;
   gap: 6px;
   font-family: var(--font-primary);
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .chat-send-btn:hover {
   background: var(--color-green-light);
+}
+
+/* Responsive Chat Rules */
+@media (max-width: 768px) {
+  .concierge-chat-card {
+    height: clamp(480px, calc(100dvh - 140px), 620px);
+    border-radius: var(--radius-lg);
+  }
+
+  .chat-header {
+    padding: 12px 16px;
+    gap: 10px;
+  }
+
+  .chat-avatar-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9375rem;
+  }
+
+  .chat-concierge-name {
+    font-size: 0.9375rem;
+  }
+
+  .chat-online-status {
+    font-size: 0.71875rem;
+  }
+
+  .chat-messages-area {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .chat-bubble {
+    max-width: 86%;
+    padding: 12px 14px;
+    font-size: 0.84375rem;
+  }
+
+  .chat-prompt-chips {
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .prompt-chip {
+    padding: 5px 12px;
+    font-size: 0.71875rem;
+  }
+
+  .chat-input-bar {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .chat-input-field {
+    padding: 10px 14px;
+    font-size: 0.8125rem;
+    min-height: 40px;
+  }
+
+  .chat-send-btn {
+    padding: 10px 16px;
+    font-size: 0.8125rem;
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concierge-chat-card {
+    height: clamp(440px, calc(100dvh - 110px), 560px);
+    border-radius: var(--radius-md);
+  }
+
+  .chat-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .chat-concierge-status {
+    gap: 8px;
+  }
+
+  .chat-avatar-badge {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+  }
+
+  .chat-concierge-name {
+    font-size: 0.875rem;
+  }
+
+  .chat-status-text-full {
+    display: none;
+  }
+
+  .chat-status-text-short {
+    display: inline;
+  }
+
+  .chat-priority-badge {
+    font-size: 0.6875rem;
+    padding: 3px 8px;
+  }
+
+  .chat-priority-badge .badge-full {
+    display: none;
+  }
+
+  .chat-priority-badge .badge-short {
+    display: inline;
+  }
+
+  .chat-messages-area {
+    padding: 12px 10px;
+    gap: 10px;
+  }
+
+  .chat-bubble {
+    max-width: 90%;
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+  }
+
+  .chat-prompt-chips {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .prompt-chip {
+    padding: 4px 10px;
+    font-size: 0.6875rem;
+  }
+
+  .chat-input-bar {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .chat-input-field {
+    padding: 8px 12px;
+    font-size: 0.78125rem;
+    min-height: 38px;
+  }
+
+  .chat-input-field::placeholder {
+    font-size: 0.78125rem;
+  }
+
+  .chat-send-btn {
+    padding: 8px 12px;
+    font-size: 0.78125rem;
+    min-height: 38px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .chat-header {
+    padding: 8px 10px;
+  }
+
+  .chat-avatar-badge {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+
+  .chat-concierge-name {
+    font-size: 0.8125rem;
+  }
+
+  .chat-online-status {
+    font-size: 0.6875rem;
+  }
+
+  .chat-messages-area {
+    padding: 10px 8px;
+  }
+
+  .chat-bubble {
+    max-width: 92%;
+    padding: 8px 10px;
+    font-size: 0.78125rem;
+  }
+
+  .chat-prompt-chips {
+    padding: 6px 8px;
+  }
+
+  .chat-input-bar {
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  .chat-input-field {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
+
+  .chat-send-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    min-height: 36px;
+  }
 }
 
 /* Dining History Row */

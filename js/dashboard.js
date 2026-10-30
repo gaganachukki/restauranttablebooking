@@ -69,12 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
     headerDateElem.textContent = now.toLocaleDateString("en-US", options);
   }
 
-  // 3. User Session Profile Name Sync
-  const sessionUser = JSON.parse(sessionStorage.getItem("stackly_user") || "null");
-  if (sessionUser) {
-    if (userProfileName) userProfileName.textContent = sessionUser.name || (sessionUser.role === "admin" ? "STACKLY Admin" : "Client User");
-    if (userProfileRole) userProfileRole.textContent = sessionUser.role === "admin" ? "Super Administrator" : "Dine Club Member";
-  }
+  // 3. User Session Profile & Sidebar Sync (Admin & Client)
+  syncUserSessionProfile();
 
   // 4. Notification Refresh Spin Animation
   const refreshBtn = document.getElementById("refreshNotificationsBtn");
@@ -296,3 +292,72 @@ document.addEventListener("click", (e) => {
     return;
   }
 });
+
+/**
+ * User Session Profile & Sidebar Synchronizer
+ * Synchronizes the logged-in user's name, email, avatar initial, and role
+ * across the sidebar user card, header profile, and settings forms for both Admin and Client portals.
+ */
+function syncUserSessionProfile() {
+  let sessionUser = null;
+  try {
+    sessionUser = JSON.parse(sessionStorage.getItem("stackly_user") || localStorage.getItem("stackly_user") || "null");
+  } catch (e) {}
+
+  const isCurrentAdminPage = window.location.pathname.toLowerCase().includes("admindashboard") || 
+                             Boolean(document.querySelector(".sidebar-user-card .user-panel-badge")?.textContent.includes("ADMIN"));
+
+  // If no session exists in storage, provide clean defaults (never hardcoded 'Gaganachukki')
+  if (!sessionUser) {
+    sessionUser = {
+      name: isCurrentAdminPage ? "STACKLY Admin" : "Arun Kumar",
+      email: isCurrentAdminPage ? "admin@stackly.com" : "client@stackly.com",
+      role: isCurrentAdminPage ? "admin" : "client",
+      avatarInitial: isCurrentAdminPage ? "S" : "A"
+    };
+  }
+
+  const userName = sessionUser.name || (sessionUser.role === "admin" ? "STACKLY Admin" : "Client User");
+  const userEmail = sessionUser.email || (sessionUser.role === "admin" ? "admin@stackly.com" : "client@stackly.com");
+  const userRole = sessionUser.role === "admin" ? "Super Administrator" : "Dine Club Member";
+  const avatarChar = sessionUser.avatarInitial || (userName ? userName.charAt(0).toUpperCase() : "U");
+
+  // 1. Update Sidebar User Card (.sidebar-user-card .user-name & .user-email)
+  document.querySelectorAll(".sidebar-user-card .user-name").forEach(el => {
+    el.textContent = userName;
+  });
+
+  document.querySelectorAll(".sidebar-user-card .user-email").forEach(el => {
+    el.textContent = userEmail;
+  });
+
+  document.querySelectorAll(".sidebar-user-card .user-avatar-purple, .sidebar-user-card [class*='user-avatar']").forEach(el => {
+    el.textContent = avatarChar;
+  });
+
+  document.querySelectorAll(".sidebar-user-card .user-panel-badge").forEach(el => {
+    el.textContent = sessionUser.role === "admin" ? "ADMIN PANEL" : "USER PANEL";
+  });
+
+  // 2. Update Header User Profile (.user-info-text h4 & p)
+  document.querySelectorAll(".user-info-text h4, .header-user-profile h4").forEach(el => {
+    el.textContent = userName;
+  });
+
+  document.querySelectorAll(".user-info-text p, .header-user-profile p").forEach(el => {
+    el.textContent = userRole;
+  });
+
+  // 3. Update Settings Form Fields if present
+  const profileNameInput = document.querySelector("#clientProfileForm input[type='text']");
+  const profileEmailInput = document.querySelector("#clientProfileForm input[type='email']");
+  if (profileNameInput && userName) profileNameInput.value = userName;
+  if (profileEmailInput && userEmail) profileEmailInput.value = userEmail;
+}
+
+window.syncUserSessionProfile = syncUserSessionProfile;
+
+// Immediately execute sync if DOM is already ready
+if (document.readyState !== "loading") {
+  syncUserSessionProfile();
+}

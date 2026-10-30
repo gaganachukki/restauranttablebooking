@@ -9,13 +9,13 @@
 
   <link rel="stylesheet" href="css/style.css?v=2">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/dashboard.css?v=2">
+  <link rel="stylesheet" href="css/dashboard.css?v=3">
   <link rel="stylesheet" href="css/admin-dashboard.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 
   <script src="js/restaurant-data.js?v=3" defer></script>
-  <script src="js/dashboard.js?v=3" defer></script>
+  <script src="js/dashboard.js?v=4" defer></script>
   <script src="js/admin-dashboard.js?v=3" defer></script>
 </head>
 <body class="dashboard-body">
@@ -34,10 +34,10 @@
 
       <!-- User Profile Card -->
       <div class="sidebar-user-card">
-        <div class="user-avatar-purple">G</div>
+        <div class="user-avatar-purple">S</div>
         <div class="user-details">
-          <div class="user-name">Gaganachukki</div>
-          <div class="user-email">email@gmail.com</div>
+          <div class="user-name">STACKLY Admin</div>
+          <div class="user-email">admin@stackly.com</div>
           <span class="user-panel-badge">ADMIN PANEL</span>
         </div>
       </div>
@@ -709,7 +709,7 @@
                 <tbody>
                   <tr>
                     <td>Today, 11:24 AM</td>
-                    <td><strong>Gaganachukki</strong></td>
+                    <td><strong>STACKLY Admin</strong></td>
                     <td>Status Modified: Confirmed</td>
                     <td>RES-1024 (The Olive Table)</td>
                     <td>192.168.1.42</td>
@@ -733,7 +733,7 @@
                   </tr>
                   <tr>
                     <td>Yesterday, 06:12 PM</td>
-                    <td><strong>Gaganachukki</strong></td>
+                    <td><strong>STACKLY Admin</strong></td>
                     <td>Status Modified: Completed</td>
                     <td>RES-1021 (Sakura House)</td>
                     <td>192.168.1.42</td>
@@ -832,6 +832,9 @@
       function onHash() {
         var h = window.location.hash.replace('#', '').trim();
         showView(h || 'dashboard');
+        if (typeof window.syncUserSessionProfile === 'function') {
+          window.syncUserSessionProfile();
+        }
       }
 
       window.addEventListener('hashchange', onHash);

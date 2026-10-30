@@ -77,18 +77,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Set demonstration session
-      const demoUser = {
-        email: emailInput.value.trim(),
+      // Derive user details (name, email, avatar initial) from ID entered while logging in
+      const userDetails = deriveUserFromLoginId(emailInput.value, role);
+      const sessionUser = {
+        email: userDetails.email,
         role: role,
-        name: role === "admin" ? "STACKLY Admin" : "Arun Kumar",
+        name: userDetails.name,
+        avatarInitial: userDetails.avatarInitial,
         loginTime: new Date().toISOString()
       };
 
-      sessionStorage.setItem("stackly_user", JSON.stringify(demoUser));
+      sessionStorage.setItem("stackly_user", JSON.stringify(sessionUser));
+      localStorage.setItem("stackly_user", JSON.stringify(sessionUser));
 
       if (typeof showToast === "function") {
-        showToast(`Welcome! Signing in as ${role === 'admin' ? 'Administrator' : 'Client'}...`);
+        showToast(`Welcome, ${userDetails.name}! Signing in as ${role === 'admin' ? 'Administrator' : 'Client'}...`);
       }
 
       setTimeout(() => {
@@ -165,6 +168,93 @@ document.addEventListener("DOMContentLoaded", () => {
   // 6. Universal Whitelist Interceptor
   initUniversal404Interceptor();
 });
+
+/**
+ * Derives user display name, email, and avatar initial from the login identifier.
+ * Ensures the name and email displayed across the dashboard reflect the user ID entered while logging in.
+ */
+function deriveUserFromLoginId(rawId, role) {
+  const trimmed = (rawId || "").trim();
+  if (!trimmed) {
+    return {
+      email: role === "admin" ? "admin@stackly.com" : "client@stackly.com",
+      name: role === "admin" ? "STACKLY Admin" : "Arun Kumar",
+      avatarInitial: role === "admin" ? "S" : "A"
+    };
+  }
+
+  // 1. Check if user exists in registered stackly_accounts
+  try {
+    const savedAccounts = JSON.parse(localStorage.getItem("stackly_accounts") || "[]");
+    const matched = savedAccounts.find(a => 
+      (a.email && a.email.toLowerCase() === trimmed.toLowerCase()) ||
+      (a.name && a.name.toLowerCase() === trimmed.toLowerCase())
+    );
+    if (matched && matched.name) {
+      return {
+        email: matched.email || trimmed,
+        name: matched.name,
+        avatarInitial: matched.name.charAt(0).toUpperCase()
+      };
+    }
+  } catch (e) {}
+
+  // 2. Check preset demo credentials
+  if (trimmed.toLowerCase() === "admin@stackly.com") {
+    return {
+      email: "admin@stackly.com",
+      name: "STACKLY Admin",
+      avatarInitial: "S"
+    };
+  }
+  if (trimmed.toLowerCase() === "client@stackly.com") {
+    return {
+      email: "client@stackly.com",
+      name: "Arun Kumar",
+      avatarInitial: "A"
+    };
+  }
+
+  // 3. Extract username and email from the entered ID
+  let email = trimmed;
+  let rawUsername = trimmed;
+
+  if (trimmed.includes("@")) {
+    rawUsername = trimmed.split("@")[0];
+    email = trimmed;
+  } else {
+    // If entered as bare ID/username without domain
+    email = `${trimmed.toLowerCase()}@gmail.com`;
+  }
+
+  // Clean and format rawUsername into a human-readable Title Case Name
+  // Handles dots, underscores, hyphens, pluses, and camelCase
+  const cleaned = rawUsername
+    .replace(/[._\-+]/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .trim();
+
+  const words = cleaned.split(/\s+/).filter(Boolean);
+  let formattedName = "";
+  if (words.length > 0) {
+    formattedName = words
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      .join(" ");
+  }
+
+  if (!formattedName) {
+    formattedName = role === "admin" ? "STACKLY Admin" : "Client User";
+  }
+
+  const avatarInitial = formattedName.charAt(0).toUpperCase() || "U";
+
+  return {
+    email: email,
+    name: formattedName,
+    avatarInitial: avatarInitial
+  };
+}
+window.deriveUserFromLoginId = deriveUserFromLoginId;
 
 /**
  * Universal 404 Click Interceptor

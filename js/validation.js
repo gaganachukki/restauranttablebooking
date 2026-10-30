@@ -53,11 +53,13 @@ const Validation = (() => {
     validateEmail: (input) => {
       const val = input.value.trim();
       if (!val) {
-        setFieldError(input, "Email address is required.");
+        setFieldError(input, "Email address or User ID is required.");
         return false;
       }
-      if (!EMAIL_REGEX.test(val)) {
-        setFieldError(input, "Please enter a valid email address.");
+      const isEmail = EMAIL_REGEX.test(val);
+      const isUserId = /^[a-zA-Z0-9._\-+]{2,}$/.test(val);
+      if (!isEmail && !isUserId) {
+        setFieldError(input, "Please enter a valid email address or user ID.");
         return false;
       }
       clearFieldError(input);

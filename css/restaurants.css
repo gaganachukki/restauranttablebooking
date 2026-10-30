@@ -845,56 +845,541 @@
   line-height: 1.6;
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* ==========================================================================
+   COMPREHENSIVE RESPONSIVE DESIGN FOR RESTAURANTS DIRECTORY
+   Breakpoints: 1024px, 860px, 768px, 580px, 480px, 360px
+   Guarantees zero overflow, fluid reflow & perfect alignment across 320px - 768px
+   ========================================================================== */
+
+/* Catalog Header utility class */
+.resto-catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.prive-title {
+  color: var(--color-white) !important;
+  font-size: clamp(1.65rem, 4vw, 2.8rem) !important;
+}
+
+.resto-concierge-btn {
+  background-color: var(--color-white) !important;
+  color: var(--color-green) !important;
+  border-color: var(--color-white) !important;
+  white-space: nowrap;
+}
+
+.resto-concierge-btn:hover {
+  background-color: var(--color-sage) !important;
+  color: var(--color-green) !important;
+}
+
+/* Tablet Landscape & iPad (<= 1024px) */
 @media (max-width: 1024px) {
+  .resto-hero {
+    padding: 110px 0 60px 0;
+  }
+  
   .critics-card {
     grid-template-columns: 1fr;
   }
   .critics-card-media {
     min-height: 280px;
+    max-height: 340px;
   }
+  .critics-card-info {
+    padding: 32px 28px;
+  }
+  
   .resto-catalog-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
+  
   .city-hubs-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
+  
   .prive-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
+  
   .tasting-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
+  /* On 2-column tablet layout, 3rd tasting card spans both columns for visual balance */
+  .tasting-card:nth-child(3) {
+    grid-column: span 2;
+  }
+  
   .resto-reviews-grid {
     grid-template-columns: 1fr;
+    gap: 22px;
   }
+  
   .resto-concierge-banner {
     flex-direction: column;
     text-align: center;
-    padding: 40px 24px;
+    padding: 44px 30px;
+    gap: 28px;
+  }
+  .concierge-banner-text {
+    max-width: 100%;
   }
 }
 
-@media (max-width: 640px) {
-  .resto-hero {
-    padding: 110px 0 50px 0;
-  }
+/* Intermediate Tablet Reflow (<= 860px) */
+@media (max-width: 860px) {
   .resto-search-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .resto-search-input-wrap {
+    grid-column: span 2;
+    min-width: 0;
+    width: 100%;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--color-border);
+    box-sizing: border-box;
+  }
+  
+  .resto-search-select-wrap {
+    min-width: 0;
+    width: 100%;
+    border-left: none;
+    background: var(--color-ivory);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 8px 12px;
+    box-sizing: border-box;
+  }
+  
+  .resto-search-btn {
+    grid-column: span 2;
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+  
+  .resto-stats-ribbon {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    max-width: 580px;
+    margin: 0 auto;
+    justify-items: start;
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+
+/* Tablet Portrait & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .resto-hero {
+    padding: 95px 0 45px 0;
+  }
+  
+  .resto-hero-title {
+    font-size: clamp(1.85rem, 5.5vw, 2.6rem);
+  }
+  
+  .resto-hero-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  
+  /* Sticky Category Filter Strip */
+  .resto-filter-section {
+    padding: 12px 0;
+    top: var(--nav-height, 68px);
+  }
+  
+  .resto-filter-scroll {
+    gap: 8px;
+    padding: 4px 0;
+  }
+  
+  .resto-filter-btn {
+    padding: 7px 14px;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+  }
+  
+  /* Section Spacings */
+  .critics-choice-section,
+  .resto-grid-section,
+  .city-hubs-section,
+  .prive-section,
+  .tasting-section,
+  .resto-reviews-section {
+    padding: 56px 0;
+  }
+  
+  /* Critics Choice Cards */
+  .critics-card {
+    margin-bottom: 28px;
+    border-radius: var(--radius-lg);
+  }
+  
+  .critics-card-media {
+    min-height: 220px;
+    max-height: 250px;
+  }
+  
+  .critics-card-info {
+    padding: 24px 20px;
+  }
+  
+  .critics-card-title {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+  
+  .critics-meta-row {
+    font-size: 0.8125rem;
+    gap: 8px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .critics-chef-quote {
+    font-size: 0.875rem;
+    padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .critics-highlights-list {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  
+  .critics-pill {
+    font-size: 0.6875rem;
+    padding: 4px 10px;
+  }
+  
+  /* Crucial Footer Fix: eliminate horizontal squishing/overflow */
+  .critics-card-footer {
     flex-direction: column;
     align-items: stretch;
+    gap: 14px;
+    padding-top: 16px;
   }
-  .resto-search-select-wrap {
-    border-left: none;
-    border-top: 1px solid var(--color-border);
-    padding: 10px 0;
+  
+  .critics-card-footer .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 18px;
+    font-size: 0.875rem;
   }
+  
+  /* Main Catalog Grid: Single column for clean, non-cramped cards */
   .resto-catalog-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 28px;
   }
-  .city-hubs-grid {
-    grid-template-columns: 1fr;
+  
+  .resto-catalog-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
+  
+  .resto-card-body {
+    padding: 20px 18px;
+  }
+  
+  .resto-card-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  /* Privé Private Dining */
+  .prive-card {
+    padding: 24px 20px;
+  }
+  
+  .prive-perks-list li {
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  
+  .prive-perks-list li svg {
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+  
+  /* Seasonal Tasting Grid */
   .tasting-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .tasting-card:nth-child(3) {
+    grid-column: span 1;
+  }
+  
+  .tasting-card {
+    padding: 24px 20px;
+  }
+  
+  /* Diner Reviews */
+  .review-card-item {
+    padding: 24px 20px;
+  }
+  
+  /* Concierge Banner */
+  .resto-concierge-banner {
+    padding: 32px 20px;
+    margin: 40px 0 10px 0;
+  }
+  
+  .resto-concierge-btn {
+    width: 100% !important;
+    white-space: normal !important;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Phablets & Large Mobiles (<= 580px) */
+@media (max-width: 580px) {
+  .resto-search-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 14px;
+  }
+  
+  .resto-search-input-wrap {
+    border-bottom: 1px solid var(--color-border);
+    padding: 8px 10px;
+  }
+  
+  .resto-search-select-wrap {
+    width: 100%;
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+  }
+  
+  .city-hubs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .city-hub-card {
+    height: 230px;
+  }
+  
+  .city-hub-overlay {
+    padding: 18px 16px;
+  }
+  
+  .city-hub-name {
+    font-size: 1.35rem;
+  }
+}
+
+/* Standard Mobile Devices (<= 480px) */
+@media (max-width: 480px) {
+  .resto-hero {
+    padding: 85px 0 35px 0;
+  }
+  
+  .resto-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.2;
+  }
+  
+  .resto-badge {
+    padding: 6px 14px;
+    font-size: 0.6875rem;
+    gap: 6px;
+  }
+  
+  .resto-stats-ribbon {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    max-width: 280px;
+    justify-items: center;
+  }
+  
+  .resto-stat-item {
+    font-size: 0.75rem;
+  }
+  
+  .critics-card-info {
+    padding: 18px 16px;
+  }
+  
+  .critics-card-media {
+    min-height: 190px;
+    max-height: 220px;
+  }
+  
+  .critics-badge-floating {
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    font-size: 0.6875rem;
+  }
+  
+  .critics-card-title {
+    font-size: 1.3rem;
+  }
+  
+  .critics-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .critics-meta-row span:nth-child(2),
+  .critics-meta-row span:nth-child(4) {
+    display: none; /* Hide separator dots on stacked column */
+  }
+  
+  .resto-card-img-wrap {
+    height: 180px;
+  }
+  
+  .resto-card-body {
+    padding: 16px 14px;
+  }
+  
+  .resto-card-name {
+    font-size: 1.15rem;
+  }
+  
+  .resto-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  
+  .resto-card-footer .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .prive-card {
+    padding: 18px 14px;
+  }
+  
+  .prive-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .prive-card-desc {
+    font-size: 0.8125rem;
+  }
+  
+  .tasting-card {
+    padding: 18px 14px;
+  }
+  
+  .tasting-card-title {
+    font-size: 1.15rem;
+  }
+  
+  .tasting-card-menu-highlights {
+    padding: 10px 12px;
+    font-size: 0.78125rem;
+  }
+  
+  .review-card-item {
+    padding: 18px 14px;
+  }
+  
+  .review-text {
+    font-size: 0.84375rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  
+  .resto-concierge-banner {
+    padding: 24px 16px;
+    border-radius: var(--radius-lg);
+  }
+  
+  .concierge-banner-text h3 {
+    font-size: 1.3rem;
+  }
+  
+  .concierge-banner-text p {
+    font-size: 0.84375rem;
+  }
+}
+
+/* Small Viewports (<= 360px, down to 320px iPhone SE) */
+@media (max-width: 360px) {
+  .resto-hero-title {
+    font-size: 1.65rem;
+  }
+  
+  .resto-search-box {
+    padding: 10px;
+  }
+  
+  .resto-search-input {
+    font-size: 0.85rem;
+  }
+  
+  .resto-search-select {
+    font-size: 0.8rem;
+  }
+  
+  .critics-card-info {
+    padding: 16px 12px;
+  }
+  
+  .critics-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .critics-chef-quote {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  
+  .critics-price-tag {
+    font-size: 1rem;
+  }
+  
+  .resto-card-body {
+    padding: 14px 12px;
+  }
+  
+  .prive-card {
+    padding: 16px 12px;
+  }
+  
+  .tasting-card {
+    padding: 16px 12px;
+  }
+  
+  .review-card-item {
+    padding: 16px 12px;
+  }
+  
+  .resto-concierge-banner {
+    padding: 20px 12px;
   }
 }

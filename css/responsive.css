@@ -157,8 +157,15 @@ html, body {
 
   .why-grid,
   .experience-grid,
-  .testimonials-grid {
+  .testimonials-grid,
+  .team-grid,
+  .milestones-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .team-card-img {
+    height: 320px;
+    object-position: top center;
   }
 
   .location-layout {
@@ -301,6 +308,19 @@ html, body {
 
   .card-actions-row {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile Screens (<= 600px) */
+@media (max-width: 600px) {
+  .team-grid,
+  .milestones-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card-img {
+    height: 300px;
+    object-position: top center;
   }
 }
 

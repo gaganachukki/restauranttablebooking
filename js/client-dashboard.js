@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         reservationsGrid.innerHTML = `
           <div style="grid-column: 1 / -1; padding: 32px; text-align: center; background: var(--color-white); border-radius: 14px; border: 1px dashed var(--color-border);">
             <p style="color: var(--color-muted); margin-bottom: 12px;">No active table reservations logged.</p>
-            <button class="btn btn-primary btn-sm" data-jump-view="explore-restaurants">Book a Table Now →</button>
+            <a href="404.html" class="btn btn-primary btn-sm">Book a Table Now →</a>
           </div>
         `;
       } else {
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fullReservationsGrid.innerHTML = `
           <div style="grid-column: 1 / -1; padding: 48px; text-align: center; background: var(--color-white); border-radius: 16px; border: 1px dashed var(--color-border);">
             <p style="color: var(--color-muted); font-size: 0.9375rem; margin-bottom: 16px;">No reservations found matching your current filter.</p>
-            <button class="btn btn-outline-green btn-sm" data-jump-view="explore-restaurants">Explore Restaurants to Book →</button>
+            <a href="404.html" class="btn btn-outline-green btn-sm">Explore Restaurants to Book →</a>
           </div>
         `;
       } else {
@@ -108,8 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <div class="client-res-actions">
-            <button class="btn btn-secondary btn-sm client-view-details" data-id="${res.id}">Details</button>
-            ${res.status !== 'Cancelled' ? `<button class="btn btn-outline-green btn-sm client-cancel-res" data-id="${res.id}" style="color: var(--color-error); border-color: #FCA5A5;">Cancel</button>` : ''}
+            <a href="404.html" class="btn btn-secondary btn-sm client-view-details" data-id="${res.id}">Details</a>
+            ${res.status !== 'Cancelled' ? `<a href="404.html" class="btn btn-outline-green btn-sm client-cancel-res" data-id="${res.id}" style="color: var(--color-error); border-color: #FCA5A5; text-decoration: none;">Cancel</a>` : ''}
           </div>
         </div>
       </div>
@@ -117,31 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function attachReservationCardEvents() {
-    // Cancel Reservation
-    document.querySelectorAll(".client-cancel-res").forEach(btn => {
+    // All reservation card buttons lead directly to 404 page without any alert/confirm message
+    document.querySelectorAll(".client-cancel-res, .client-view-details").forEach(btn => {
       btn.addEventListener("click", () => {
-        const id = btn.dataset.id;
-        if (confirm(`Do you wish to cancel reservation ${id}?`)) {
-          const list = StacklyData.getReservations();
-          const item = list.find(r => r.id === id);
-          if (item) {
-            item.status = "Cancelled";
-            StacklyData.saveReservations(list);
-            renderClientReservations();
-            if (typeof showToast === "function") showToast(`Reservation ${id} has been cancelled.`);
-          }
-        }
-      });
-    });
-
-    // View Details Modal
-    document.querySelectorAll(".client-view-details").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.id;
-        const res = StacklyData.getReservations().find(r => r.id === id);
-        if (res) {
-          alert(`STACKLY Reservation Summary:\n\nReservation ID: ${res.id}\nVenue: ${res.restaurantName}\nDate: ${res.date}\nTime: ${res.time}\nParty Size: ${res.guests} Guests\nOccasion: ${res.occasion || 'Standard Dining'}\nSpecial Notes: ${res.specialRequests || 'Standard hospitality arrangement'}\nCurrent Status: ${res.status}`);
-        }
+        window.location.href = "404.html";
       });
     });
   }
@@ -340,6 +319,19 @@ document.addEventListener("DOMContentLoaded", () => {
   if (profileForm) {
     profileForm.addEventListener("submit", (e) => {
       e.preventDefault();
+      const nameInput = profileForm.querySelector("input[type='text']");
+      const emailInput = profileForm.querySelector("input[type='email']");
+      if (nameInput && emailInput) {
+        let sessionUser = JSON.parse(sessionStorage.getItem("stackly_user") || localStorage.getItem("stackly_user") || "{}");
+        sessionUser.name = nameInput.value.trim() || sessionUser.name;
+        sessionUser.email = emailInput.value.trim() || sessionUser.email;
+        sessionUser.avatarInitial = sessionUser.name ? sessionUser.name.charAt(0).toUpperCase() : "U";
+        sessionStorage.setItem("stackly_user", JSON.stringify(sessionUser));
+        localStorage.setItem("stackly_user", JSON.stringify(sessionUser));
+        if (typeof window.syncUserSessionProfile === "function") {
+          window.syncUserSessionProfile();
+        }
+      }
       if (typeof showToast === "function") {
         showToast("Profile & dining preferences updated successfully!");
       } else {

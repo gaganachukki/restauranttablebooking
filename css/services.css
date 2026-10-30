@@ -1,0 +1,787 @@
+/* ==========================================================================
+   STACKLY — SERVICES PAGE STYLES (css/services.css)
+   Responsive Hospitality Solutions, Dining Planner & Comparison Matrix
+   Breakpoints: 1024px, 900px, 768px, 640px, 480px, 360px, 320px
+   ========================================================================== */
+
+/* 1. SERVICES HERO SECTION */
+.services-hero {
+  padding-top: 80px;
+  padding-bottom: 70px;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.services-hero-content {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.services-hero-title {
+  font-size: clamp(2.1rem, 4.5vw, 3.8rem);
+  margin-bottom: 22px;
+  line-height: 1.18;
+  color: var(--color-charcoal);
+  font-weight: 700;
+}
+
+.services-hero-subtitle {
+  font-size: clamp(0.95rem, 2vw, 1.125rem);
+  color: var(--color-muted);
+  line-height: 1.8;
+  margin: 0 auto 36px auto;
+  max-width: 760px;
+}
+
+.services-hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* 2. CORE DINER SERVICES (Why Grid overrides) */
+.core-services-section {
+  padding: 90px 0;
+}
+
+/* 3. INTERACTIVE DINING OCCASION PLANNER */
+.dining-planner-box {
+  background: var(--color-ivory);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 50px;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dining-planner-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px auto;
+}
+
+.dining-planner-header h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.3rem);
+  margin-bottom: 12px;
+  color: var(--color-charcoal);
+}
+
+.dining-planner-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 40px;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.planner-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.planner-controls .form-group {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.planner-controls .form-control {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  background: var(--color-white) !important;
+  min-height: 48px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  font-family: var(--font-primary);
+  color: var(--color-charcoal);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.planner-result-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  border: 1.5px solid var(--color-green);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.planner-badge {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-green);
+  letter-spacing: 0.08em;
+  display: block;
+}
+
+.planner-result-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-family: var(--font-display);
+  margin: 8px 0 14px 0;
+  color: var(--color-charcoal);
+  line-height: 1.3;
+}
+
+.planner-budget-panel {
+  padding: 16px;
+  background: var(--color-sage-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  border: 1px solid rgba(22, 122, 85, 0.15);
+}
+
+.planner-budget-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.planner-budget-row span:first-child {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+.planner-budget-value {
+  font-size: clamp(1.5rem, 3.5vw, 1.75rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-green);
+}
+
+.planner-budget-note {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.planner-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.8125rem;
+  color: var(--color-charcoal);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.planner-reserve-btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* 4. VIP CONCIERGE PRIVÉ SECTION */
+.vip-section {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+  padding: 90px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.vip-concierge-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vip-badge {
+  display: inline-block;
+  background: rgba(22, 122, 85, 0.4);
+  color: #34D399;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.vip-title {
+  color: var(--color-white);
+  font-size: clamp(1.85rem, 4vw, 2.45rem);
+  margin-bottom: 18px;
+  line-height: 1.25;
+}
+
+.vip-desc {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 26px;
+  font-size: clamp(0.9375rem, 1.8vw, 1.0625rem);
+}
+
+.vip-perks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+  font-size: 0.875rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vip-perk-box {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.vip-perk-box strong {
+  color: #34D399;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+}
+
+.vip-visual {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.vip-concierge-img {
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  filter: brightness(0.95);
+  display: block;
+}
+
+/* 5. RESTAURANT PARTNER SUITE */
+.partner-suite-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.partner-card {
+  background: var(--color-white);
+  padding: 32px 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.partner-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-sage);
+  color: var(--color-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.partner-card h4 {
+  font-size: 1.1875rem;
+  margin-bottom: 8px;
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+
+.partner-card p {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 6. SERVICE GUARANTEE SECTION */
+.service-guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.guarantee-card {
+  border-top: 3px solid var(--color-green);
+  padding-top: 20px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.guarantee-card h4 {
+  font-size: 1.125rem;
+  margin-bottom: 8px;
+  color: var(--color-charcoal);
+  font-weight: 600;
+}
+
+.guarantee-card p {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 7. SERVICE TIER COMPARISON MATRIX */
+.tier-comparison-wrapper {
+  width: 100%;
+  position: relative;
+  margin-top: 36px;
+}
+
+/* Mobile swipe hint */
+.table-scroll-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-green);
+  background: var(--color-sage);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  margin: 0 auto 16px auto;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-scroll-hint svg {
+  animation: pulseHorizontal 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseHorizontal {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+.tier-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  background: var(--color-white);
+}
+
+.tier-table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--color-white);
+}
+
+.tier-table thead tr {
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+.tier-table th {
+  padding: 22px 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.tier-table th:first-child {
+  text-align: left;
+  padding-left: 24px;
+}
+
+.tier-subheading {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.tier-highlight-head {
+  background: rgba(22, 122, 85, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tier-table td {
+  padding: 16px 20px;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tier-table td:first-child {
+  padding-left: 24px;
+  font-weight: 600;
+}
+
+.tier-table tr:nth-child(even) {
+  background: var(--color-ivory);
+}
+
+.tier-highlight-cell {
+  background: rgba(22, 122, 85, 0.04);
+  border-left: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS FOR SERVICES PAGE
+   ========================================================================== */
+
+/* Tablet Landscape / Medium Desktop (<= 1024px) */
+@media (max-width: 1024px) {
+  .dining-planner-box {
+    padding: 38px 30px;
+  }
+  
+  .dining-planner-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 30px;
+  }
+  
+  .vip-concierge-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    gap: 40px;
+  }
+  
+  .vip-concierge-img {
+    height: 380px;
+  }
+  
+  .partner-suite-grid,
+  .service-guarantee-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Tablet Portrait & Large Phones (<= 768px) */
+@media (max-width: 768px) {
+  .services-hero {
+    padding-top: 54px;
+    padding-bottom: 48px;
+  }
+  
+  .core-services-section,
+  .vip-section {
+    padding: 60px 0;
+  }
+  
+  /* Dining Planner: Responsive Single-Column Flow */
+  .dining-planner-box {
+    padding: 28px 20px !important;
+    border-radius: var(--radius-lg);
+  }
+  
+  .dining-planner-header {
+    margin-bottom: 26px;
+  }
+  
+  .dining-planner-header h2 {
+    font-size: 1.7rem;
+  }
+  
+  .dining-planner-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 28px !important;
+  }
+  
+  .planner-controls {
+    gap: 16px;
+  }
+  
+  .planner-result-card {
+    padding: 26px 20px;
+    border-radius: var(--radius-md);
+  }
+  
+  /* VIP Concierge Section */
+  .vip-concierge-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 32px;
+  }
+  
+  .vip-title {
+    font-size: 1.75rem;
+    margin-bottom: 14px;
+  }
+  
+  .vip-desc {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+  
+  .vip-perks-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  
+  .vip-concierge-img {
+    height: 280px;
+    border-radius: var(--radius-lg);
+  }
+  
+  /* Partner Suite: Symmetrical 2-Column on Tablet */
+  .partner-suite-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+  
+  .partner-card {
+    padding: 24px 18px;
+  }
+  
+  .partner-card h4 {
+    font-size: 1.0625rem;
+  }
+  
+  /* Service Guarantee: Symmetrical 2-Column on Tablet */
+  .service-guarantee-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+  }
+  
+  .guarantee-card {
+    padding-top: 14px;
+  }
+  
+  /* Tier Comparison Matrix with Sticky Column */
+  .table-scroll-hint {
+    display: inline-flex;
+  }
+  
+  .tier-table-container {
+    border-radius: var(--radius-lg);
+  }
+  
+  .tier-table {
+    min-width: 600px;
+  }
+  
+  .tier-table th,
+  .tier-table td {
+    padding: 14px 14px;
+  }
+  
+  /* Pinned Feature Name column */
+  .tier-table th:first-child,
+  .tier-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 3;
+    min-width: 150px;
+    max-width: 170px;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.08);
+    border-right: 1px solid var(--color-border);
+  }
+  
+  .tier-table th:first-child {
+    background: var(--color-charcoal);
+    z-index: 4;
+  }
+  
+  .tier-table tr:nth-child(odd) td:first-child {
+    background: var(--color-white);
+  }
+  
+  .tier-table tr:nth-child(even) td:first-child {
+    background: var(--color-ivory);
+  }
+}
+
+/* Small Tablets & Large Phones (<= 640px) */
+@media (max-width: 640px) {
+  .partner-suite-grid,
+  .service-guarantee-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+  
+  .vip-perks-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Standard Mobile Devices (<= 480px) */
+@media (max-width: 480px) {
+  .services-hero {
+    padding-top: 42px;
+    padding-bottom: 38px;
+  }
+  
+  .services-hero-title {
+    font-size: 1.85rem;
+    line-height: 1.22;
+  }
+  
+  .services-hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .services-hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .dining-planner-box {
+    padding: 20px 14px !important;
+  }
+  
+  .planner-controls .form-control {
+    font-size: 0.8125rem;
+    padding: 8px 10px;
+    min-height: 42px;
+  }
+  
+  .planner-result-card {
+    padding: 20px 14px;
+  }
+  
+  .planner-result-title {
+    font-size: 1.2rem;
+  }
+  
+  .planner-budget-panel {
+    padding: 12px 14px;
+  }
+  
+  .planner-budget-value {
+    font-size: 1.45rem;
+  }
+  
+  .vip-section {
+    padding: 48px 0;
+  }
+  
+  .vip-title {
+    font-size: 1.55rem;
+  }
+  
+  .vip-concierge-img {
+    height: 210px;
+  }
+  
+  .partner-card {
+    padding: 20px 14px;
+  }
+  
+  .partner-icon-box {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 12px;
+  }
+  
+  .tier-table {
+    min-width: 540px;
+  }
+  
+  .tier-table th:first-child,
+  .tier-table td:first-child {
+    min-width: 130px;
+    max-width: 140px;
+    font-size: 0.8125rem;
+    padding: 12px 10px;
+  }
+  
+  .tier-table th:not(:first-child),
+  .tier-table td:not(:first-child) {
+    min-width: 110px;
+    font-size: 0.78125rem;
+    padding: 12px 8px;
+  }
+}
+
+/* Small Phones (<= 360px down to 320px) */
+@media (max-width: 360px) {
+  .services-hero-title {
+    font-size: 1.65rem;
+  }
+  
+  .dining-planner-box {
+    padding: 16px 10px !important;
+  }
+  
+  .planner-result-card {
+    padding: 16px 10px;
+  }
+  
+  .planner-specs-list {
+    font-size: 0.75rem;
+  }
+  
+  .vip-perk-box {
+    padding: 12px 10px;
+  }
+  
+  .partner-card {
+    padding: 16px 12px;
+  }
+  
+  .tier-table {
+    min-width: 500px;
+  }
+  
+  .tier-table th:first-child,
+  .tier-table td:first-child {
+    min-width: 115px;
+    max-width: 125px;
+    font-size: 0.75rem;
+  }
+}

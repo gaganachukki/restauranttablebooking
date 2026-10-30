@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="css/style.css?v=2">
   <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/restaurants.css">
+  <link rel="stylesheet" href="css/restaurants.css?v=2">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
@@ -336,7 +336,7 @@
     <!-- 4. MAIN RESTAURANT CATALOG GRID -->
     <section class="resto-grid-section">
       <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+        <div class="resto-catalog-header">
           <div>
             <span class="section-eyebrow">EXPANDED CATALOG</span>
             <h2 class="section-title">Explore Verified Venues</h2>
@@ -627,7 +627,7 @@
       <div class="container">
         <div style="max-width: 720px;">
           <span class="section-eyebrow" style="color: var(--color-gold);">STACKLY PRIVÉ SALONS</span>
-          <h2 class="section-title" style="color: var(--color-white); font-size: clamp(2.2rem, 4vw, 3rem);">
+          <h2 class="section-title prive-title">
             Private Rooms Crafted for Landmark Occasions.
           </h2>
           <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.05rem; line-height: 1.7;">
@@ -804,7 +804,7 @@
             <h3>Looking for Hard-to-Find Tables or Custom Seating?</h3>
             <p>Our dedicated hospitality concierges coordinate directly with restaurant general managers to curate unforgettable dining moments.</p>
           </div>
-          <a href="404.html" class="btn btn-primary" style="background-color: var(--color-white); color: var(--color-green); white-space: nowrap;">
+          <a href="404.html" class="btn btn-primary resto-concierge-btn">
             Connect with Concierge →
           </a>
         </div>
@@ -1131,7 +1131,15 @@
 
       // 3. Safety Fallback: Ensure visible cards never remain in a partial opacity state
       const guaranteeVisibility = () => {
-        document.querySelectorAll(".resto-card-item").forEach(card => {
+        const animatableSelectors = [
+          ".resto-card-item",
+          ".critics-card",
+          ".city-hub-card",
+          ".prive-card",
+          ".tasting-card",
+          ".review-card-item"
+        ];
+        document.querySelectorAll(animatableSelectors.join(",")).forEach(card => {
           if (card.style.display !== "none") {
             const currentOpacity = parseFloat(window.getComputedStyle(card).opacity);
             if (currentOpacity < 1 && (!window.gsap || !gsap.isTweening(card))) {
